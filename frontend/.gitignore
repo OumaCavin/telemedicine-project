@@ -27,14 +27,14 @@ yarn-error.log*
 backend/node_modules/
 backend/sql/
 backend/.env
-backend/.gitignore
+
 backend/README.md
 
 # React build
 frontend/build/
 frontend/dist/
 frontend/.env
-frontend/.gitignore
+
 frontend/README.md
 frontend/README copy.md
 
