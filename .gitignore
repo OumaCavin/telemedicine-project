@@ -1,0 +1,8 @@
+# Ignore backend/sql directory
+backend/sql/
+
+# Ignore backend/node_modules directory
+backend/node_modules/
+
+# Ignore all files containing 'copy' in their names
+*copy*
