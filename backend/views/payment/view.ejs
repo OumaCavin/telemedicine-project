@@ -1,0 +1,14 @@
+<!-- views/payment/view.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Payments', 'View Payment'] }) %>
+
+<h1>View Payment</h1>
+<div class="table-responsive">
+    <table class="table">
+        <tr><th>Patient</th><td><%= payment.patient.first_name %> <%= payment.patient.last_name %></td></tr>
+        <tr><th>Amount</th><td><%= payment.amount %></td></tr>
+        <tr><th>Payment Method</th><td><%= payment.payment_method %></td></tr>
+        <tr><th>Currency</th><td><%= payment.currency_code %></td></tr>
+        <tr><th>Status</th><td><%= payment.status %></td></tr>
+        <tr><th>Payment Date</th><td><%= new Date(payment.payment_date).toLocaleString() %></td></tr>
+    </table>
+</div>

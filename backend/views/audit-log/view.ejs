@@ -1,0 +1,14 @@
+<!-- views/audit-log/view.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Audit Log', 'View Audit Log'] }) %>
+
+<h1>View Audit Log</h1>
+<div class="table-responsive">
+    <table class="table">
+        <tr><th>User ID</th><td><%= auditLog.user_id %></td></tr>
+        <tr><th>Action</th><td><%= auditLog.action %></td></tr>
+        <tr><th>Previous State</th><td><%= auditLog.previous_state %></td></tr>
+        <tr><th>Current State</th><td><%= auditLog.current_state %></td></tr>
+        <tr><th>Affected Table</th><td><%= auditLog.affected_table %></td></tr>
+        <tr><th>Created At</th><td><%= new Date(auditLog.created_at).toLocaleString() %></td></tr>
+    </table>
+</div>

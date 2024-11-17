@@ -1,0 +1,13 @@
+<!-- views/partials/breadcrumb.ejs -->
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="/">Home</a></li>
+      <% breadcrumbs.forEach((breadcrumb, index) => { %>
+        <li class="breadcrumb-item <%= index === breadcrumbs.length - 1 ? 'active' : '' %>" 
+            <%= index === breadcrumbs.length - 1 ? 'aria-current="page"' : '' %>>
+          <%= breadcrumb %>
+        </li>
+      <% }) %>
+    </ol>
+  </nav>
+  

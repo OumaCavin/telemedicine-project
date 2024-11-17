@@ -1,0 +1,5 @@
+<!-- views/ehr-record/update.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['EHR Records', 'Edit EHR Record'] }) %>
+
+<h1>Edit EHR Record</h1>
+<%- include('ehr-record/_form', { actionUrl: '/ehr-records/' + ehrRecord.ehr_record_id, ehrRecord: ehrRecord, patients: patients, doctors: doctors }) %>

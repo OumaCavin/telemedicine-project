@@ -1,0 +1,29 @@
+<!-- views/payment/_search.ejs -->
+<form action="/payments" method="GET">
+    <div class="form-group">
+        <label for="patient_id">Patient</label>
+        <select name="patient_id" id="patient_id" class="form-control">
+            <option value="">Select a Patient</option>
+            <% patients.forEach(patient => { %>
+                <option value="<%= patient.user_id %>" <%= patient.user_id == searchFilters.patient_id ? 'selected' : '' %>><%= patient.first_name %> <%= patient.last_name %></option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="payment_status">Payment Status</label>
+        <select name="status" id="status" class="form-control">
+            <option value="">Select a Status</option>
+            <option value="pending" <%= searchFilters.status == 'pending' ? 'selected' : '' %>>Pending</option>
+            <option value="completed" <%= searchFilters.status == 'completed' ? 'selected' : '' %>>Completed</option>
+            <option value="failed" <%= searchFilters.status == 'failed' ? 'selected' : '' %>>Failed</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="payment_date">Payment Date</label>
+        <input type="datetime-local" name="payment_date" id="payment_date" class="form-control" value="<%= searchFilters.payment_date || '' %>">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>

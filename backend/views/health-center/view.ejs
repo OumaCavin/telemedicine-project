@@ -1,0 +1,20 @@
+<!-- views/health-center/view.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Health Centers', 'View Health Center'] }) %>
+
+<h1>Health Center Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h3><%= healthCenter.name %></h3>
+    </div>
+    <div class="card-body">
+        <p><strong>Location:</strong> <%= healthCenter.location %></p>
+        <p><strong>Contact Info:</strong> <%= healthCenter.contact_info %></p>
+        <p><strong>Type:</strong> <%= healthCenter.type %></p>
+        <p><strong>Created At:</strong> <%= healthCenter.created_at %></p>
+        <p><strong>Created By:</strong> <%= healthCenter.created_by ? healthCenter.created_by.first_name + ' ' + healthCenter.created_by.last_name : 'N/A' %></p>
+    </div>
+    <div class="card-footer">
+        <a href="/health-centers" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

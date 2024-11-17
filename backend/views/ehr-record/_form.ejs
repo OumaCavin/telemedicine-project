@@ -1,0 +1,64 @@
+<!-- views/ehr-record/_form.ejs -->
+<form action="<%= actionUrl %>" method="POST">
+    <%- include('partials/alerts') %> <!-- For displaying alerts -->
+
+    <div class="form-group">
+        <label for="patient_id">Patient</label>
+        <select name="patient_id" id="patient_id" class="form-control" required>
+            <option value="">Select a Patient</option>
+            <% patients.forEach(patient => { %>
+                <option value="<%= patient.user_id %>" <%= patient.user_id == ehrRecord.patient_id ? 'selected' : '' %>><%= patient.first_name %> <%= patient.last_name %></option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="doctor_id">Doctor</label>
+        <select name="doctor_id" id="doctor_id" class="form-control">
+            <option value="">Select a Doctor</option>
+            <% doctors.forEach(doctor => { %>
+                <option value="<%= doctor.user_id %>" <%= doctor.user_id == ehrRecord.doctor_id ? 'selected' : '' %>><%= doctor.first_name %> <%= doctor.last_name %></option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="medical_conditions">Medical Conditions</label>
+        <textarea name="medical_conditions" id="medical_conditions" class="form-control" rows="4"><%= ehrRecord.medical_conditions || '' %></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="allergies">Allergies</label>
+        <textarea name="allergies" id="allergies" class="form-control" rows="4"><%= ehrRecord.allergies || '' %></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="medications">Medications</label>
+        <textarea name="medications" id="medications" class="form-control" rows="4"><%= ehrRecord.medications || '' %></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="visit_date">Visit Date</label>
+        <input type="datetime-local" name="visit_date" id="visit_date" class="form-control" value="<%= ehrRecord.visit_date || '' %>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="diagnosis">Diagnosis</label>
+        <textarea name="diagnosis" id="diagnosis" class="form-control" rows="4"><%= ehrRecord.diagnosis || '' %></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="treatment">Treatment</label>
+        <textarea name="treatment" id="treatment" class="form-control" rows="4"><%= ehrRecord.treatment || '' %></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="encounter_type">Encounter Type</label>
+        <select name="encounter_type" id="encounter_type" class="form-control">
+            <option value="in-person" <%= ehrRecord.encounter_type === 'in-person' ? 'selected' : '' %>>In-Person</option>
+            <option value="telehealth-visits" <%= ehrRecord.encounter_type === 'telehealth-visits' ? 'selected' : '' %>>Telehealth Visits</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

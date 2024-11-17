@@ -1,0 +1,5 @@
+<!-- views/ehr-record/create.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['EHR Records', 'Create EHR Record'] }) %>
+
+<h1>Create EHR Record</h1>
+<%- include('ehr-record/_form', { actionUrl: '/ehr-records', ehrRecord: ehrRecord, patients: patients, doctors: doctors }) %>

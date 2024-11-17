@@ -1,0 +1,5 @@
+<!-- views/payment/create.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Payments', 'Create Payment'] }) %>
+
+<h1>Create Payment</h1>
+<%- include('payment/_form', { actionUrl: '/payments', payment: payment, patients: patients, appointments: appointments }) %>

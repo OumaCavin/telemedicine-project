@@ -1,0 +1,62 @@
+<!-- views/prescription/_form.ejs -->
+<form action="<%= actionUrl %>" method="POST">
+    <%- include('partials/alerts') %> <!-- For displaying alerts -->
+
+    <div class="form-group">
+        <label for="patient_id">Patient</label>
+        <select name="patient_id" id="patient_id" class="form-control">
+            <% patients.forEach(patient => { %>
+                <option value="<%= patient.user_id %>" <%= patient.user_id == prescription.patient_id ? 'selected' : '' %> >
+                    <%= patient.first_name %> <%= patient.last_name %>
+                </option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="doctor_id">Doctor</label>
+        <select name="doctor_id" id="doctor_id" class="form-control">
+            <% doctors.forEach(doctor => { %>
+                <option value="<%= doctor.user_id %>" <%= doctor.user_id == prescription.doctor_id ? 'selected' : '' %> >
+                    <%= doctor.first_name %> <%= doctor.last_name %>
+                </option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="medication_name">Medication Name</label>
+        <input type="text" name="medication_name" id="medication_name" class="form-control" value="<%= prescription.medication_name %>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="dosage">Dosage</label>
+        <input type="text" name="dosage" id="dosage" class="form-control" value="<%= prescription.dosage %>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="frequency">Frequency</label>
+        <input type="text" name="frequency" id="frequency" class="form-control" value="<%= prescription.frequency %>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="medication">Medication (JSON format)</label>
+        <textarea name="medication" id="medication" class="form-control" required><%= prescription.medication %></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="dosage_instructions">Dosage Instructions</label>
+        <textarea name="dosage_instructions" id="dosage_instructions" class="form-control"><%= prescription.dosage_instructions %></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select name="status" id="status" class="form-control">
+            <option value="active" <%= prescription.status == 'active' ? 'selected' : '' %>>Active</option>
+            <option value="completed" <%= prescription.status == 'completed' ? 'selected' : '' %>>Completed</option>
+            <option value="canceled" <%= prescription.status == 'canceled' ? 'selected' : '' %>>Canceled</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

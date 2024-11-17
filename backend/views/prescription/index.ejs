@@ -1,0 +1,45 @@
+<!-- views/prescription/index.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Prescriptions', 'All Prescriptions'] }) %>
+
+<h1>Prescriptions</h1>
+
+<table id="prescriptionsTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Medication Name</th>
+            <th>Status</th>
+            <th>Prescribed Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% prescriptions.forEach(prescription => { %>
+            <tr>
+                <td><%= prescription.patient.first_name %> <%= prescription.patient.last_name %></td>
+                <td><%= prescription.doctor.first_name %> <%= prescription.doctor.last_name %></td>
+                <td><%= prescription.medication_name %></td>
+                <td><%= prescription.status %></td>
+                <td><%= prescription.prescribed_date %></td>
+                <td>
+                    <a href="/prescriptions/<%= prescription.prescription_id %>" class="btn btn-info btn-sm">View</a>
+                    <a href="/prescriptions/<%= prescription.prescription_id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="/prescriptions/<%= prescription.prescription_id %>" method="POST" style="display:inline;">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+<!-- DataTables JS and CSS CDN -->
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<script>
+    $(document).ready(function() {
+        $('#prescriptionsTable').DataTable();
+    });
+</script>

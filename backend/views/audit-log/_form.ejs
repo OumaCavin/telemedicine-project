@@ -1,0 +1,31 @@
+<!-- views/audit-log/_form.ejs -->
+<form action="<%= actionUrl %>" method="POST">
+    <%- include('partials/alerts') %> <!-- For displaying alerts -->
+
+    <div class="form-group">
+        <label for="user_id">User ID</label>
+        <input type="number" name="user_id" id="user_id" class="form-control" value="<%= auditLog.user_id || '' %>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="action">Action</label>
+        <input type="text" name="action" id="action" class="form-control" value="<%= auditLog.action || '' %>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="previous_state">Previous State</label>
+        <textarea name="previous_state" id="previous_state" class="form-control"><%= auditLog.previous_state || '' %></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="current_state">Current State</label>
+        <textarea name="current_state" id="current_state" class="form-control"><%= auditLog.current_state || '' %></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="affected_table">Affected Table</label>
+        <input type="text" name="affected_table" id="affected_table" class="form-control" value="<%= auditLog.affected_table || '' %>" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

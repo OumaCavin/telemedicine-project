@@ -1,0 +1,9 @@
+<!-- views/role/_search.ejs -->
+<form action="/roles" method="GET">
+    <div class="form-group">
+        <label for="role_name">Role Name</label>
+        <input type="text" name="role_name" id="role_name" class="form-control" value="<%= searchFilters.role_name %>">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>

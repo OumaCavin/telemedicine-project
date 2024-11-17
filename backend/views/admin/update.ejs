@@ -1,0 +1,5 @@
+<!-- views/admin/update.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Admins', 'Edit Admin'] }) %>
+
+<h1>Edit Admin</h1>
+<%- include('admin/_form', { actionUrl: '/admins/' + admin.admin_id, action: 'update', admin: admin }) %>

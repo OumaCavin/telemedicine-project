@@ -1,0 +1,7 @@
+<!-- views/user/update.ejs -->
+<%- include('partials/header') %>
+
+<h1>Edit User</h1>
+<%- include('user/_form', { actionUrl: '/users/' + user.user_id, action: 'update', user: user }) %>
+
+<%- include('partials/footer') %>

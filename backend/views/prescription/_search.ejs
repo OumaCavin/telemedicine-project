@@ -1,0 +1,26 @@
+<!-- views/prescription/_search.ejs -->
+<form action="/prescriptions" method="GET">
+    <div class="form-group">
+        <label for="doctor_id">Doctor</label>
+        <select name="doctor_id" id="doctor_id" class="form-control">
+            <option value="">Select Doctor</option>
+            <% doctors.forEach(doctor => { %>
+                <option value="<%= doctor.user_id %>" <%= doctor.user_id == searchFilters.doctor_id ? 'selected' : '' %> >
+                    <%= doctor.first_name %> <%= doctor.last_name %>
+                </option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select name="status" id="status" class="form-control">
+            <option value="">Select Status</option>
+            <option value="active" <%= searchFilters.status == 'active' ? 'selected' : '' %>>Active</option>
+            <option value="completed" <%= searchFilters.status == 'completed' ? 'selected' : '' %>>Completed</option>
+            <option value="canceled" <%= searchFilters.status == 'canceled' ? 'selected' : '' %>>Canceled</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>

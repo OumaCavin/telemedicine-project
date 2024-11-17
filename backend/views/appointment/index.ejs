@@ -1,0 +1,45 @@
+<!-- views/appointment/index.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Appointments', 'All Appointments'] }) %>
+
+<h1>Appointments</h1>
+
+<table id="appointmentsTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Appointment Time</th>
+            <th>Status</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% appointments.forEach(appointment => { %>
+            <tr>
+                <td><%= appointment.patient.first_name %> <%= appointment.patient.last_name %></td>
+                <td><%= appointment.doctor.first_name %> <%= appointment.doctor.last_name %></td>
+                <td><%= appointment.appointment_time %></td>
+                <td><%= appointment.status %></td>
+                <td><%= appointment.appointment_type %></td>
+                <td>
+                    <a href="/appointments/<%= appointment.appointment_id %>" class="btn btn-info btn-sm">View</a>
+                    <a href="/appointments/<%= appointment.appointment_id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="/appointments/<%= appointment.appointment_id %>" method="POST" style="display:inline;">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+<!-- DataTables JS and CSS CDN -->
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<script>
+    $(document).ready(function() {
+        $('#appointmentsTable').DataTable();
+    });
+</script>

@@ -1,0 +1,14 @@
+<!-- views/status/_search.ejs -->
+<form action="/status" method="GET">
+    <div class="form-group">
+        <label for="status_name">Status Name</label>
+        <input type="text" name="status_name" id="status_name" class="form-control" value="<%= searchFilters.status_name || '' %>">
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description" class="form-control" value="<%= searchFilters.description || '' %>">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>

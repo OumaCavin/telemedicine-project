@@ -1,0 +1,20 @@
+<!-- views/message/view.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Messages', 'View Message'] }) %>
+
+<h1>Message Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h3>Message for <%= message.user.first_name %> <%= message.user.last_name %></h3>
+    </div>
+    <div class="card-body">
+        <p><strong>Content:</strong> <%= message.content %></p>
+        <p><strong>Priority:</strong> <%= message.priority %></p>
+        <p><strong>Status:</strong> <%= message.is_read ? 'Read' : 'Unread' %></p>
+        <p><strong>Created At:</strong> <%= message.created_at %></p>
+        <p><strong>Created By:</strong> <%= message.created_by ? message.created_by.first_name + ' ' + message.created_by.last_name : 'N/A' %></p>
+    </div>
+    <div class="card-footer">
+        <a href="/messages" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

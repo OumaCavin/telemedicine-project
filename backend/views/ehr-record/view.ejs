@@ -1,0 +1,17 @@
+<!-- views/ehr-record/view.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['EHR Records', 'View EHR Record'] }) %>
+
+<h1>View EHR Record</h1>
+<div class="table-responsive">
+    <table class="table">
+        <tr><th>Patient</th><td><%= ehrRecord.patient.first_name %> <%= ehrRecord.patient.last_name %></td></tr>
+        <tr><th>Doctor</th><td><%= ehrRecord.doctor ? ehrRecord.doctor.first_name + ' ' + ehrRecord.doctor.last_name : 'N/A' %></td></tr>
+        <tr><th>Visit Date</th><td><%= new Date(ehrRecord.visit_date).toLocaleString() %></td></tr>
+        <tr><th>Medical Conditions</th><td><%= ehrRecord.medical_conditions %></td></tr>
+        <tr><th>Allergies</th><td><%= ehrRecord.allergies %></td></tr>
+        <tr><th>Medications</th><td><%= ehrRecord.medications %></td></tr>
+        <tr><th>Diagnosis</th><td><%= ehrRecord.diagnosis %></td></tr>
+        <tr><th>Treatment</th><td><%= ehrRecord.treatment %></td></tr>
+        <tr><th>Encounter Type</th><td><%= ehrRecord.encounter_type %></td></tr>
+    </table>
+</div>

@@ -1,0 +1,15 @@
+<!-- views/admin/view.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Admins', 'View Admin'] }) %>
+
+<h1>Admin Details</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title"><%= admin.first_name %> <%= admin.last_name %></h5>
+        <p class="card-text"><strong>Gender:</strong> <%= admin.gender %></p>
+        <p class="card-text"><strong>Phone Number:</strong> <%= admin.phone_number || 'N/A' %></p>
+        <p class="card-text"><strong>Address:</strong> <%= admin.address || 'N/A' %></p>
+        <p class="card-text"><strong>Created At:</strong> <%= admin.created_at %></p>
+        <p class="card-text"><strong>Updated At:</strong> <%= admin.updated_at %></p>
+    </div>
+</div>

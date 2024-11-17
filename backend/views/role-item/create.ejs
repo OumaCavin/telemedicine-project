@@ -1,0 +1,5 @@
+<!-- views/role-item/create.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Role Items', 'Create Role Item'] }) %>
+
+<h1>Create Role Item</h1>
+<%- include('role-item/_form', { actionUrl: '/role-items', roleItem: roleItem, roles: roles }) %>

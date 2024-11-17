@@ -1,0 +1,5 @@
+<!-- views/message/update.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Messages', 'Edit Message'] }) %>
+
+<h1>Edit Message</h1>
+<%- include('message/_form', { actionUrl: '/messages/' + message.message_id, action: 'update', message: message, users: users }) %>

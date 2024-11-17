@@ -1,0 +1,7 @@
+<!-- views/user/create.ejs -->
+<%- include('partials/header') %>
+
+<h1>Create User</h1>
+<%- include('user/_form', { actionUrl: '/users', action: 'create', user: {} }) %>
+
+<%- include('partials/footer') %>

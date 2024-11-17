@@ -1,0 +1,47 @@
+<!-- views/ehr-record/index.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['EHR Records', 'All EHR Records'] }) %>
+
+<h1>EHR Records</h1>
+
+<%- include('ehr-record/_search', { searchFilters: searchFilters, patients: patients, doctors: doctors }) %>
+
+<table id="ehrRecordsTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Visit Date</th>
+            <th>Diagnosis</th>
+            <th>Encounter Type</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% ehrRecords.forEach(record => { %>
+            <tr>
+                <td><%= record.patient.first_name %> <%= record.patient.last_name %></td>
+                <td><%= record.doctor ? record.doctor.first_name + ' ' + record.doctor.last_name : 'N/A' %></td>
+                <td><%= new Date(record.visit_date).toLocaleString() %></td>
+                <td><%= record.diagnosis %></td>
+                <td><%= record.encounter_type %></td>
+                <td>
+                    <a href="/ehr-records/<%= record.ehr_record_id %>" class="btn btn-info btn-sm">View</a>
+                    <a href="/ehr-records/<%= record.ehr_record_id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="/ehr-records/<%= record.ehr_record_id %>" method="POST" style="display:inline;">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+<!-- DataTables JS and CSS CDN -->
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<script>
+    $(document).ready(function() {
+        $('#ehrRecordsTable').DataTable();
+    });
+</script>

@@ -1,0 +1,45 @@
+<!-- views/message/index.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Messages', 'All Messages'] }) %>
+
+<h1>Messages</h1>
+
+<table id="messagesTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Content</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Created At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% messages.forEach(message => { %>
+            <tr>
+                <td><%= message.user.first_name %> <%= message.user.last_name %></td>
+                <td><%= message.content %></td>
+                <td><%= message.priority %></td>
+                <td><%= message.is_read ? 'Read' : 'Unread' %></td>
+                <td><%= message.created_at %></td>
+                <td>
+                    <a href="/messages/<%= message.message_id %>" class="btn btn-info btn-sm">View</a>
+                    <a href="/messages/<%= message.message_id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="/messages/<%= message.message_id %>" method="POST" style="display:inline;">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+<!-- DataTables JS and CSS CDN -->
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<script>
+    $(document).ready(function() {
+        $('#messagesTable').DataTable();
+    });
+</script>

@@ -1,0 +1,26 @@
+<!-- views/role-item/_form.ejs -->
+<form action="<%= actionUrl %>" method="POST">
+    <%- include('partials/alerts') %> <!-- For displaying alerts -->
+
+    <div class="form-group">
+        <label for="role_id">Role</label>
+        <select name="role_id" id="role_id" class="form-control" required>
+            <option value="">Select a Role</option>
+            <% roles.forEach(role => { %>
+                <option value="<%= role.role_id %>" <%= role.role_id == roleItem.role_id ? 'selected' : '' %>><%= role.role_name %></option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="permission">Permission</label>
+        <input type="text" name="permission" id="permission" class="form-control" value="<%= roleItem.permission || '' %>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" class="form-control" rows="4"><%= roleItem.description || '' %></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

@@ -1,0 +1,5 @@
+<!-- views/role-assignment/create.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Role Assignments', 'Create Role Assignment'] }) %>
+
+<h1>Create Role Assignment</h1>
+<%- include('role-assignment/_form', { actionUrl: '/role-assignments', roleAssignment: roleAssignment, users: users, roles: roles }) %>

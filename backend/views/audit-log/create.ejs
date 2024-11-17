@@ -1,0 +1,5 @@
+<!-- views/audit-log/create.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Audit Log', 'Create Audit Log'] }) %>
+
+<h1>Create Audit Log</h1>
+<%- include('audit-log/_form', { actionUrl: '/audit-log', auditLog: auditLog }) %>

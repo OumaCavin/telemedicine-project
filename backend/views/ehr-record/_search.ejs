@@ -1,0 +1,29 @@
+<!-- views/ehr-record/_search.ejs -->
+<form action="/ehr-records" method="GET">
+    <div class="form-group">
+        <label for="patient_id">Patient</label>
+        <select name="patient_id" id="patient_id" class="form-control">
+            <option value="">Select a Patient</option>
+            <% patients.forEach(patient => { %>
+                <option value="<%= patient.user_id %>" <%= patient.user_id == searchFilters.patient_id ? 'selected' : '' %>><%= patient.first_name %> <%= patient.last_name %></option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="doctor_id">Doctor</label>
+        <select name="doctor_id" id="doctor_id" class="form-control">
+            <option value="">Select a Doctor</option>
+            <% doctors.forEach(doctor => { %>
+                <option value="<%= doctor.user_id %>" <%= doctor.user_id == searchFilters.doctor_id ? 'selected' : '' %>><%= doctor.first_name %> <%= doctor.last_name %></option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="visit_date">Visit Date</label>
+        <input type="datetime-local" name="visit_date" id="visit_date" class="form-control" value="<%= searchFilters.visit_date || '' %>">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>

@@ -1,0 +1,5 @@
+<!-- views/status/update.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Status', 'Edit Status'] }) %>
+
+<h1>Edit Status</h1>
+<%- include('status/_form', { actionUrl: '/status/' + status.status_id, status: status }) %>

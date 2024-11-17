@@ -1,0 +1,20 @@
+<!-- views/role-item/view.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Role Items', 'View Role Item'] }) %>
+
+<h1>Role Item Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h3><%= roleItem.permission %></h3>
+    </div>
+    <div class="card-body">
+        <p><strong>Role:</strong> <%= roleItem.role.role_name %></p>
+        <p><strong>Permission:</strong> <%= roleItem.permission %></p>
+        <p><strong>Description:</strong> <%= roleItem.description %></p>
+        <p><strong>Created By:</strong> <%= roleItem.created_by ? roleItem.created_by.first_name + ' ' + roleItem.created_by.last_name : 'N/A' %></p>
+        <p><strong>Updated By:</strong> <%= roleItem.updated_by ? roleItem.updated_by.first_name + ' ' + roleItem.updated_by.last_name : 'N/A' %></p>
+    </div>
+    <div class="card-footer">
+        <a href="/role-items" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<!-- views/status/view.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Status', 'View Status'] }) %>
+
+<h1>View Status</h1>
+<div class="table-responsive">
+    <table class="table">
+        <tr><th>Status Name</th><td><%= status.status_name %></td></tr>
+        <tr><th>Description</th><td><%= status.description %></td></tr>
+        <tr><th>Created At</th><td><%= new Date(status.created_at).toLocaleString() %></td></tr>
+    </table>
+</div>

@@ -1,0 +1,5 @@
+<!-- views/user/create.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Users', 'Create User'] }) %>
+
+<h1>Create User</h1>
+<%- include('user/_form', { actionUrl: '/users', action: 'create', user: {} }) %>

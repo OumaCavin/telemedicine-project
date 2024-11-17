@@ -1,0 +1,45 @@
+<!-- views/role-assignment/index.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Role Assignments', 'All Role Assignments'] }) %>
+
+<h1>Role Assignments</h1>
+
+<%- include('role-assignment/_search', { searchFilters: searchFilters, users: users, roles: roles }) %>
+
+<table id="roleAssignmentsTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Role</th>
+            <th>Created By</th>
+            <th>Updated By</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% roleAssignments.forEach(assignment => { %>
+            <tr>
+                <td><%= assignment.user.first_name %> <%= assignment.user.last_name %></td>
+                <td><%= assignment.role.role_name %></td>
+                <td><%= assignment.created_by ? assignment.created_by.first_name + ' ' + assignment.created_by.last_name : 'N/A' %></td>
+                <td><%= assignment.updated_by ? assignment.updated_by.first_name + ' ' + assignment.updated_by.last_name : 'N/A' %></td>
+                <td>
+                    <a href="/role-assignments/<%= assignment.role_assignment_id %>" class="btn btn-info btn-sm">View</a>
+                    <a href="/role-assignments/<%= assignment.role_assignment_id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="/role-assignments/<%= assignment.role_assignment_id %>" method="POST" style="display:inline;">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+<!-- DataTables JS and CSS CDN -->
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<script>
+    $(document).ready(function() {
+        $('#roleAssignmentsTable').DataTable();
+    });
+</script>

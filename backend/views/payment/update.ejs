@@ -1,0 +1,5 @@
+<!-- views/payment/update.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Payments', 'Edit Payment'] }) %>
+
+<h1>Edit Payment</h1>
+<%- include('payment/_form', { actionUrl: '/payments/' + payment.payment_id, payment: payment, patients: patients, appointments: appointments }) %>

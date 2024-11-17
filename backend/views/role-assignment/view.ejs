@@ -1,0 +1,19 @@
+<!-- views/role-assignment/view.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Role Assignments', 'View Role Assignment'] }) %>
+
+<h1>Role Assignment Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h3><%= roleAssignment.user.first_name %> <%= roleAssignment.user.last_name %> - <%= roleAssignment.role.role_name %></h3>
+    </div>
+    <div class="card-body">
+        <p><strong>User:</strong> <%= roleAssignment.user.first_name %> <%= roleAssignment.user.last_name %></p>
+        <p><strong>Role:</strong> <%= roleAssignment.role.role_name %></p>
+        <p><strong>Created By:</strong> <%= roleAssignment.created_by ? roleAssignment.created_by.first_name + ' ' + roleAssignment.created_by.last_name : 'N/A' %></p>
+        <p><strong>Updated By:</strong> <%= roleAssignment.updated_by ? roleAssignment.updated_by.first_name + ' ' + roleAssignment.updated_by.last_name : 'N/A' %></p>
+    </div>
+    <div class="card-footer">
+        <a href="/role-assignments" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

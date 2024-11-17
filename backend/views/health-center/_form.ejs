@@ -1,0 +1,30 @@
+<!-- views/health-center/_form.ejs -->
+<form action="<%= actionUrl %>" method="POST">
+    <%- include('partials/alerts') %> <!-- For displaying alerts -->
+
+    <div class="form-group">
+        <label for="name">Health Center Name</label>
+        <input type="text" name="name" id="name" class="form-control" value="<%= healthCenter.name %>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="location">Location (Latitude, Longitude)</label>
+        <input type="text" name="location" id="location" class="form-control" value="<%= healthCenter.location %>" placeholder="Latitude, Longitude" required>
+    </div>
+
+    <div class="form-group">
+        <label for="contact_info">Contact Information</label>
+        <input type="text" name="contact_info" id="contact_info" class="form-control" value="<%= healthCenter.contact_info %>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="type">Type</label>
+        <select name="type" id="type" class="form-control">
+            <option value="hospital" <%= healthCenter.type == 'hospital' ? 'selected' : '' %>>Hospital</option>
+            <option value="clinic" <%= healthCenter.type == 'clinic' ? 'selected' : '' %>>Clinic</option>
+            <option value="lab" <%= healthCenter.type == 'lab' ? 'selected' : '' %>>Lab</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

@@ -1,0 +1,55 @@
+<!-- views/appointment/_form.ejs -->
+<form action="<%= actionUrl %>" method="POST">
+    <%- include('partials/alerts') %> <!-- For displaying alerts -->
+
+    <div class="form-group">
+        <label for="patient_id">Patient</label>
+        <select name="patient_id" id="patient_id" class="form-control">
+            <% patients.forEach(patient => { %>
+                <option value="<%= patient.user_id %>" <%= patient.user_id == appointment.patient_id ? 'selected' : '' %> >
+                    <%= patient.first_name %> <%= patient.last_name %>
+                </option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="doctor_id">Doctor</label>
+        <select name="doctor_id" id="doctor_id" class="form-control">
+            <% doctors.forEach(doctor => { %>
+                <option value="<%= doctor.user_id %>" <%= doctor.user_id == appointment.doctor_id ? 'selected' : '' %> >
+                    <%= doctor.first_name %> <%= doctor.last_name %>
+                </option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="appointment_time">Appointment Time</label>
+        <input type="datetime-local" name="appointment_time" id="appointment_time" class="form-control" value="<%= appointment.appointment_time %>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select name="status" id="status" class="form-control">
+            <option value="scheduled" <%= appointment.status == 'scheduled' ? 'selected' : '' %>>Scheduled</option>
+            <option value="canceled" <%= appointment.status == 'canceled' ? 'selected' : '' %>>Canceled</option>
+            <option value="completed" <%= appointment.status == 'completed' ? 'selected' : '' %>>Completed</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="appointment_type">Appointment Type</label>
+        <select name="appointment_type" id="appointment_type" class="form-control">
+            <option value="physical" <%= appointment.appointment_type == 'physical' ? 'selected' : '' %>>Physical</option>
+            <option value="virtual" <%= appointment.appointment_type == 'virtual' ? 'selected' : '' %>>Virtual</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="appointment_duration">Appointment Duration (in minutes)</label>
+        <input type="number" name="appointment_duration" id="appointment_duration" class="form-control" value="<%= appointment.appointment_duration %>" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

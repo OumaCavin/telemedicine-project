@@ -1,0 +1,5 @@
+<!-- views/appointment/update.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Appointments', 'Edit Appointment'] }) %>
+
+<h1>Edit Appointment</h1>
+<%- include('appointment/_form', { actionUrl: '/appointments/' + appointment.appointment_id, action: 'update', appointment: appointment, doctors: doctors, patients: patients }) %>

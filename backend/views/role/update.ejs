@@ -1,0 +1,5 @@
+<!-- views/role/update.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Roles', 'Edit Role'] }) %>
+
+<h1>Edit Role</h1>
+<%- include('role/_form', { actionUrl: '/roles/' + role.role_id, role: role }) %>

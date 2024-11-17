@@ -1,0 +1,47 @@
+<!-- views/history/index.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['History', 'All History'] }) %>
+
+<h1>History</h1>
+
+<%- include('history/_search', { searchFilters: searchFilters, users: users, statuses: statuses }) %>
+
+<table id="historyTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Status</th>
+            <th>Action</th>
+            <th>Action Time</th>
+            <th>Created By</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% historyEntries.forEach(history => { %>
+            <tr>
+                <td><%= history.user.first_name %> <%= history.user.last_name %></td>
+                <td><%= history.status.name %></td>
+                <td><%= history.action %></td>
+                <td><%= history.action_time %></td>
+                <td><%= history.created_by ? history.created_by.first_name + ' ' + history.created_by.last_name : 'N/A' %></td>
+                <td>
+                    <a href="/history/<%= history.history_id %>" class="btn btn-info btn-sm">View</a>
+                    <a href="/history/<%= history.history_id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="/history/<%= history.history_id %>" method="POST" style="display:inline;">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+<!-- DataTables JS and CSS CDN -->
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<script>
+    $(document).ready(function() {
+        $('#historyTable').DataTable();
+    });
+</script>

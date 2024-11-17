@@ -1,0 +1,35 @@
+<!-- views/appointment/_search.ejs -->
+<form action="/appointments" method="GET">
+    <div class="form-group">
+        <label for="doctor_id">Doctor</label>
+        <select name="doctor_id" id="doctor_id" class="form-control">
+            <option value="">Select Doctor</option>
+            <% doctors.forEach(doctor => { %>
+                <option value="<%= doctor.user_id %>" <%= doctor.user_id == searchFilters.doctor_id ? 'selected' : '' %> >
+                    <%= doctor.first_name %> <%= doctor.last_name %>
+                </option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select name="status" id="status" class="form-control">
+            <option value="">Select Status</option>
+            <option value="scheduled" <%= searchFilters.status == 'scheduled' ? 'selected' : '' %>>Scheduled</option>
+            <option value="canceled" <%= searchFilters.status == 'canceled' ? 'selected' : '' %>>Canceled</option>
+            <option value="completed" <%= searchFilters.status == 'completed' ? 'selected' : '' %>>Completed</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="appointment_type">Appointment Type</label>
+        <select name="appointment_type" id="appointment_type" class="form-control">
+            <option value="">Select Type</option>
+            <option value="physical" <%= searchFilters.appointment_type == 'physical' ? 'selected' : '' %>>Physical</option>
+            <option value="virtual" <%= searchFilters.appointment_type == 'virtual' ? 'selected' : '' %>>Virtual</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>

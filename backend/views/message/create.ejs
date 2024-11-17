@@ -1,0 +1,5 @@
+<!-- views/message/create.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Messages', 'Create Message'] }) %>
+
+<h1>Create Message</h1>
+<%- include('message/_form', { actionUrl: '/messages', action: 'create', users: users }) %>

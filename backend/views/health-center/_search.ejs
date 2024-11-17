@@ -1,0 +1,19 @@
+<!-- views/health-center/_search.ejs -->
+<form action="/health-centers" method="GET">
+    <div class="form-group">
+        <label for="type">Type</label>
+        <select name="type" id="type" class="form-control">
+            <option value="">Select Type</option>
+            <option value="hospital" <%= searchFilters.type == 'hospital' ? 'selected' : '' %>>Hospital</option>
+            <option value="clinic" <%= searchFilters.type == 'clinic' ? 'selected' : '' %>>Clinic</option>
+            <option value="lab" <%= searchFilters.type == 'lab' ? 'selected' : '' %>>Lab</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="location">Location (Latitude, Longitude)</label>
+        <input type="text" name="location" id="location" class="form-control" value="<%= searchFilters.location %>" placeholder="Latitude, Longitude">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>

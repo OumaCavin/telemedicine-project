@@ -1,0 +1,16 @@
+<!-- views/status/_form.ejs -->
+<form action="<%= actionUrl %>" method="POST">
+    <%- include('partials/alerts') %> <!-- For displaying alerts -->
+
+    <div class="form-group">
+        <label for="status_name">Status Name</label>
+        <input type="text" name="status_name" id="status_name" class="form-control" value="<%= status.status_name || '' %>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" class="form-control" required><%= status.description || '' %></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

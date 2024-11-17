@@ -1,0 +1,24 @@
+<!-- views/history/_search.ejs -->
+<form action="/history" method="GET">
+    <div class="form-group">
+        <label for="user_id">User</label>
+        <select name="user_id" id="user_id" class="form-control">
+            <option value="">Select User</option>
+            <% users.forEach(user => { %>
+                <option value="<%= user.user_id %>" <%= searchFilters.user_id == user.user_id ? 'selected' : '' %>><%= user.first_name %> <%= user.last_name %></option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="status_id">Status</label>
+        <select name="status_id" id="status_id" class="form-control">
+            <option value="">Select Status</option>
+            <% statuses.forEach(status => { %>
+                <option value="<%= status.status_id %>" <%= searchFilters.status_id == status.status_id ? 'selected' : '' %>><%= status.name %></option>
+            <% }); %>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>

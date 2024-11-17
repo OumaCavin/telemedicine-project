@@ -1,0 +1,14 @@
+<!-- views/user/view.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Users', 'View User'] }) %>
+
+<h1>User Details</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title"><%= user.username %></h5>
+        <p class="card-text"><strong>Email:</strong> <%= user.email %></p>
+        <p class="card-text"><strong>Status:</strong> <%= user.is_active ? 'Active' : 'Inactive' %></p>
+        <p class="card-text"><strong>Created At:</strong> <%= user.created_at %></p>
+        <p class="card-text"><strong>Updated At:</strong> <%= user.updated_at %></p>
+    </div>
+</div>

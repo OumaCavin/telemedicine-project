@@ -1,0 +1,24 @@
+<!-- views/role-assignment/_search.ejs -->
+<form action="/role-assignments" method="GET">
+    <div class="form-group">
+        <label for="user_id">User</label>
+        <select name="user_id" id="user_id" class="form-control">
+            <option value="">Select a User</option>
+            <% users.forEach(user => { %>
+                <option value="<%= user.user_id %>" <%= user.user_id == searchFilters.user_id ? 'selected' : '' %>><%= user.first_name %> <%= user.last_name %></option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="role_id">Role</label>
+        <select name="role_id" id="role_id" class="form-control">
+            <option value="">Select a Role</option>
+            <% roles.forEach(role => { %>
+                <option value="<%= role.role_id %>" <%= role.role_id == searchFilters.role_id ? 'selected' : '' %>><%= role.role_name %></option>
+            <% }); %>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>

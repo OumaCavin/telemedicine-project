@@ -1,0 +1,23 @@
+<!-- views/appointment/view.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['Appointments', 'View Appointment'] }) %>
+
+<h1>Appointment Details</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h3>Appointment for <%= appointment.patient.first_name %> <%= appointment.patient.last_name %> with Dr. <%= appointment.doctor.first_name %> <%= appointment.doctor.last_name %></h3>
+    </div>
+    <div class="card-body">
+        <p><strong>Appointment Time:</strong> <%= appointment.appointment_time %></p>
+        <p><strong>Status:</strong> <%= appointment.status %></p>
+        <p><strong>Type:</strong> <%= appointment.appointment_type %></p>
+        <p><strong>Duration:</strong> <%= appointment.appointment_duration %> minutes</p>
+    </div>
+    <div class="card-footer">
+        <a href="/appointments/<%= appointment.appointment_id %>/edit" class="btn btn-warning">Edit</a>
+        <form action="/appointments/<%= appointment.appointment_id %>" method="POST" style="display:inline;">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+</div>

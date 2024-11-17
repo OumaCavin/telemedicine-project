@@ -1,0 +1,57 @@
+<!-- views/payment/_form.ejs -->
+<form action="<%= actionUrl %>" method="POST">
+    <%- include('partials/alerts') %> <!-- For displaying alerts -->
+
+    <div class="form-group">
+        <label for="patient_id">Patient</label>
+        <select name="patient_id" id="patient_id" class="form-control" required>
+            <option value="">Select a Patient</option>
+            <% patients.forEach(patient => { %>
+                <option value="<%= patient.user_id %>" <%= patient.user_id == payment.patient_id ? 'selected' : '' %>><%= patient.first_name %> <%= patient.last_name %></option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="appointment_id">Appointment</label>
+        <select name="appointment_id" id="appointment_id" class="form-control">
+            <option value="">Select an Appointment</option>
+            <% appointments.forEach(appointment => { %>
+                <option value="<%= appointment.appointment_id %>" <%= appointment.appointment_id == payment.appointment_id ? 'selected' : '' %>><%= appointment.appointment_date %></option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="number" step="0.01" name="amount" id="amount" class="form-control" value="<%= payment.amount || '' %>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="payment_method">Payment Method</label>
+        <select name="payment_method" id="payment_method" class="form-control" required>
+            <option value="credit_card" <%= payment.payment_method == 'credit_card' ? 'selected' : '' %>>Credit Card</option>
+            <option value="insurance" <%= payment.payment_method == 'insurance' ? 'selected' : '' %>>Insurance</option>
+            <option value="cash" <%= payment.payment_method == 'cash' ? 'selected' : '' %>>Cash</option>
+            <option value="debit_card" <%= payment.payment_method == 'debit_card' ? 'selected' : '' %>>Debit Card</option>
+            <option value="paypal" <%= payment.payment_method == 'paypal' ? 'selected' : '' %>>PayPal</option>
+            <option value="bank_transfer" <%= payment.payment_method == 'bank_transfer' ? 'selected' : '' %>>Bank Transfer</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="currency_code">Currency</label>
+        <input type="text" name="currency_code" id="currency_code" class="form-control" value="<%= payment.currency_code || 'KES' %>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="status">Payment Status</label>
+        <select name="status" id="status" class="form-control">
+            <option value="pending" <%= payment.status == 'pending' ? 'selected' : '' %>>Pending</option>
+            <option value="completed" <%= payment.status == 'completed' ? 'selected' : '' %>>Completed</option>
+            <option value="failed" <%= payment.status == 'failed' ? 'selected' : '' %>>Failed</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

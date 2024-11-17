@@ -1,0 +1,35 @@
+<!-- views/message/_search.ejs -->
+<form action="/messages" method="GET">
+    <div class="form-group">
+        <label for="user_id">User</label>
+        <select name="user_id" id="user_id" class="form-control">
+            <option value="">Select User</option>
+            <% users.forEach(user => { %>
+                <option value="<%= user.user_id %>" <%= user.user_id == searchFilters.user_id ? 'selected' : '' %> >
+                    <%= user.first_name %> <%= user.last_name %>
+                </option>
+            <% }); %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="priority">Priority</label>
+        <select name="priority" id="priority" class="form-control">
+            <option value="">Select Priority</option>
+            <option value="low" <%= searchFilters.priority == 'low' ? 'selected' : '' %>>Low</option>
+            <option value="medium" <%= searchFilters.priority == 'medium' ? 'selected' : '' %>>Medium</option>
+            <option value="high" <%= searchFilters.priority == 'high' ? 'selected' : '' %>>High</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="is_read">Read Status</label>
+        <select name="is_read" id="is_read" class="form-control">
+            <option value="">Select Read Status</option>
+            <option value="true" <%= searchFilters.is_read == 'true' ? 'selected' : '' %>>Read</option>
+            <option value="false" <%= searchFilters.is_read == 'false' ? 'selected' : '' %>>Unread</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>

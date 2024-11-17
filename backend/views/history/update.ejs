@@ -1,0 +1,5 @@
+<!-- views/history/update.ejs -->
+<%- include('partials/breadcrumb', { breadcrumbs: ['History', 'Edit History'] }) %>
+
+<h1>Edit History</h1>
+<%- include('history/_form', { actionUrl: '/history/' + history.history_id, history: history, users: users, statuses: statuses }) %>
