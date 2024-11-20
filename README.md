@@ -13,6 +13,33 @@ This is a full-stack Telemedicine Application designed for healthcare management
 - **Roles & Permissions**: Manage user roles and assign specific permissions.
 - **Messages**: Send messages between users for communication.
 
+TeleMed is a sophisticated telemedicine platform created to bridge the gap between patients and healthcare providers through virtual means. It seeks to make healthcare accessible by offering features that allow patients to register, locate nearby health centers, schedule appointments with doctors, and consult healthcare professionals online. With a frontend built using HTML, CSS, and JavaScript and a backend powered by Node.js and MySQL, TeleMed offers a seamless user experience coupled with secure and effective management of medical services.
+**More Key Features:**
+
+-**User Authentication and Role Management:**
+        Registration and Login: Provides secure user registration and login systems, with role-based access control for patients and doctors.
+        Profile Management: Allows users to manage profiles, update personal details, and access appointment histories.
+
+-**Location-Based Services:**
+        Health Center Locator: Integrated with Google Maps API, this feature enables users to search for and view nearby health centers based on their current location or a specified area.
+
+-**Appointment Booking:**
+        Doctor Availability: Patients can check doctors' availability and schedule appointments.
+        Appointment Management: Users can book, reschedule, and cancel appointments, receiving timely notifications.
+
+-**Doctor Management:**
+        Specialization and Availability: Doctors can manage their schedules, specializations, and availability to provide up-to-date information for patients.
+        Consultation Services: Virtual consultations are facilitated through a secure communication channel.
+
+-**User-Friendly Interface:**
+        Responsive Design: A clean, responsive layout ensures usability across various devices.
+        Intuitive Navigation: Simple and clear navigation paths for users to book appointments or manage doctor profiles.
+
+-**Security and Compliance:**
+        Data Security: HTTPS, JWT-based authentication, and encryption are used to protect user information.
+        Compliance: Adherence to healthcare standards ensures user data confidentiality and compliance with regulations.
+
+        
 ## Tech Stack
 
 - **Frontend**: React, React Router, Axios, DataTables (via CDN)
@@ -20,7 +47,10 @@ This is a full-stack Telemedicine Application designed for healthcare management
 - **Authentication**: JWT (JSON Web Tokens) for secure API calls
 - **Others**: CSS, HTML, Bootstrap
 
+
 ## Project Structure
+
+For a detailed and updated **Project Structure** of the telemedicine application, refer to the [Updated Project Structure](./backend/README.md) file.
 
 ### Frontend (React)
 
@@ -133,48 +163,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Special thanks to the open-source community for the libraries and tools used in this project.
 
 
+### **Pitch Deck**
 
-# Project Title: TeleMed: A Comprehensive Telemedicine Platform
-## Overview:
-
-TeleMed is a sophisticated telemedicine platform created to bridge the gap between patients and healthcare providers through virtual means. It seeks to make healthcare accessible by offering features that allow patients to register, locate nearby health centers, schedule appointments with doctors, and consult healthcare professionals online. With a frontend built using HTML, CSS, and JavaScript and a backend powered by Node.js and MySQL, TeleMed offers a seamless user experience coupled with secure and effective management of medical services.
-**Key Features:**
-
--**User Authentication and Role Management:**
-        Registration and Login: Provides secure user registration and login systems, with role-based access control for patients and doctors.
-        Profile Management: Allows users to manage profiles, update personal details, and access appointment histories.
-
--**Location-Based Services:**
-        Health Center Locator: Integrated with Google Maps API, this feature enables users to search for and view nearby health centers based on their current location or a specified area.
-
--**Appointment Booking:**
-        Doctor Availability: Patients can check doctors' availability and schedule appointments.
-        Appointment Management: Users can book, reschedule, and cancel appointments, receiving timely notifications.
-
--**Doctor Management:**
-        Specialization and Availability: Doctors can manage their schedules, specializations, and availability to provide up-to-date information for patients.
-        Consultation Services: Virtual consultations are facilitated through a secure communication channel.
-
--**User-Friendly Interface:**
-        Responsive Design: A clean, responsive layout ensures usability across various devices.
-        Intuitive Navigation: Simple and clear navigation paths for users to book appointments or manage doctor profiles.
-
--**Security and Compliance:**
-        Data Security: HTTPS, JWT-based authentication, and encryption are used to protect user information.
-        Compliance: Adherence to healthcare standards ensures user data confidentiality and compliance with regulations.
-        
-        
-        Step-by-Step Commands
-
-mkdir backend
-cd backend
+To learn more about the Telemedicine Application, check out our **[Project Pitch Deck](resources/HealthTrack-Revolutionizing-Healthcare-Through-Technology.pptx)**.
 
 
-npm install express mysql2 dotenv body-parser cors jsonwebtoken express-validator morgan bcryptjs winston
 
-npm install --save-dev nodemon
-
-
-mkdir frontend
-cd frontend
-npx create-react-app .

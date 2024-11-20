@@ -1,4 +1,4 @@
-// backend/config/db.js
+// config/db.js
 
 const logger = require('../utils/logger');
 const { Sequelize } = require('sequelize');

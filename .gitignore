@@ -1,5 +1,5 @@
 # Ignore backend/sql directory
-backend/sql/
+# backend/sql/
 
 # Ignore backend/node_modules directory
 backend/node_modules/
