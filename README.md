@@ -14,6 +14,7 @@ This is a full-stack Telemedicine Application designed for healthcare management
 - **Messages**: Send messages between users for communication.
 
 TeleMed is a sophisticated telemedicine platform created to bridge the gap between patients and healthcare providers through virtual means. It seeks to make healthcare accessible by offering features that allow patients to register, locate nearby health centers, schedule appointments with doctors, and consult healthcare professionals online. With a frontend built using HTML, CSS, and JavaScript and a backend powered by Node.js and MySQL, TeleMed offers a seamless user experience coupled with secure and effective management of medical services.
+
 **More Key Features:**
 
 -**User Authentication and Role Management:**
