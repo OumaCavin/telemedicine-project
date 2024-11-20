@@ -1,7 +1,7 @@
 
 # updated project structure for  telemedicine application:
 
-
+```
 telemedicine-project/
 │
 ├── backend/
@@ -219,7 +219,7 @@ telemedicine-project/
     ├── package.json
     ├── README.md
     └── webpack.config.js
-
+```
 
 ### Breakdown of directories:
 - **backend/**: Contains everything related to the backend server (Express.js). Includes models, controllers, routes, views, and configuration for handling database connections.

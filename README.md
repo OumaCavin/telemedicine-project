@@ -167,5 +167,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 To learn more about the Telemedicine Application, check out our **[Project Pitch Deck](resources/HealthTrack-Revolutionizing-Healthcare-Through-Technology.pptx)**.
 
-
+This deck provides a detailed overview of the problem, solution, key features, technology stack, business model, and roadmap of the Telemedicine Application.
 
