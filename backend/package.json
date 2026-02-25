@@ -1,15 +1,23 @@
 {
-  "name": "backend",
+  "name": "telemedicine-backend",
   "version": "1.0.0",
+  "description": "Backend API for TeleMed - A full-stack telemedicine platform",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "telemedicine",
+    "healthcare",
+    "api",
+    "nodejs",
+    "express",
+    "mysql"
+  ],
+  "author": "Cavin Otieno <cavin.otieno012@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
