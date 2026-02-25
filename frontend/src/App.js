@@ -2,87 +2,85 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // Import components for each model
-import AuditLogList from './components/AuditLogList'; // Component to view list of audit logs
-import CreateAuditLog from './components/CreateAuditLog'; // Component to create a new audit log
-import EditAuditLog from './components/EditAuditLog'; // Component to edit an audit log
-import ViewAuditLog from './components/ViewAuditLog'; // Component to view a single audit log
+import AuditLogList from './components/AuditLog/AuditLogList';
+import CreateAuditLog from './components/AuditLog/CreateAuditLog';
+import EditAuditLog from './components/AuditLog/EditAuditLog';
+import ViewAuditLog from './components/AuditLog/ViewAuditLog';
 
-import PaymentList from './components/PaymentList'; // Component to view list of payments
-import CreatePayment from './components/CreatePayment'; // Component to create a new payment
-import EditPayment from './components/EditPayment'; // Component to edit a payment
-import ViewPayment from './components/ViewPayment'; // Component to view a single payment
+import PaymentList from './components/Payment/PaymentList';
+import CreatePayment from './components/Payment/CreatePayment';
+import EditPayment from './components/Payment/EditPayment';
+import ViewPayment from './components/Payment/ViewPayment';
 
-import StatusList from './components/StatusList'; // Component to view list of statuses
-import CreateStatus from './components/CreateStatus'; // Component to create a new status
-import EditStatus from './components/EditStatus'; // Component to edit a status
-import ViewStatus from './components/ViewStatus'; // Component to view a single status
+import StatusList from './components/Status/StatusList';
+import CreateStatus from './components/Status/CreateStatus';
+import EditStatus from './components/Status/EditStatus';
+import ViewStatus from './components/Status/ViewStatus';
 
-import UserList from './components/UserList'; // Component to view list of users
-import CreateUser from './components/CreateUser'; // Component to create a new user
-import EditUser from './components/EditUser'; // Component to edit a user
-import ViewUser from './components/ViewUser'; // Component to view a single user
+import UserList from './components/User/UserList';
+import CreateUser from './components/User/CreateUser';
+import EditUser from './components/User/EditUser';
+import ViewUser from './components/User/ViewUser';
 
-// Import components for Admin, Patient, Doctor, Appointment
-import AdminList from './components/AdminList'; // Component to view list of admins
-import CreateAdmin from './components/CreateAdmin'; // Component to create a new admin
-import EditAdmin from './components/EditAdmin'; // Component to edit an admin
-import ViewAdmin from './components/ViewAdmin'; // Component to view a single admin
+import AdminList from './components/Admin/AdminList';
+import CreateAdmin from './components/Admin/CreateAdmin';
+import EditAdmin from './components/Admin/EditAdmin';
+import ViewAdmin from './components/Admin/ViewAdmin';
 
-import PatientList from './components/PatientList'; // Component to view list of patients
-import CreatePatient from './components/CreatePatient'; // Component to create a new patient
-import EditPatient from './components/EditPatient'; // Component to edit a patient
-import ViewPatient from './components/ViewPatient'; // Component to view a single patient
+import PatientList from './components/Patient/PatientList';
+import CreatePatient from './components/Patient/CreatePatient';
+import EditPatient from './components/Patient/EditPatient';
+import ViewPatient from './components/Patient/ViewPatient';
 
-import DoctorList from './components/DoctorList'; // Component to view list of doctors
-import CreateDoctor from './components/CreateDoctor'; // Component to create a new doctor
-import EditDoctor from './components/EditDoctor'; // Component to edit a doctor
-import ViewDoctor from './components/ViewDoctor'; // Component to view a single doctor
+import DoctorList from './components/Doctor/DoctorList';
+import CreateDoctor from './components/Doctor/CreateDoctor';
+import EditDoctor from './components/Doctor/EditDoctor';
+import ViewDoctor from './components/Doctor/ViewDoctor';
 
-import AppointmentList from './components/AppointmentList'; // Component to view list of appointments
-import CreateAppointment from './components/CreateAppointment'; // Component to create a new appointment
-import EditAppointment from './components/EditAppointment'; // Component to edit an appointment
-import ViewAppointment from './components/ViewAppointment'; // Component to view a single appointment
+import AppointmentList from './components/Appointment/AppointmentList';
+import CreateAppointment from './components/Appointment/CreateAppointment';
+import EditAppointment from './components/Appointment/EditAppointment';
+import ViewAppointment from './components/Appointment/ViewAppointment';
 
-// Import components for Prescription, Message, HealthCenter, History, Roles, RoleAssignment, RoleItems, EhrRecords
-import PrescriptionList from './components/PrescriptionList'; // Component to view list of prescriptions
-import CreatePrescription from './components/CreatePrescription'; // Component to create a new prescription
-import EditPrescription from './components/EditPrescription'; // Component to edit a prescription
-import ViewPrescription from './components/ViewPrescription'; // Component to view a single prescription
+import PrescriptionList from './components/Prescription/PrescriptionList';
+import CreatePrescription from './components/Prescription/CreatePrescription';
+import EditPrescription from './components/Prescription/EditPrescription';
+import ViewPrescription from './components/Prescription/ViewPrescription';
 
-import MessageList from './components/MessageList'; // Component to view list of messages
-import CreateMessage from './components/CreateMessage'; // Component to create a new message
-import EditMessage from './components/EditMessage'; // Component to edit a message
-import ViewMessage from './components/ViewMessage'; // Component to view a single message
+import MessageList from './components/Message/MessageList';
+import CreateMessage from './components/Message/CreateMessage';
+import EditMessage from './components/Message/EditMessage';
+import ViewMessage from './components/Message/ViewMessage';
 
-import HealthCenterList from './components/HealthCenterList'; // Component to view list of health centers
-import CreateHealthCenter from './components/CreateHealthCenter'; // Component to create a new health center
-import EditHealthCenter from './components/EditHealthCenter'; // Component to edit a health center
-import ViewHealthCenter from './components/ViewHealthCenter'; // Component to view a single health center
+import HealthCenterList from './components/HealthCenter/HealthCenterList';
+import CreateHealthCenter from './components/HealthCenter/CreateHealthCenter';
+import EditHealthCenter from './components/HealthCenter/EditHealthCenter';
+import ViewHealthCenter from './components/HealthCenter/ViewHealthCenter';
 
-import HistoryList from './components/HistoryList'; // Component to view list of histories
-import CreateHistory from './components/CreateHistory'; // Component to create a new history
-import EditHistory from './components/EditHistory'; // Component to edit a history
-import ViewHistory from './components/ViewHistory'; // Component to view a single history
+import HistoryList from './components/History/HistoryList';
+import CreateHistory from './components/History/CreateHistory';
+import EditHistory from './components/History/EditHistory';
+import ViewHistory from './components/History/ViewHistory';
 
-import RoleList from './components/RoleList'; // Component to view list of roles
-import CreateRole from './components/CreateRole'; // Component to create a new role
-import EditRole from './components/EditRole'; // Component to edit a role
-import ViewRole from './components/ViewRole'; // Component to view a single role
+import RoleList from './components/Role/RoleList';
+import CreateRole from './components/Role/CreateRole';
+import EditRole from './components/Role/EditRole';
+import ViewRole from './components/Role/ViewRole';
 
-import RoleAssignmentList from './components/RoleAssignmentList'; // Component to view list of role assignments
-import CreateRoleAssignment from './components/CreateRoleAssignment'; // Component to create a new role assignment
-import EditRoleAssignment from './components/EditRoleAssignment'; // Component to edit a role assignment
-import ViewRoleAssignment from './components/ViewRoleAssignment'; // Component to view a single role assignment
+import RoleAssignmentList from './components/RoleAssignment/RoleAssignmentList';
+import CreateRoleAssignment from './components/RoleAssignment/CreateRoleAssignment';
+import EditRoleAssignment from './components/RoleAssignment/EditRoleAssignment';
+import ViewRoleAssignment from './components/RoleAssignment/ViewRoleAssignment';
 
-import RoleItemList from './components/RoleItemList'; // Component to view list of role items
-import CreateRoleItem from './components/CreateRoleItem'; // Component to create a new role item
-import EditRoleItem from './components/EditRoleItem'; // Component to edit a role item
-import ViewRoleItem from './components/ViewRoleItem'; // Component to view a single role item
+import RoleItemList from './components/RoleItem/RoleItemList';
+import CreateRoleItem from './components/RoleItem/CreateRoleItem';
+import EditRoleItem from './components/RoleItem/EditRoleItem';
+import ViewRoleItem from './components/RoleItem/ViewRoleItem';
 
-import EhrRecordList from './components/EhrRecordList'; // Component to view list of EHR records
-import CreateEhrRecord from './components/CreateEhrRecord'; // Component to create a new EHR record
-import EditEhrRecord from './components/EditEhrRecord'; // Component to edit an EHR record
-import ViewEhrRecord from './components/ViewEhrRecord'; // Component to view a single EHR record
+import EhrRecordList from './components/EhrRecord/EhrRecordList';
+import CreateEhrRecord from './components/EhrRecord/CreateEhrRecord';
+import EditEhrRecord from './components/EhrRecord/EditEhrRecord';
+import ViewEhrRecord from './components/EhrRecord/ViewEhrRecord';
 
 function App() {
     return (
