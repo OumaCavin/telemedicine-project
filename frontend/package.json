@@ -1,7 +1,10 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
+  "name": "telemedicine-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for TeleMed - A full-stack telemedicine platform",
   "private": true,
+  "author": "Cavin Otieno <cavin.otieno012@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -11,12 +14,13 @@
     "formik": "^2.4.6",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
+    "react-data-table-component": "^7.7.0",
     "react-dom": "^18.3.1",
     "react-loading": "^2.0.3",
     "react-router-dom": "^6.27.0",
     "react-scripts": "5.0.1",
     "react-toastify": "^10.0.6",
-    "styled-components": "^6.1.13",
+    "styled-components": "^6.3.11",
     "web-vitals": "^2.1.4",
     "yup": "^1.4.0"
   },
