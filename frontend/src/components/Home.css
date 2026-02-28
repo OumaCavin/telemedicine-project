@@ -1,0 +1,132 @@
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #0056b3 0%, #007bff 100%);
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.features {
+    margin-bottom: 40px;
+}
+
+.features h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.feature-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h3 {
+    color: #0056b3;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.btn-primary {
+    background-color: #0056b3;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #004494;
+}
+
+.admin-section {
+    background: #f8f9fa;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.admin-section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.admin-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.admin-link {
+    padding: 12px 25px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #555;
+    transition: all 0.2s;
+}
+
+.admin-link:hover {
+    background: #0056b3;
+    color: white;
+    border-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+}
