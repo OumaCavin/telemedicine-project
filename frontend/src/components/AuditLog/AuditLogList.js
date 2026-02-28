@@ -1,6 +1,6 @@
 // src/components/AuditLogList.js
 import React, { useState, useEffect } from 'react';
-import axios from '../axios';  // Axios instance for API calls
+import axios from '../../axios';  // Axios instance for API calls
 import DataTable from 'react-data-table-component';  // For displaying the data in a table format
 
 const AuditLogList = () => {
