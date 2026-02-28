@@ -1,6 +1,6 @@
 // src/components/CreateAuditLog.js
 import React, { useState } from 'react';
-import axios from '../axios';  // Axios instance for API calls
+import axios from '../../axios';  // Axios instance for API calls
 
 const CreateAuditLog = () => {
     const [user_id, setUserId] = useState('');
