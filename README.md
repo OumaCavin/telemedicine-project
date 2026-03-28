@@ -17,7 +17,24 @@
   <img src="https://img.shields.io/badge/Maintained%20by-Cavin%20Otieno-blue?style=for-the-badge" alt="Maintained by Cavin Otieno" />
   <img src="https://img.shields.io/github/license/OumaCavin/telemedicine-project?style=for-the-badge" alt="License" />
   <img src="https://img.shields.io/badge/Version-1.0.0-green?style=for-the-badge" alt="Version" />
+  <a href="https://oumacavin.github.io/telemedicine-project/" target="_blank">
+    <img src="https://img.shields.io/badge/Live%20Demo-View%20Here-blue?style=for-the-badge" alt="Live Demo" />
+  </a>
 </p>
+
+---
+
+## Live Demo
+
+🚀 **Access the live application:** https://oumacavin.github.io/telemedicine-project/
+
+The application is deployed using GitHub Pages with hash-based routing. Use the following URLs to navigate:
+
+| Page | URL |
+|------|-----|
+| Home | https://oumacavin.github.io/telemedicine-project/#/ |
+| Login | https://oumacavin.github.io/telemedicine-project/#/login |
+| Register | https://oumacavin.github.io/telemedicine-project/#/register |
 
 ---
 
