@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/telemedicine-project/static/css/main.497bbb57.css",
-    "main.js": "/telemedicine-project/static/js/main.3532a614.js",
+    "main.js": "/telemedicine-project/static/js/main.d3c909f3.js",
     "index.html": "/telemedicine-project/index.html",
     "main.497bbb57.css.map": "/telemedicine-project/static/css/main.497bbb57.css.map",
-    "main.3532a614.js.map": "/telemedicine-project/static/js/main.3532a614.js.map"
+    "main.d3c909f3.js.map": "/telemedicine-project/static/js/main.d3c909f3.js.map"
   },
   "entrypoints": [
     "static/css/main.497bbb57.css",
-    "static/js/main.3532a614.js"
+    "static/js/main.d3c909f3.js"
   ]
 }
