@@ -1,7 +1,7 @@
 // models/Role.js
 
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/db'); // Assumes sequelize instance is configured
+const { sequelize } = require('../config/db'); // Assumes sequelize instance is configured
 
 class Role extends Model {}
 

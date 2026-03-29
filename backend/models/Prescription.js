@@ -1,7 +1,7 @@
 // models/Prescription.js
 
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/db'); // Assumes sequelize instance is configured
+const { sequelize } = require('../config/db'); // Assumes sequelize instance is configured
 
 class Prescription extends Model {}
 

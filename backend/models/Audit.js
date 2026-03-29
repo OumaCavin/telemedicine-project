@@ -1,7 +1,7 @@
 // models/Audit.js
 
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/db'); // Assumes sequelize instance is configured
+const { sequelize } = require('../config/db'); // Assumes sequelize instance is configured
 
 class Audit extends Model {}
 

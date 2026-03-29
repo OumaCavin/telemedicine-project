@@ -1,7 +1,7 @@
 // models/Admin.js
 
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/db');
+const { sequelize } = require('../config/db');
 const HistoryService = require('../services/HistoryService'); // Service to handle history logging
 
 class Admin extends Model {}

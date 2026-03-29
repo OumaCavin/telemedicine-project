@@ -1,7 +1,7 @@
 // models/Status.js
 
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/db'); // Assumes sequelize instance is configured
+const { sequelize } = require('../config/db'); // Use the centralized sequelize instance
 
 class Status extends Model {}
 

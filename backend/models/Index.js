@@ -1,5 +1,6 @@
 // models/Index.js
-const { Sequelize } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
+const { sequelize } = require('../config/db'); // Use the centralized sequelize instance
 
 // Importing all models
 const DoctorModel = require('./Doctor');
@@ -20,32 +21,25 @@ const MessageModel = require('./Message');
 const HealthCenterModel = require('./HealthCenter');
 
 // Using environment variables for sensitive data
-const { DB_HOST, DB_USER, DB_PASS, DB_NAME, NODE_ENV } = process.env;
+const { NODE_ENV } = process.env;
 
-// Initialize Sequelize
-const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASS, {
-  host: DB_HOST,
-  dialect: 'mysql',
-  logging: false, // Disable logging for production
-});
-
-// Initialize Models
-const User = UserModel(sequelize, Sequelize.DataTypes);
-const Admin = AdminModel(sequelize, Sequelize.DataTypes);
-const Patient = PatientModel(sequelize, Sequelize.DataTypes);
-const Doctor = DoctorModel(sequelize, Sequelize.DataTypes);
-const Appointment = AppointmentModel(sequelize, Sequelize.DataTypes);
-const Prescription = PrescriptionModel(sequelize, Sequelize.DataTypes);
-const Message = MessageModel(sequelize, Sequelize.DataTypes);
-const History = HistoryModel(sequelize, Sequelize.DataTypes);
-const Role = RoleModel(sequelize, Sequelize.DataTypes);
-const RoleAssignment = RoleAssignmentModel(sequelize, Sequelize.DataTypes);
-const RoleItem = RoleItemModel(sequelize, Sequelize.DataTypes);
-const EhrRecord = EhrRecordModel(sequelize, Sequelize.DataTypes);
-const Payment = PaymentModel(sequelize, Sequelize.DataTypes);
-const Status = StatusModel(sequelize, Sequelize.DataTypes);
-const AuditLog = AuditLogModel(sequelize, Sequelize.DataTypes);
-const HealthCenter = HealthCenterModel(sequelize, Sequelize.DataTypes);
+// Initialize Models using the centralized sequelize instance
+const User = UserModel(sequelize, DataTypes);
+const Admin = AdminModel(sequelize, DataTypes);
+const Patient = PatientModel(sequelize, DataTypes);
+const Doctor = DoctorModel(sequelize, DataTypes);
+const Appointment = AppointmentModel(sequelize, DataTypes);
+const Prescription = PrescriptionModel(sequelize, DataTypes);
+const Message = MessageModel(sequelize, DataTypes);
+const History = HistoryModel(sequelize, DataTypes);
+const Role = RoleModel(sequelize, DataTypes);
+const RoleAssignment = RoleAssignmentModel(sequelize, DataTypes);
+const RoleItem = RoleItemModel(sequelize, DataTypes);
+const EhrRecord = EhrRecordModel(sequelize, DataTypes);
+const Payment = PaymentModel(sequelize, DataTypes);
+const Status = StatusModel(sequelize, DataTypes);
+const AuditLog = AuditLogModel(sequelize, DataTypes);
+const HealthCenter = HealthCenterModel(sequelize, DataTypes);
 
 // Define Associations
 Doctor.associate({ User, History });
@@ -57,10 +51,10 @@ Payment.associate({ User, Appointment, Patient });
 Status.associate({ User });
 AuditLog.associate({ User });
 Admin.associate({ User });
-Prescription.associate({ EhrRecord, Patient, User, Appointment, Doctor });//
-EhrRecord.associate({ User, Prescription, Patient, Doctor});//
+Prescription.associate({ EhrRecord, Patient, User, Appointment, Doctor });
+EhrRecord.associate({ User, Prescription, Patient, Doctor });
 Patient.associate({ User, Appointment, Prescription });
-Appointment.associate({ Patient, User, Prescription});
+Appointment.associate({ Patient, User, Prescription });
 HealthCenter.associate({ User });
 Message.associate({ User });
 User.associate({ RoleAssignment, Appointment, Message, Prescription, HealthCenter, AuditLog });
