@@ -2,8 +2,8 @@
 
 const Admin = require('../models/Admin');
 const AdminSearch = require('../models/search/AdminSearch');
-const TeledHistory = require('../models/TeledHistory'); // Import the TeledHistory model
-const TelemedStatus = require('../models/TelemedStatus'); // Import the TelemedStatus model
+const History = require('../models/History'); // Import the History model
+const Status = require('../models/Status'); // Import the Status model
 
 // Create a new admin
 const createAdmin = async (req, res) => {
@@ -26,7 +26,7 @@ const createAdmin = async (req, res) => {
         const statusId = await getStatusId('Created');
 
         // Insert into teled_history to track the create action
-        await TeledHistory.create({
+        await History.create({
             user_id: created_by,
             action: 'CREATE',
             status_id: statusId,
@@ -78,7 +78,7 @@ const updateAdmin = async (req, res) => {
             const statusId = await getStatusId('Updated');
 
             // Insert into teled_history to track the update action
-            await TeledHistory.create({
+            await History.create({
                 user_id: req.body.updated_by,
                 action: 'UPDATE',
                 status_id: statusId,
@@ -107,7 +107,7 @@ const deleteAdmin = async (req, res) => {
             const statusId = await getStatusId('Deleted');
 
             // Insert into teled_history to track the delete action
-            await TeledHistory.create({
+            await History.create({
                 user_id: req.body.deleted_by,
                 action: 'DELETE',
                 status_id: statusId,
@@ -138,7 +138,7 @@ const searchAdmins = async (req, res) => {
 const getStatusId = async (statusName) => {
     try {
         // Find the status by name
-        const status = await TelemedStatus.findOne({
+        const status = await Status.findOne({
             where: { status_name: statusName },
         });
         if (status) {
