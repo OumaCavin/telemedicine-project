@@ -29,7 +29,7 @@ EhrRecord.init(
             },
         },
         record_date: {
-            type: DataTypes.TIMESTAMP,
+            type: DataTypes.DATE,
             defaultValue: DataTypes.NOW,
         },
         medical_conditions: {

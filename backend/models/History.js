@@ -33,7 +33,7 @@ History.init(
             allowNull: false,
         },
         action_time: {
-            type: DataTypes.TIMESTAMP,
+            type: DataTypes.DATE,
             defaultValue: DataTypes.NOW,
         },
         created_by: {
