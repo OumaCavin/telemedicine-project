@@ -6,14 +6,13 @@ const router = express.Router();
 const AdminController = require('../controllers/AdminController');
 const { protect, admin } = require('../middlewares/authMiddleware');
 
-// Admin-only route to view all users
-router.get('/users', protect, admin, AdminController.getUsers);
-
-// Admin-only route to delete a user
-router.delete('/users/:userId', protect, admin, AdminController.deleteUser);
-
-// Admin-only route to update user roles
-router.put('/users/:userId/roles', protect, admin, AdminController.updateUserRoles);
+// Admin routes
+router.get('/', AdminController.getAllAdmins);
+router.post('/', AdminController.createAdmin);
+router.get('/:id', AdminController.getAdminById);
+router.put('/:id', AdminController.updateAdmin);
+router.delete('/:id', AdminController.deleteAdmin);
+router.get('/search', AdminController.searchAdmins);
 
 module.exports = router;
 
