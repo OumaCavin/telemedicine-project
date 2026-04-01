@@ -5,13 +5,13 @@ const EhrRecordController = require('../controllers/EhrRecordController');
 const { protect } = require('../middlewares/authMiddleware');
 
 // Route to get a patient's EHR record
-router.get('/:patientId', protect, EhrRecordController.getEhrRecord);
+router.get('/:patientId', protect, EhrRecordController.searchEhrRecords);
 
 // Route to add a new EHR record
-router.post('/:patientId', protect, EhrRecordController.addEHRRecord);
+router.post('/:patientId', protect, EhrRecordController.createEhrRecord);
 
 // Route to update an EHR record
-router.put('/:ehrRecordId', protect, EhrRecordController.updateEHRRecord);
+router.put('/:ehrRecordId', protect, EhrRecordController.updateEhrRecord);
 
 // Route to delete an EHR record
 router.delete('/:ehrRecordId', protect, EhrRecordController.deleteEHRRecord);

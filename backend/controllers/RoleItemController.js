@@ -80,10 +80,30 @@ const searchRoleItems = async (req, res) => {
     }
 };
 
+// Remove a permission from a role
+const removeRoleItem = async (req, res) => {
+    try {
+        const { roleId, permissionId } = req.params;
+
+        const deleted = await RoleItem.destroy({
+            where: { role_id: roleId, permission_id: permissionId },
+        });
+
+        if (deleted) {
+            res.status(204).send();
+        } else {
+            res.status(404).json({ error: 'Role Item not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     createRoleItem,
     getAllRoleItems,
     getRoleItemById,
     updateRoleItem,
     searchRoleItems,
+    removeRoleItem,
 };

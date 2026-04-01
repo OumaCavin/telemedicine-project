@@ -5,10 +5,10 @@ const MessageController = require('../controllers/MessageController');
 const { protect } = require('../middlewares/authMiddleware');
 
 // Route to get all messages for a user
-router.get('/:userId', protect, MessageController.getMessages);
+router.get('/:userId', protect, MessageController.getAllMessages);
 
 // Route to send a new message
-router.post('/', protect, MessageController.sendMessage);
+router.post('/', protect, MessageController.createMessage);
 
 // Route to delete a message
 router.delete('/:messageId', protect, MessageController.deleteMessage);

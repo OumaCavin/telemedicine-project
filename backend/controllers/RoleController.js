@@ -54,9 +54,46 @@ const searchRoles = async (req, res) => {
     }
 };
 
+// Update a role
+const updateRole = async (req, res) => {
+    try {
+        const [updated] = await Role.update(req.body, {
+            where: { role_id: req.params.id },
+        });
+
+        if (updated) {
+            const updatedRole = await Role.findByPk(req.params.id);
+            res.status(200).json(updatedRole);
+        } else {
+            res.status(404).json({ error: 'Role not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+// Delete a role
+const deleteRole = async (req, res) => {
+    try {
+        const deleted = await Role.destroy({
+            where: { role_id: req.params.id },
+        });
+
+        if (deleted) {
+            res.status(204).send();
+        } else {
+            res.status(404).json({ error: 'Role not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     createRole,
     getAllRoles,
     getRoleById,
     searchRoles,
+    updateRole,
+    deleteRole,
 };

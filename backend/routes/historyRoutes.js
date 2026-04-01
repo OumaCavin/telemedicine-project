@@ -5,7 +5,7 @@ const HistoryController = require('../controllers/HistoryController');
 const { protect } = require('../middlewares/authMiddleware');
 
 // Route to get patient's medical history
-router.get('/:patientId', protect, HistoryController.getHistories);
+router.get('/:patientId', protect, HistoryController.searchHistory);
 
 // Route to add a new medical history record
 router.post('/:patientId', protect, HistoryController.createHistory);

@@ -5,10 +5,10 @@ const AuditLogController = require('../controllers/AuditLogController');
 const { protect } = require('../middlewares/authMiddleware');
 
 // Route to get all audit logs
-router.get('/', protect, AuditLogController.getAuditLogs);
+router.get('/', protect, AuditLogController.getAllAuditLogs);
 
 // Route to get a specific audit log by ID
-router.get('/:logId', protect, AuditLogController.getAuditLog);
+router.get('/:logId', protect, AuditLogController.getAuditLogById);
 
 // Route to create a new audit log
 router.post('/', protect, AuditLogController.createAuditLog);

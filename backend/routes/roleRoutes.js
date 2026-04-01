@@ -8,15 +8,15 @@ const { protect } = require('../middlewares/authMiddleware');
 router.get('/', protect, RoleController.getAllRoles);
 
 // Route to get a specific role by ID
-router.get('/:roleId', protect, RoleController.getRoleById);
+router.get('/:id', protect, RoleController.getRoleById);
 
 // Route to create a new role
 router.post('/', protect, RoleController.createRole);
 
 // Route to update a role
-router.put('/:roleId', protect, RoleController.updateRole);
+router.put('/:id', protect, RoleController.updateRole);
 
 // Route to delete a role
-router.delete('/:roleId', protect, RoleController.deleteRole);
+router.delete('/:id', protect, RoleController.deleteRole);
 
 module.exports = router;

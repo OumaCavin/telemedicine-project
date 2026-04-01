@@ -55,9 +55,46 @@ const searchHistory = async (req, res) => {
     }
 };
 
+// Update a history record
+const updateHistory = async (req, res) => {
+    try {
+        const [updated] = await History.update(req.body, {
+            where: { history_id: req.params.id },
+        });
+
+        if (updated) {
+            const updatedHistory = await History.findByPk(req.params.id);
+            res.status(200).json(updatedHistory);
+        } else {
+            res.status(404).json({ error: 'History record not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+// Delete a history record
+const deleteHistory = async (req, res) => {
+    try {
+        const deleted = await History.destroy({
+            where: { history_id: req.params.id },
+        });
+
+        if (deleted) {
+            res.status(204).send();
+        } else {
+            res.status(404).json({ error: 'History record not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     createHistory,
     getAllHistory,
     getHistoryById,
     searchHistory,
+    updateHistory,
+    deleteHistory,
 };

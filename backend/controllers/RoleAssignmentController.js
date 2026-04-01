@@ -54,9 +54,48 @@ const searchRoleAssignments = async (req, res) => {
     }
 };
 
+// Assign a role to a user
+const assignRole = async (req, res) => {
+    try {
+        const { role_id, created_by } = req.body;
+        const { userId } = req.params;
+
+        const newRoleAssignment = await RoleAssignment.create({
+            user_id: userId,
+            role_id,
+            created_by,
+        });
+
+        res.status(201).json(newRoleAssignment);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+// Remove a role from a user
+const removeRole = async (req, res) => {
+    try {
+        const { userId, roleId } = req.params;
+
+        const deleted = await RoleAssignment.destroy({
+            where: { user_id: userId, role_id: roleId },
+        });
+
+        if (deleted) {
+            res.status(204).send();
+        } else {
+            res.status(404).json({ error: 'Role Assignment not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     createRoleAssignment,
     getAllRoleAssignments,
     getRoleAssignmentById,
     searchRoleAssignments,
+    assignRole,
+    removeRole,
 };

@@ -5,12 +5,12 @@ const RoleItemController = require('../controllers/RoleItemController');
 const { protect } = require('../middlewares/authMiddleware');
 
 // Route to get role items (permissions) for a specific role
-router.get('/:roleId', protect, RoleItemController.searchRoleItems);
+router.get('/:id', protect, RoleItemController.searchRoleItems);
 
 // Route to add a new permission to a role
-router.post('/:roleId', protect, RoleItemController.createRoleItem);
+router.post('/:id', protect, RoleItemController.createRoleItem);
 
 // Route to remove a permission from a role
-router.delete('/:roleId/:permissionId', protect, RoleItemController.removeRoleItem);
+router.delete('/:id/:permissionId', protect, RoleItemController.removeRoleItem);
 
 module.exports = router;
