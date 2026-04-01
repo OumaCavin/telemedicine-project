@@ -92,10 +92,28 @@ const searchEhrRecords = async (req, res) => {
     }
 };
 
+// Delete an EHR record
+const deleteEHRRecord = async (req, res) => {
+    try {
+        const deleted = await EhrRecord.destroy({
+            where: { ehr_record_id: req.params.ehrRecordId },
+        });
+
+        if (deleted) {
+            res.status(204).send();
+        } else {
+            res.status(404).json({ error: 'EHR Record not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     createEhrRecord,
     getAllEhrRecords,
     getEhrRecordById,
     updateEhrRecord,
     searchEhrRecords,
+    deleteEHRRecord,
 };

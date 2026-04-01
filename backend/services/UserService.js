@@ -65,6 +65,16 @@ class UserService {
             throw new Error('Error searching users');
         }
     }
+
+    static async getUserById(userId) {
+        try {
+            const user = await User.findByPk(userId);
+            return user;
+        } catch (error) {
+            logger.error('Error getting user by ID:', error);
+            throw new Error('Error getting user by ID');
+        }
+    }
 }
 
 module.exports = UserService;

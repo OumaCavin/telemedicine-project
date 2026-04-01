@@ -58,6 +58,20 @@ class AuthController {
     async logout(req, res) {
         res.status(200).json({ message: 'Logout successful' });
     }
+
+    // Get authenticated user's details
+    async getMe(req, res) {
+        try {
+            const user = await UserService.getUserById(req.user_id);
+            if (!user) {
+                return res.status(404).json({ error: 'User not found' });
+            }
+            res.status(200).json(user);
+        } catch (error) {
+            logger.error('Error getting user:', error);
+            res.status(500).json({ error: 'Failed to get user details' });
+        }
+    }
 }
 
 module.exports = new AuthController();
