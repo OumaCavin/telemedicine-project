@@ -5,7 +5,7 @@ const StatusController = require('../controllers/StatusController');
 const { protect } = require('../middlewares/authMiddleware');
 
 // Route to get user's status
-router.get('/:userId', protect, StatusController.getStatus);
+router.get('/:userId', protect, StatusController.getStatusById);
 
 // Route to update user's status
 router.put('/:userId', protect, StatusController.updateStatus);

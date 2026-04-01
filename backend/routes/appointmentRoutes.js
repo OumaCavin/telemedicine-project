@@ -13,12 +13,12 @@ router.get('/', protect, AppointmentController.getAllAppointments);
 router.get('/:appointmentId', protect, AppointmentController.getAppointmentById);
 
 // Route to create a new appointment
-router.post('/', protect, AppointmentController.bookAppointment);
+router.post('/', protect, AppointmentController.createAppointment);
 
 // Route to update an appointment
 router.put('/:appointmentId', protect, AppointmentController.updateAppointment);
 
 // Route to cancel an appointment
-router.delete('/:appointmentId', protect, AppointmentController.cancelAppointment);
+router.delete('/:appointmentId', protect, AppointmentController.deleteAppointment);
 
 module.exports = router;
