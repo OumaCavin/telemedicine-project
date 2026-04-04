@@ -19,6 +19,7 @@ const AppointmentModel = require('./Appointment');
 const PrescriptionModel = require('./Prescription');
 const MessageModel = require('./Message');
 const HealthCenterModel = require('./HealthCenter');
+const ReportModel = require('./Report');
 
 // Using environment variables for sensitive data
 const { NODE_ENV } = process.env;
@@ -40,6 +41,7 @@ const Payment = PaymentModel(sequelize, DataTypes);
 const Status = StatusModel(sequelize, DataTypes);
 const AuditLog = AuditLogModel(sequelize, DataTypes);
 const HealthCenter = HealthCenterModel(sequelize, DataTypes);
+const Report = ReportModel(sequelize, DataTypes);
 
 // Define Associations
 Doctor.associate({ User, History });
@@ -57,6 +59,7 @@ Patient.associate({ User, Appointment, Prescription });
 Appointment.associate({ Patient, User, Prescription });
 HealthCenter.associate({ User });
 Message.associate({ User });
+Report.associate({ User });
 User.associate({ RoleAssignment, Appointment, Message, Prescription, HealthCenter, AuditLog });
 
 // Sync Models with Database (Environment-based synchronization)
@@ -86,4 +89,5 @@ module.exports = {
   Payment,
   Status,
   AuditLog,
+  Report,
 };
