@@ -6,7 +6,6 @@ const logger = require('../utils/logger');
 const errorHandler = require('../middlewares/errorMiddleware');
 const path = require('path');
 const { authenticateDB, sequelize } = require('./db');  // Importing sequelize and authenticateDB function
-const fs = require('fs');
 
 // Load environment variables
 require('dotenv').config();
@@ -30,16 +29,9 @@ const createServer = () => {
       // Authenticate the Sequelize connection
       await authenticateDB();
       
-      // Optionally, you can run raw SQL queries for schema initialization (not recommended for production apps)
-      // Read and run init.sql and trigger.sql using sequelize.query() method
-      const initSQL = fs.readFileSync(path.join(__dirname, '../sql/init.sql'), 'utf-8');
-      const triggerSQL = fs.readFileSync(path.join(__dirname, '../sql/triggers.sql'), 'utf-8');
-      const insertSQL = fs.readFileSync(path.join(__dirname, '../sql/insert.sql'), 'utf-8');
-
-      // Running raw SQL (ensure SQL files are safe and structured correctly)
-      await sequelize.query(initSQL);
-      await sequelize.query(triggerSQL);
-      logger.info('Database initialized successfully');
+      // Note: Database schema is handled by Sequelize models via sequelize.sync()
+      // SQL files (init.sql, triggers.sql) are no longer needed as Sequelize manages the schema
+      logger.info('Database connected successfully');
     } catch (err) {
       logger.error('Error initializing database:', err);
     }
