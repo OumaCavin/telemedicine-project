@@ -6,19 +6,42 @@ const express = require('express');
 
 const router = express.Router();
 
-// Automatically load all route files in the routes directory
-const routeFiles = fs.readdirSync(__dirname).filter(file => file.endsWith('Routes.js'));
+// Manual route mapping - more reliable than dynamic loading
+const routeMappings = {
+    'authRoutes': '/auth',
+    'userRoutes': '/users',
+    'adminRoutes': '/admins',
+    'appointmentRoutes': '/appointments',
+    'auditLogRoutes': '/audit-logs',
+    'auditRoutes': '/audits',
+    'chatRoutes': '/chat',
+    'doctorRoutes': '/doctors',
+    'ehrRecordRoutes': '/ehr-records',
+    'healthCenterRoutes': '/health-centers',
+    'historyRoutes': '/histories',
+    'messageRoutes': '/messages',
+    'patientRoutes': '/patients',
+    'paymentRoutes': '/payments',
+    'prescriptionRoutes': '/prescriptions',
+    'profileRoutes': '/profiles',
+    'reportRoutes': '/reports',
+    'resourcesRoutes': '/resources',
+    'roleAssignmentRoutes': '/role-assignments',
+    'roleItemRoutes': '/role-items',
+    'roleRoutes': '/roles',
+    'statusRoutes': '/status',
+};
 
-routeFiles.forEach(file => {
-    const route = require(path.join(__dirname, file));
-
-    // Convert camelCase filenames to kebab-case for route paths
-    const routePath = `/${file
-        .replace('Routes.js', '')
-        .replace(/([a-z])([A-Z])/g, '$1-$2') // Convert camelCase to kebab-case
-        .toLowerCase()}`;
-
-    router.use(routePath, route);
+// Load and register routes
+Object.keys(routeMappings).forEach(fileName => {
+    try {
+        const route = require(path.join(__dirname, fileName));
+        const routePath = routeMappings[fileName];
+        router.use(routePath, route);
+        console.log(`Registered route: ${routePath}`);
+    } catch (err) {
+        console.error(`Error loading ${fileName}:`, err.message);
+    }
 });
 
 module.exports = router;
