@@ -6,6 +6,7 @@ const logger = require('../utils/logger');
 const errorHandler = require('../middlewares/errorMiddleware');
 const path = require('path');
 const { authenticateDB, sequelize } = require('./db');  // Importing sequelize and authenticateDB function
+const seedDatabase = require('../utils/seed');
 
 // Load environment variables
 require('dotenv').config();
@@ -29,9 +30,12 @@ const createServer = () => {
       // Authenticate the Sequelize connection
       await authenticateDB();
       
-      // Note: Database schema is handled by Sequelize models via sequelize.sync()
-      // SQL files (init.sql, triggers.sql) are no longer needed as Sequelize manages the schema
-      logger.info('Database connected successfully');
+      // Sync all models - creates tables if they don't exist
+      await sequelize.sync({ alter: true });
+      logger.info('Database models synced successfully');
+
+      // Seed initial data
+      await seedDatabase();
     } catch (err) {
       logger.error('Error initializing database:', err);
     }
