@@ -16,8 +16,9 @@ HealthCenter.init(
             allowNull: false,
         },
         location: {
-            type: DataTypes.GEOMETRY('POINT'), 
+            type: DataTypes.JSON, 
             allowNull: true,
+            comment: 'Stores {lat: number, lng: number}',
         },
         contact_info: {
             type: DataTypes.STRING,
