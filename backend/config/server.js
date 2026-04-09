@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const logger = require('../utils/logger');
 const errorHandler = require('../middlewares/errorMiddleware');
-const path = require('path');
 const { authenticateDB, sequelize } = require('./db');  // Importing sequelize and authenticateDB function
 const seedDatabase = require('../utils/seed');
 
@@ -19,9 +18,6 @@ const createServer = () => {
   app.use(cors());
   app.use(bodyParser.json());
   app.use(express.urlencoded({ extended: true }));
-  app.set('view engine', 'ejs');
-  app.set('views', path.join(__dirname, '../views'));
-  app.use(express.static(path.join(__dirname, '../frontend/build'))); // Serve frontend static files
   app.use(errorHandler); // Error handling middleware
 
   // Database initialization function
