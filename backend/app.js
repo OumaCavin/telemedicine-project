@@ -3,25 +3,23 @@
 const createServer = require('./config/server');
 const routes = require('./routes/index');
 const logger = require('./utils/logger');
+const path = require('path');
 
 // Initialize server
 const app = createServer();
 
 // Use routes
 app.use('/api', routes);
-// // app.js
-// require('dotenv').config(); // Load environment variables
-// const express = require('express');
-// const bodyParser = require('body-parser');
-// const resourceRoutes = require('./routes/resources'); // Resource routes
 
-// const app = express();
+// Serve frontend static files for root route
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend/build/index.html'));
+});
 
-// // Middleware
-// app.use(bodyParser.json());
-
-// Routes
-// app.use('/resource', resourceRoutes);
+// Fallback for React Router - serve index.html for all non-API routes
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend/build/index.html'));
+});
 
 // Start server
 const PORT = process.env.PORT || 5000;
