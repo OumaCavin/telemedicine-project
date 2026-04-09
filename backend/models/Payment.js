@@ -17,7 +17,7 @@ Payment.init(
             allowNull: false,
             references: {
                 model: 'telemed_patients',
-                key: 'user_id',
+                key: 'patient_id',
             },
         },
         appointment_id: {

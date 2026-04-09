@@ -25,7 +25,7 @@ Prescription.init(
             allowNull: false,
             references: {
                 model: 'telemed_patients',
-                key: 'user_id',
+                key: 'patient_id',
             },
         },
         doctor_id: {
@@ -33,7 +33,7 @@ Prescription.init(
             allowNull: false,
             references: {
                 model: 'telemed_doctors',
-                key: 'user_id',
+                key: 'doctor_id',
             },
         },
         appointment_id: {

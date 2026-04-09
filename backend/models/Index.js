@@ -56,7 +56,7 @@ Admin.associate({ User });
 Prescription.associate({ EhrRecord, Patient, User, Appointment, Doctor });
 EhrRecord.associate({ User, Prescription, Patient, Doctor });
 Patient.associate({ User, Appointment, Prescription });
-Appointment.associate({ Patient, User, Prescription });
+Appointment.associate({ Patient, Doctor, User, Prescription });
 HealthCenter.associate({ User });
 Message.associate({ User });
 Report.associate({ User });

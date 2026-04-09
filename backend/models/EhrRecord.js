@@ -17,7 +17,7 @@ EhrRecord.init(
             allowNull: false,
             references: {
                 model: 'telemed_patients', 
-                key: 'user_id',
+                key: 'patient_id',
             },
         },
         doctor_id: {
@@ -25,7 +25,7 @@ EhrRecord.init(
             allowNull: true,
             references: {
                 model: 'telemed_doctors', 
-                key: 'user_id',
+                key: 'doctor_id',
             },
         },
         record_date: {
