@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-// Use relative URL for production (served from same domain)
+// Use Render backend URL for production
 const instance = axios.create({
-    baseURL: '/api', // Works in both development and production when served from same domain
-    timeout: 10000, // Optional timeout
+    baseURL: 'https://telemedicine-rjh7.onrender.com/api',
+    timeout: 10000,
 });
 
 export default instance;
