@@ -1,10 +1,15 @@
 // frontend/src/components/Auth/Register.js
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import axios from '../../axios';
 
 const Register = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
   const initialValues = { username: '', email: '', password: '' };
 
   const validationSchema = Yup.object({
@@ -13,10 +18,19 @@ const Register = () => {
     password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
   });
 
-  const handleSubmit = (values) => {
-    // Replace this with your API call
-    console.log(values);
-    toast.success('Registration successful!');
+  const handleSubmit = async (values, { setSubmitting }) => {
+    setIsLoading(true);
+    try {
+      await axios.post('/auth/register', values);
+      toast.success('Registration successful! Please login.');
+      navigate('/login');
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || 'Registration failed! Please try again.';
+      toast.error(errorMessage);
+    } finally {
+      setIsLoading(false);
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -39,7 +53,7 @@ const Register = () => {
             <Field name="password" type="password" />
             <ErrorMessage name="password" component="div" />
           </div>
-          <button type="submit">Register</button>
+          <button type="submit" disabled={isLoading}>Register</button>
         </Form>
       </Formik>
     </div>
@@ -47,49 +61,3 @@ const Register = () => {
 };
 
 export default Register;
-
-// // frontend/src/components/Auth/Register.js
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import './Auth.css';
-
-// const Register = () => {
-//     const [email, setEmail] = useState('');
-//     const [password, setPassword] = useState('');
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         try {
-//             await axios.post('/api/auth/register', { email, password });
-//             alert("Registration successful! You can log in now.");
-//         } catch (error) {
-//             console.error("Error during registration", error);
-//             alert("Registration failed! Please try again.");
-//         }
-//     };
-
-//     return (
-//         <div className="auth-container">
-//             <h2>Register</h2>
-//             <form onSubmit={handleSubmit}>
-//                 <input
-//                     type="email"
-//                     placeholder="Email"
-//                     value={email}
-//                     onChange={(e) => setEmail(e.target.value)}
-//                     required
-//                 />
-//                 <input
-//                     type="password"
-//                     placeholder="Password"
-//                     value={password}
-//                     onChange={(e) => setPassword(e.target.value)}
-//                     required
-//                 />
-//                 <button type="submit">Register</button>
-//             </form>
-//         </div>
-//     );
-// };
-
-// export default Register;

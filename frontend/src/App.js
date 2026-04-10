@@ -87,6 +87,9 @@ import CreateEhrRecord from './components/EhrRecord/CreateEhrRecord';
 import EditEhrRecord from './components/EhrRecord/EditEhrRecord';
 import ViewEhrRecord from './components/EhrRecord/ViewEhrRecord';
 
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
+
 // Layout wrapper component
 const Layout = ({ children }) => (
     <div className="app-container">
@@ -102,6 +105,10 @@ function App() {
             <Routes>
                 {/* Home Route */}
                 <Route path="/" element={<Layout><Home /></Layout>} />
+                
+                {/* Auth Routes */}
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
 
                 {/* AuditLog Routes */}
                 <Route path="/audit-logs" element={<Layout><AuditLogList /></Layout>} />

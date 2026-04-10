@@ -3,6 +3,14 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
+    const token = localStorage.getItem('token');
+    
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/';
+    };
+    
     return (
         <header className="header">
             <div className="header-brand">
@@ -18,6 +26,11 @@ const Header = () => {
                     <li><Link to="/health-centers">Health Centers</Link></li>
                     <li><Link to="/payments">Payments</Link></li>
                     <li><Link to="/messages">Messages</Link></li>
+                    {token ? (
+                        <li><button onClick={handleLogout} style={{background:'none',border:'none',cursor:'pointer',color:'inherit'}}>Logout</button></li>
+                    ) : (
+                        <li><Link to="/login">Login</Link></li>
+                    )}
                 </ul>
             </nav>
         </header>

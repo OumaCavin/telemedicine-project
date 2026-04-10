@@ -3,18 +3,35 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import Loading from '../UI/Loading';
+import axios from '../../axios';
 
 const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleLogin = async (values) => {
+  const handleLogin = async (values, { setSubmitting }) => {
     setIsLoading(true);
-    // Simulating an API call
-    setTimeout(() => {
-      setIsLoading(false);
+    try {
+      const response = await axios.post('/auth/login', {
+        email: values.email,
+        password: values.password
+      });
+      
+      // Store token and user info
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data.user));
+      
       toast.success('Login successful!');
-    }, 2000);
+      navigate('/');
+    } catch (error) {
+      const errorMessage = error.response?.data?.message || 'Login failed! Please check your credentials.';
+      toast.error(errorMessage);
+    } finally {
+      setIsLoading(false);
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -31,10 +48,14 @@ const Login = () => {
           onSubmit={handleLogin}
         >
           <Form>
-            <Field name="email" type="email" placeholder="Email" />
-            <ErrorMessage name="email" />
-            <Field name="password" type="password" placeholder="Password" />
-            <ErrorMessage name="password" />
+            <div>
+              <Field name="email" type="email" placeholder="Email" />
+              <ErrorMessage name="email" component="div" />
+            </div>
+            <div>
+              <Field name="password" type="password" placeholder="Password" />
+              <ErrorMessage name="password" component="div" />
+            </div>
             <button type="submit">Login</button>
           </Form>
         </Formik>
@@ -44,54 +65,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
-
-// // frontend/src/components/Auth/Login.js
-// import React, { useState } from 'react';
-// import { useHistory } from 'react-router-dom';
-// import axios from 'axios';
-// import './Auth.css';
-
-// const Login = () => {
-//     const [email, setEmail] = useState('');
-//     const [password, setPassword] = useState('');
-//     const history = useHistory();
-
-//     const handleSubmit = async (e) => {
-//         e.preventDefault();
-//         try {
-//             const response = await axios.post('/api/auth/login', { email, password });
-//             localStorage.setItem('token', response.data.token);
-//             history.push('/patient/dashboard');
-//         } catch (error) {
-//             console.error("Error logging in", error);
-//             alert("Login failed! Please check your credentials.");
-//         }
-//     };
-
-//     return (
-//         <div className="auth-container">
-//             <h2>Login</h2>
-//             <form onSubmit={handleSubmit}>
-//                 <input
-//                     type="email"
-//                     placeholder="Email"
-//                     value={email}
-//                     onChange={(e) => setEmail(e.target.value)}
-//                     required
-//                 />
-//                 <input
-//                     type="password"
-//                     placeholder="Password"
-//                     value={password}
-//                     onChange={(e) => setPassword(e.target.value)}
-//                     required
-//                 />
-//                 <button type="submit">Login</button>
-//             </form>
-//         </div>
-//     );
-// };
-
-// export default Login;
