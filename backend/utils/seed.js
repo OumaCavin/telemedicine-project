@@ -37,7 +37,7 @@ const seedDatabase = async () => {
         // Seed a test admin user
         // Password is "password123"
         await sequelize.query(`
-            INSERT INTO telemed_users (username, email, password, created_at, updated_at)
+            INSERT INTO telemed_users (username, email, password_hash, created_at, updated_at)
             VALUES 
                 ('admin', 'admin@test.com', '$2b$10$gQrgYYohjflZQWcaEnAjo.JaZaMrCnzhjdFbFockFW3OwDe3J/RT6', NOW(), NOW())
             ON CONFLICT (email) DO NOTHING;

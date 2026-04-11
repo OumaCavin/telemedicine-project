@@ -15,7 +15,10 @@ const createServer = () => {
   const app = express();
 
   // Middleware
-  app.use(cors());
+  app.use(cors({
+    origin: ['https://telemedicine-beige.vercel.app', 'http://localhost:3000'],
+    credentials: true,
+  }));
   app.use(bodyParser.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(errorHandler); // Error handling middleware

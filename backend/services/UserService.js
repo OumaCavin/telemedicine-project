@@ -15,7 +15,7 @@ class UserService {
             const newUser = await User.create({
                 username,
                 email,
-                password: hashedPassword,
+                password_hash: hashedPassword,
                 created_by: createdBy,
             });
 
@@ -44,7 +44,7 @@ class UserService {
                 },
             });
 
-            if (!user || !(await bcrypt.compare(password, user.password))) {
+            if (!user || !(await bcrypt.compare(password, user.password_hash))) {
                 return null; // Invalid credentials
             }
 
