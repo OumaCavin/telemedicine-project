@@ -34,6 +34,16 @@ const seedDatabase = async () => {
         `);
         logger.info('Status seeded successfully');
 
+        // Seed a test admin user
+        // Password is "password123"
+        await sequelize.query(`
+            INSERT INTO telemed_users (username, email, password, created_at, updated_at)
+            VALUES 
+                ('admin', 'admin@test.com', '$2b$10$gQrgYYohjflZQWcaEnAjo.JaZaMrCnzhjdFbFockFW3OwDe3J/RT6', NOW(), NOW())
+            ON CONFLICT (email) DO NOTHING;
+        `);
+        logger.info('Test user seeded successfully');
+
         logger.info('Database seeding completed');
     } catch (error) {
         logger.error('Error seeding database:', error);
