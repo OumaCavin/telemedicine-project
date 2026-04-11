@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import axios from '../../axios';
+import Loading from '../UI/Loading';
+import './Auth.css';
 
 const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +27,7 @@ const Register = () => {
       toast.success('Registration successful! Please login.');
       navigate('/login');
     } catch (error) {
-      const errorMessage = error.response?.data?.message || 'Registration failed! Please try again.';
+      const errorMessage = error.response?.data?.error || 'Registration failed! Please try again.';
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);
@@ -33,29 +35,63 @@ const Register = () => {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="loading-container">
+        <Loading />
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <h1>Register</h1>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-        <Form>
-          <div>
-            <label>Username</label>
-            <Field name="username" />
-            <ErrorMessage name="username" component="div" />
-          </div>
-          <div>
-            <label>Email</label>
-            <Field name="email" type="email" />
-            <ErrorMessage name="email" component="div" />
-          </div>
-          <div>
-            <label>Password</label>
-            <Field name="password" type="password" />
-            <ErrorMessage name="password" component="div" />
-          </div>
-          <button type="submit" disabled={isLoading}>Register</button>
-        </Form>
-      </Formik>
+    <div className="auth-container">
+      <div className="auth-card">
+        <h1>Create Account</h1>
+        <Formik 
+          initialValues={initialValues} 
+          validationSchema={validationSchema} 
+          onSubmit={handleSubmit}
+        >
+          <Form>
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
+              <Field 
+                name="username" 
+                type="text" 
+                placeholder="Choose a username"
+                className="form-input"
+              />
+              <ErrorMessage name="username" component="div" className="error-message" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email Address</label>
+              <Field 
+                name="email" 
+                type="email" 
+                placeholder="Enter your email"
+                className="form-input"
+              />
+              <ErrorMessage name="email" component="div" className="error-message" />
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <Field 
+                name="password" 
+                type="password" 
+                placeholder="Create a password"
+                className="form-input"
+              />
+              <ErrorMessage name="password" component="div" className="error-message" />
+            </div>
+            <button type="submit" className="auth-button" disabled={isLoading}>
+              Create Account
+            </button>
+          </Form>
+        </Formik>
+        <div className="auth-link">
+          <p>Already have an account? <Link to="/login">Sign in</Link></p>
+        </div>
+      </div>
     </div>
   );
 };

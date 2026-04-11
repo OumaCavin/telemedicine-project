@@ -6,10 +6,10 @@ const router = express.Router();
 const AuthController = require('../controllers/AuthController');
 const { protect } = require('../middlewares/authMiddleware');
 
-// Route to register a new user
+// Route to register a new user (public - no auth required)
 router.post('/register', AuthController.register);
 
-// Route to login a user
+// Route to login a user (public - no auth required)
 router.post('/login', AuthController.login);
 
 // Route to get the authenticated user's details

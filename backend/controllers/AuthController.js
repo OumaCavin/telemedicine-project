@@ -26,10 +26,13 @@ class AuthController {
 
     // User login
     async login(req, res) {
-        const { identifier, password } = req.body;
+        const { email, password, identifier } = req.body;
+        
+        // Support both identifier and email fields for backward compatibility
+        const loginIdentifier = identifier || email;
 
         try {
-            const user = await UserService.authenticateUser(identifier, password);
+            const user = await UserService.authenticateUser(loginIdentifier, password);
             if (!user) {
                 return res.status(401).json({ error: 'Invalid username/email or password' });
             }
