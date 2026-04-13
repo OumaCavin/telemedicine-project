@@ -32,11 +32,15 @@ class AuthController {
         // Support both identifier and email fields for backward compatibility
         const loginIdentifier = identifier || email;
 
+        logger.info('Login attempt:', { loginIdentifier });
+
         try {
             const user = await UserService.authenticateUser(loginIdentifier, password);
             if (!user) {
                 return res.status(401).json({ error: 'Invalid username/email or password' });
             }
+
+            logger.info('Login successful, generating token:', { userId: user.user_id });
 
             const token = jwt.sign(
                 { user_id: user.user_id },

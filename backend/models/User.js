@@ -5,6 +5,7 @@ const { sequelize } = require('../config/db');
 
 class User extends Model {}
 
+// Initialize the model
 User.init(
     {
         user_id: {
@@ -78,4 +79,6 @@ User.associate = (models) => {
     User.belongsTo(models.User, { foreignKey: 'updated_by', as: 'updater' }); 
 };
 
+// Export both the class and a factory function for compatibility
 module.exports = User;
+module.exports.default = User;

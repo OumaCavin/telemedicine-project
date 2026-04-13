@@ -73,7 +73,15 @@ class UserService {
                 return null;
             }
             
-            const passwordMatch = await bcrypt.compare(password, user.password_hash);
+            // Use a try-catch around bcrypt.compare
+            let passwordMatch = false;
+            try {
+                passwordMatch = await bcrypt.compare(password, user.password_hash);
+            } catch (bcryptError) {
+                logger.error('Bcrypt compare error:', bcryptError);
+                return null;
+            }
+            
             logger.info('Password comparison result:', { match: passwordMatch });
             
             if (!passwordMatch) {
