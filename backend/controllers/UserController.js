@@ -65,13 +65,11 @@ const updateUser = async (req, res) => {
         }
 
         if (password) {
-            user.password = await bcrypt.hash(password, 10); // Hash the password if provided
+            user.password_hash = await bcrypt.hash(password, 10); // Hash the password if provided
         }
 
         user.username = username || user.username;
         user.email = email || user.email;
-        user.role_id = role_id || user.role_id;
-        user.status = status || user.status || StatusConstants.ACTIVE; // Default to ACTIVE
         user.updated_by = req.userId;
 
         await user.save();
