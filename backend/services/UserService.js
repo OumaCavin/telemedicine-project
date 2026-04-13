@@ -10,6 +10,7 @@ class UserService {
         try {
             // Hash the password
             const hashedPassword = await bcrypt.hash(password, 10);
+            logger.info('Registering user:', { username, email, hasPasswordHash: !!hashedPassword });
 
             // Create the user record
             const newUser = await User.create({
@@ -18,6 +19,8 @@ class UserService {
                 password_hash: hashedPassword,
                 created_by: createdBy,
             });
+
+            logger.info('User created successfully:', { userId: newUser.user_id, username: newUser.username });
 
             // Assign a default role to the user
             if (role_id) {
@@ -44,6 +47,8 @@ class UserService {
                 },
             });
 
+            logger.info('Authenticating user:', { identifier, userFound: !!user, hasPasswordHash: !!user?.password_hash });
+            
             if (!user || !(await bcrypt.compare(password, user.password_hash))) {
                 return null; // Invalid credentials
             }

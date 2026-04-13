@@ -10,7 +10,8 @@ class AuthController {
         const { username, email, password, role_id } = req.body;
 
         try {
-            const newUser = await UserService.registerUser({ username, email, password, role_id, createdBy: req.userId });
+            // When registering, there's no authenticated user, so createdBy will be undefined
+            const newUser = await UserService.registerUser({ username, email, password, role_id });
             res.status(201).json({
                 message: 'User registered successfully',
                 user: newUser,
