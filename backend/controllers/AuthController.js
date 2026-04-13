@@ -42,11 +42,27 @@ class AuthController {
 
             logger.info('Login successful, generating token:', { userId: user.user_id });
 
-            const token = jwt.sign(
-                { user_id: user.user_id },
-                process.env.JWT_SECRET,
-                { expiresIn: process.env.JWT_EXPIRES_IN || '1h' }
-            );
+            // Check if JWT_SECRET exists
+            if (!process.env.JWT_SECRET) {
+                logger.error('JWT_SECRET is not defined!');
+                return res.status(500).json({ error: 'Login failed', details: 'Server configuration error' });
+            }
+
+            logger.info('JWT_SECRET found, signing token');
+
+            let token;
+            try {
+                token = jwt.sign(
+                    { user_id: user.user_id },
+                    process.env.JWT_SECRET,
+                    { expiresIn: process.env.JWT_EXPIRES_IN || '1h' }
+                );
+            } catch (jwtError) {
+                logger.error('JWT sign error:', jwtError);
+                return res.status(500).json({ error: 'Login failed', details: 'Token generation error' });
+            }
+
+            logger.info('Token generated successfully');
 
             res.status(200).json({
                 message: 'Login successful',
