@@ -17,8 +17,9 @@ exports.protect = async (req, res, next) => {
     }
 
     try {
-        // Verify token and get user data
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        // Verify token and get user data - use fallback secret if needed
+        const jwtSecret = process.env.JWT_SECRET || 'development-secret-key-do-not-use-in-production';
+        const decoded = jwt.verify(token, jwtSecret);
         req.user = decoded; 
         next();
     } catch (error) {
