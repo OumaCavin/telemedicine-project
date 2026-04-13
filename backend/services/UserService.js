@@ -47,20 +47,22 @@ class UserService {
 
     static async authenticateUser(identifier, password) {
         try {
-            // Find user by username or email - explicitly include password_hash
+            logger.info('=== AUTHENTICATE USER START ===');
+            
+            // Find user by username or email
             const user = await User.findOne({
                 where: {
                     [User.sequelize.Op.or]: [{ username: identifier }, { email: identifier }],
                 },
-                attributes: { include: ['password_hash'] } // Explicitly include password_hash
             });
 
-            logger.info('Authenticating user:', { 
+            logger.info('User findOne result:', { 
                 identifier, 
-                userFound: !!user, 
+                userFound: !!user,
+                userId: user?.user_id,
+                username: user?.username,
                 hasPasswordHash: !!user?.password_hash,
-                passwordHashLength: user?.password_hash?.length,
-                userId: user?.user_id
+                passwordHashLength: user?.password_hash?.length
             });
             
             if (!user) {
@@ -76,18 +78,19 @@ class UserService {
             // Use a try-catch around bcrypt.compare
             let passwordMatch = false;
             try {
+                logger.info('About to bcrypt.compare');
                 passwordMatch = await bcrypt.compare(password, user.password_hash);
+                logger.info('bcrypt.compare result:', { match: passwordMatch });
             } catch (bcryptError) {
                 logger.error('Bcrypt compare error:', bcryptError);
                 return null;
             }
             
-            logger.info('Password comparison result:', { match: passwordMatch });
-            
             if (!passwordMatch) {
                 return null; // Invalid credentials
             }
 
+            logger.info('=== AUTHENTICATE USER END - SUCCESS ===');
             return user; // User authenticated
         } catch (error) {
             logger.error('Error authenticating user:', error);
