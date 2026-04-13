@@ -1,6 +1,7 @@
 // service/UserService
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
+const { sequelize } = require('../config/db'); // Import sequelize instance
 const RoleAssignment = require('../models/RoleAssignment');
 const ROLES = require('../constants/roles');
 const logger = require('../utils/logger');
@@ -52,7 +53,7 @@ class UserService {
             // Find user by username or email
             const user = await User.findOne({
                 where: {
-                    [User.sequelize.Op.or]: [{ username: identifier }, { email: identifier }],
+                    [sequelize.Op.or]: [{ username: identifier }, { email: identifier }],
                 },
             });
 
