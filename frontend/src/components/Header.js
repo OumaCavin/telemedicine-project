@@ -27,7 +27,7 @@ const Header = () => {
                     <li><Link to="/payments">Payments</Link></li>
                     <li><Link to="/messages">Messages</Link></li>
                     {token ? (
-                        <li><button onClick={handleLogout} style={{background:'none',border:'none',cursor:'pointer',color:'inherit'}}>Logout</button></li>
+                        <li><button onClick={handleLogout} className="logout-btn" style={{background:'none',border:'none',cursor:'pointer',color:'inherit'}}>Logout</button></li>
                     ) : (
                         <li><Link to="/login">Login</Link></li>
                     )}
