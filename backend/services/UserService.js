@@ -83,8 +83,6 @@ class UserService {
                 logger.error('User found but no password_hash:', { userId: user.user_id, username: user.username });
                 return null;
             }
-                return null;
-            }
             
             // Use a try-catch around bcrypt.compare
             let passwordMatch = false;
