@@ -50,16 +50,20 @@ class UserService {
         try {
             logger.info('=== AUTHENTICATE USER START ===');
             
-            // Find user by username or email - simpler approach without Op.or
-            const user = await User.findOne({
-                where: sequelize.where(
-                    sequelize.or(
-                        sequelize.col('username'),
-                        sequelize.col('email')
-                    ),
-                    identifier
-                ),
+            // Find user by username or email - use separate queries to avoid complex Op.or issues
+            let user = null;
+            
+            // First try to find by email
+            user = await User.findOne({
+                where: { email: identifier },
             });
+            
+            // If not found by email, try username
+            if (!user) {
+                user = await User.findOne({
+                    where: { username: identifier },
+                });
+            }
 
             logger.info('User findOne result:', { 
                 identifier, 
@@ -77,6 +81,8 @@ class UserService {
             
             if (!user.password_hash) {
                 logger.error('User found but no password_hash:', { userId: user.user_id, username: user.username });
+                return null;
+            }
                 return null;
             }
             
