@@ -11,11 +11,14 @@ const DoctorList = () => {
         // Fetch all doctors from the backend
         axios.get('/api/doctors')
             .then(response => {
-                setDoctors(response.data);
+                // Ensure we have an array
+                const data = Array.isArray(response.data) ? response.data : [];
+                setDoctors(data);
                 setLoading(false);
             })
             .catch(err => {
-                setError('Error fetching doctors');
+                console.error('Error fetching doctors:', err);
+                setError(err.response?.data?.error || 'Error fetching doctors');
                 setLoading(false);
             });
     }, []);
@@ -24,17 +27,22 @@ const DoctorList = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div>
+        <div className="doctor-list-container">
             <h2>Doctor List</h2>
-            <Link to="/doctors/create">Create New Doctor</Link>
-            <ul>
-                {doctors.map(doctor => (
-                    <li key={doctor.id}>
-                        <Link to={`/doctors/${doctor.id}`}>{doctor.name}</Link> | 
-                        <Link to={`/doctors/edit/${doctor.id}`}> Edit</Link>
-                    </li>
-                ))}
-            </ul>
+            {doctors.length === 0 ? (
+                <p>No doctors found.</p>
+            ) : (
+                <ul>
+                    {doctors.map(doctor => (
+                        <li key={doctor.doctor_id}>
+                            <Link to={`/doctors/${doctor.doctor_id}`}>
+                                Dr. {doctor.first_name} {doctor.last_name}
+                            </Link> | 
+                            <Link to={`/doctors/edit/${doctor.doctor_id}`}> Edit</Link>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };

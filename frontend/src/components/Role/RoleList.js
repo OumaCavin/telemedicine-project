@@ -11,10 +11,13 @@ const RoleList = () => {
         // Fetch all roles from the backend
         axios.get('/api/roles')
             .then(response => {
-                setRoles(response.data);
+                if (Array.isArray(response.data)) {
+                    setRoles(response.data);
+                }
                 setLoading(false);
             })
             .catch(err => {
+                console.error('Error fetching roles:', err);
                 setError('Error fetching roles');
                 setLoading(false);
             });
@@ -28,12 +31,12 @@ const RoleList = () => {
             <h2>Roles</h2>
             <Link to="/roles/create">Create New Role</Link>
             <ul>
-                {roles.map(role => (
-                    <li key={role.id}>
+                {roles && roles.length > 0 ? roles.map(role => (
+                    <li key={role.role_id || role.id}>
                         <Link to={`/roles/${role.id}`}>{role.name}</Link> | 
                         <Link to={`/roles/edit/${role.id}`}> Edit</Link>
                     </li>
-                ))}
+                )) : <li>No roles found</li>}
             </ul>
         </div>
     );

@@ -11,11 +11,14 @@ const AdminList = () => {
     useEffect(() => {
         axios.get('/api/admins')
             .then(response => {
-                setAdmins(response.data);
+                // Ensure we have an array
+                const data = Array.isArray(response.data) ? response.data : [];
+                setAdmins(data);
                 setLoading(false);
             })
             .catch(err => {
-                setError('Error fetching admins');
+                console.error('Error fetching admins:', err);
+                setError(err.response?.data?.error || 'Error fetching admins');
                 setLoading(false);
             });
     }, []);
@@ -24,18 +27,23 @@ const AdminList = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div>
+        <div className="admin-list-container">
             <h2>Admin List</h2>
-            <Link to="/admins/create">Create New Admin</Link>
-            <ul>
-                {admins.map(admin => (
-                    <li key={admin.id}>
-                        <Link to={`/admins/${admin.id}`}>{admin.name}</Link>
-                        {' | '}
-                        <Link to={`/admins/edit/${admin.id}`}>Edit</Link>
-                    </li>
-                ))}
-            </ul>
+            {admins.length === 0 ? (
+                <p>No admins found.</p>
+            ) : (
+                <ul>
+                    {admins.map(admin => (
+                        <li key={admin.admin_id || admin.id}>
+                            <Link to={`/admins/${admin.admin_id || admin.id}`}>
+                                {admin.name}
+                            </Link>
+                            {' | '}
+                            <Link to={`/admins/edit/${admin.admin_id || admin.id}`}>Edit</Link>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };

@@ -11,10 +11,15 @@ const HistoryList = () => {
         // Fetch all health history entries from the backend
         axios.get('/api/histories')
             .then(response => {
-                setHistories(response.data);
+                if (Array.isArray(response.data)) {
+                    setHistories(response.data);
+                } else {
+                    setHistories([]);
+                }
                 setLoading(false);
             })
             .catch(err => {
+                console.error('Error fetching history records:', err);
                 setError('Error fetching history records');
                 setLoading(false);
             });
@@ -28,12 +33,16 @@ const HistoryList = () => {
             <h2>Health Histories</h2>
             <Link to="/histories/create">Create New Health History</Link>
             <ul>
-                {histories.map(history => (
-                    <li key={history.id}>
-                        <Link to={`/histories/${history.id}`}>{history.title}</Link> | 
-                        <Link to={`/histories/edit/${history.id}`}> Edit</Link>
-                    </li>
-                ))}
+                {histories.length === 0 ? (
+                    <li>No health history records found.</li>
+                ) : (
+                    histories.map(history => (
+                        <li key={history.history_id || history.id}>
+                            <Link to={`/histories/${history.id}`}>{history.title}</Link> | 
+                            <Link to={`/histories/edit/${history.id}`}> Edit</Link>
+                        </li>
+                    ))
+                )}
             </ul>
         </div>
     );

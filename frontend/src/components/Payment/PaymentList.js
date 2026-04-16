@@ -11,11 +11,14 @@ const PaymentList = () => {
     useEffect(() => {
         axios.get('/api/payments')
             .then(response => {
-                setPayments(response.data);
+                // Ensure we have an array
+                const data = Array.isArray(response.data) ? response.data : [];
+                setPayments(data);
                 setLoading(false);
             })
             .catch(err => {
-                setError('Error fetching payments');
+                console.error('Error fetching payments:', err);
+                setError(err.response?.data?.error || 'Error fetching payments');
                 setLoading(false);
             });
     }, []);
@@ -24,16 +27,21 @@ const PaymentList = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div>
+        <div className="payment-list-container">
             <h2>Payment List</h2>
-            <Link to="/payments/create">Create Payment</Link>
-            <ul>
-                {payments.map(payment => (
-                    <li key={payment.id}>
-                        <Link to={`/payments/${payment.id}`}>{payment.paymentMethod} - {payment.amount}</Link>
-                    </li>
-                ))}
-            </ul>
+            {payments.length === 0 ? (
+                <p>No payments found.</p>
+            ) : (
+                <ul>
+                    {payments.map(payment => (
+                        <li key={payment.payment_id}>
+                            <Link to={`/payments/${payment.payment_id}`}>
+                                {payment.paymentMethod} - {payment.amount}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };

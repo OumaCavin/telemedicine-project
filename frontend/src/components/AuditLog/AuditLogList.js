@@ -9,7 +9,9 @@ const AuditLogList = () => {
     useEffect(() => {
         axios.get('/audit-logs')
             .then(response => {
-                setAuditLogs(response.data);
+                if (Array.isArray(response.data)) {
+                    setAuditLogs(response.data);
+                }
             })
             .catch(error => {
                 console.error('Error fetching audit logs:', error);
@@ -47,13 +49,18 @@ const AuditLogList = () => {
     return (
         <div>
             <h1>Audit Logs</h1>
-            <DataTable
-                title="Audit Logs"
-                columns={columns}
-                data={auditLogs}
-                pagination
-                highlightOnHover
-            />
+            {auditLogs && auditLogs.length > 0 ? (
+                <DataTable
+                    title="Audit Logs"
+                    columns={columns}
+                    data={auditLogs}
+                    pagination
+                    highlightOnHover
+                    keyField="audit_log_id"
+                />
+            ) : (
+                <p>No audit logs found.</p>
+            )}
         </div>
     );
 };

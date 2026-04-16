@@ -11,11 +11,14 @@ const RoleItemList = () => {
         // Fetch all role items from the backend
         axios.get('/api/role-items')
             .then(response => {
-                setRoleItems(response.data);
+                // Ensure we have an array
+                const data = Array.isArray(response.data) ? response.data : [];
+                setRoleItems(data);
                 setLoading(false);
             })
             .catch(err => {
-                setError('Error fetching role items');
+                console.error('Error fetching role items:', err);
+                setError(err.response?.data?.error || 'Error fetching role items');
                 setLoading(false);
             });
     }, []);
@@ -24,17 +27,22 @@ const RoleItemList = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div>
+        <div className="roleitem-list-container">
             <h2>Role Items</h2>
-            <Link to="/role-items/create">Create New Role Item</Link>
-            <ul>
-                {roleItems.map(item => (
-                    <li key={item.id}>
-                        <Link to={`/role-items/${item.id}`}>{item.name}</Link> | 
-                        <Link to={`/role-items/edit/${item.id}`}> Edit</Link>
-                    </li>
-                ))}
-            </ul>
+            {roleItems.length === 0 ? (
+                <p>No role items found.</p>
+            ) : (
+                <ul>
+                    {roleItems.map(item => (
+                        <li key={item.role_item_id || item.id}>
+                            <Link to={`/role-items/${item.role_item_id || item.id}`}>
+                                {item.name}
+                            </Link> | 
+                            <Link to={`/role-items/edit/${item.role_item_id || item.id}`}> Edit</Link>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };

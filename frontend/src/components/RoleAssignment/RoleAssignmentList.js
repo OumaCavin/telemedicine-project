@@ -11,11 +11,14 @@ const RoleAssignmentList = () => {
         // Fetch all role assignments from the backend
         axios.get('/api/role-assignments')
             .then(response => {
-                setAssignments(response.data);
+                // Ensure we have an array
+                const data = Array.isArray(response.data) ? response.data : [];
+                setAssignments(data);
                 setLoading(false);
             })
             .catch(err => {
-                setError('Error fetching role assignments');
+                console.error('Error fetching role assignments:', err);
+                setError(err.response?.data?.error || 'Error fetching role assignments');
                 setLoading(false);
             });
     }, []);
@@ -24,17 +27,22 @@ const RoleAssignmentList = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div>
+        <div className="roleassignment-list-container">
             <h2>Role Assignments</h2>
-            <Link to="/role-assignments/create">Create New Assignment</Link>
-            <ul>
-                {assignments.map(assignment => (
-                    <li key={assignment.id}>
-                        <Link to={`/role-assignments/${assignment.id}`}>{assignment.userName} - {assignment.roleName}</Link> | 
-                        <Link to={`/role-assignments/edit/${assignment.id}`}> Edit</Link>
-                    </li>
-                ))}
-            </ul>
+            {assignments.length === 0 ? (
+                <p>No role assignments found.</p>
+            ) : (
+                <ul>
+                    {assignments.map(assignment => (
+                        <li key={assignment.role_assignment_id || assignment.id}>
+                            <Link to={`/role-assignments/${assignment.role_assignment_id || assignment.id}`}>
+                                {assignment.userName} - {assignment.roleName}
+                            </Link> | 
+                            <Link to={`/role-assignments/edit/${assignment.role_assignment_id || assignment.id}`}> Edit</Link>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };

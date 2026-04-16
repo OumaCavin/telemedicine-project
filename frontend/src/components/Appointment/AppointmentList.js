@@ -11,11 +11,14 @@ const AppointmentList = () => {
         // Fetch all appointments from the backend
         axios.get('/api/appointments')
             .then(response => {
-                setAppointments(response.data);
+                // Ensure we have an array
+                const data = Array.isArray(response.data) ? response.data : [];
+                setAppointments(data);
                 setLoading(false);
             })
             .catch(err => {
-                setError('Error fetching appointments');
+                console.error('Error fetching appointments:', err);
+                setError(err.response?.data?.error || 'Error fetching appointments');
                 setLoading(false);
             });
     }, []);
@@ -24,17 +27,22 @@ const AppointmentList = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div>
+        <div className="appointment-list-container">
             <h2>Appointment List</h2>
-            <Link to="/appointments/create">Create New Appointment</Link>
-            <ul>
-                {appointments.map(appointment => (
-                    <li key={appointment.id}>
-                        <Link to={`/appointments/${appointment.id}`}>{appointment.patientName} - {appointment.doctorName}</Link> | 
-                        <Link to={`/appointments/edit/${appointment.id}`}> Edit</Link>
-                    </li>
-                ))}
-            </ul>
+            {appointments.length === 0 ? (
+                <p>No appointments found.</p>
+            ) : (
+                <ul>
+                    {appointments.map(appointment => (
+                        <li key={appointment.appointment_id}>
+                            <Link to={`/appointments/${appointment.appointment_id}`}>
+                                {appointment.patientName} - {appointment.doctorName}
+                            </Link> | 
+                            <Link to={`/appointments/edit/${appointment.appointment_id}`}> Edit</Link>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };

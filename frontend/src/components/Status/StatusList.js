@@ -11,10 +11,15 @@ const StatusList = () => {
     useEffect(() => {
         axios.get('/api/statuses')
             .then(response => {
-                setStatuses(response.data);
+                if (Array.isArray(response.data)) {
+                    setStatuses(response.data);
+                } else {
+                    setStatuses([]);
+                }
                 setLoading(false);
             })
             .catch(err => {
+                console.error('Error fetching statuses:', err);
                 setError('Error fetching statuses');
                 setLoading(false);
             });
@@ -26,14 +31,17 @@ const StatusList = () => {
     return (
         <div>
             <h2>Status List</h2>
-            <Link to="/statuses/create">Create Status</Link>
-            <ul>
-                {statuses.map(status => (
-                    <li key={status.id}>
-                        <Link to={`/statuses/${status.id}`}>{status.name}</Link>
-                    </li>
-                ))}
-            </ul>
+            {statuses.length === 0 ? (
+                <p>No statuses found</p>
+            ) : (
+                <ul>
+                    {statuses.map(status => (
+                        <li key={status.status_id || status.id}>
+                            <Link to={`/statuses/${status.status_id || status.id}`}>{status.name}</Link>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };

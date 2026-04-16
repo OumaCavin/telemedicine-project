@@ -11,10 +11,15 @@ const UserList = () => {
     useEffect(() => {
         axios.get('/api/users')
             .then(response => {
-                setUsers(response.data);
+                if (Array.isArray(response.data)) {
+                    setUsers(response.data);
+                } else {
+                    setUsers([]);
+                }
                 setLoading(false);
             })
             .catch(err => {
+                console.error('Error fetching users:', err);
                 setError('Error fetching users');
                 setLoading(false);
             });
@@ -27,15 +32,19 @@ const UserList = () => {
         <div>
             <h2>User List</h2>
             <Link to="/users/create">Create New User</Link>
-            <ul>
-                {users.map(user => (
-                    <li key={user.id}>
-                        <Link to={`/users/${user.id}`}>{user.name}</Link>
-                        {' | '}
-                        <Link to={`/users/edit/${user.id}`}>Edit</Link>
-                    </li>
-                ))}
-            </ul>
+                {users && users.length > 0 ? (
+                    <ul>
+                        {users.map(user => (
+                            <li key={user.user_id || user.id}>
+                                <Link to={`/users/${user.user_id || user.id}`}>{user.name}</Link>
+                                {' | '}
+                                <Link to={`/users/edit/${user.user_id || user.id}`}>Edit</Link>
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No users found.</p>
+                )}
         </div>
     );
 };

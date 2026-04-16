@@ -11,11 +11,14 @@ const PrescriptionList = () => {
         // Fetch all prescriptions from the backend
         axios.get('/api/prescriptions')
             .then(response => {
-                setPrescriptions(response.data);
+                // Ensure we have an array
+                const data = Array.isArray(response.data) ? response.data : [];
+                setPrescriptions(data);
                 setLoading(false);
             })
             .catch(err => {
-                setError('Error fetching prescriptions');
+                console.error('Error fetching prescriptions:', err);
+                setError(err.response?.data?.error || 'Error fetching prescriptions');
                 setLoading(false);
             });
     }, []);
@@ -24,17 +27,22 @@ const PrescriptionList = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div>
+        <div className="prescription-list-container">
             <h2>Prescription List</h2>
-            <Link to="/prescriptions/create">Create New Prescription</Link>
-            <ul>
-                {prescriptions.map(prescription => (
-                    <li key={prescription.id}>
-                        <Link to={`/prescriptions/${prescription.id}`}>{prescription.patientName} - {prescription.medication}</Link> | 
-                        <Link to={`/prescriptions/edit/${prescription.id}`}> Edit</Link>
-                    </li>
-                ))}
-            </ul>
+            {prescriptions.length === 0 ? (
+                <p>No prescriptions found.</p>
+            ) : (
+                <ul>
+                    {prescriptions.map(prescription => (
+                        <li key={prescription.prescription_id}>
+                            <Link to={`/prescriptions/${prescription.prescription_id}`}>
+                                {prescription.patientName} - {prescription.medication}
+                            </Link> | 
+                            <Link to={`/prescriptions/edit/${prescription.prescription_id}`}> Edit</Link>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };

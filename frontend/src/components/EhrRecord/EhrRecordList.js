@@ -11,10 +11,15 @@ const EhrRecordList = () => {
         // Fetch all EHR records from the backend
         axios.get('/api/ehr-records')
             .then(response => {
-                setEhrRecords(response.data);
+                if (Array.isArray(response.data)) {
+                    setEhrRecords(response.data);
+                } else {
+                    setEhrRecords([]);
+                }
                 setLoading(false);
             })
             .catch(err => {
+                console.error('Error fetching EHR records:', err);
                 setError('Error fetching EHR records');
                 setLoading(false);
             });
@@ -22,6 +27,7 @@ const EhrRecordList = () => {
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
+    if (ehrRecords.length === 0) return <div>No EHR records found.</div>;
 
     return (
         <div>
@@ -29,7 +35,7 @@ const EhrRecordList = () => {
             <Link to="/ehr-records/create">Create New EHR Record</Link>
             <ul>
                 {ehrRecords.map(record => (
-                    <li key={record.id}>
+                    <li key={record.ehr_id || record.id}>
                         <Link to={`/ehr-records/${record.id}`}>{record.patientName}</Link> | 
                         <Link to={`/ehr-records/edit/${record.id}`}> Edit</Link>
                     </li>

@@ -11,11 +11,14 @@ const HealthCenterList = () => {
         // Fetch all health centers from the backend
         axios.get('/api/health-centers')
             .then(response => {
-                setHealthCenters(response.data);
+                // Ensure we have an array
+                const data = Array.isArray(response.data) ? response.data : [];
+                setHealthCenters(data);
                 setLoading(false);
             })
             .catch(err => {
-                setError('Error fetching health centers');
+                console.error('Error fetching health centers:', err);
+                setError(err.response?.data?.error || 'Error fetching health centers');
                 setLoading(false);
             });
     }, []);
@@ -24,17 +27,22 @@ const HealthCenterList = () => {
     if (error) return <div>{error}</div>;
 
     return (
-        <div>
+        <div className="healthcenter-list-container">
             <h2>Health Centers</h2>
-            <Link to="/health-centers/create">Create New Health Center</Link>
-            <ul>
-                {healthCenters.map(center => (
-                    <li key={center.id}>
-                        <Link to={`/health-centers/${center.id}`}>{center.name}</Link> | 
-                        <Link to={`/health-centers/edit/${center.id}`}> Edit</Link>
-                    </li>
-                ))}
-            </ul>
+            {healthCenters.length === 0 ? (
+                <p>No health centers found.</p>
+            ) : (
+                <ul>
+                    {healthCenters.map(center => (
+                        <li key={center.health_center_id}>
+                            <Link to={`/health-centers/${center.health_center_id}`}>
+                                {center.name}
+                            </Link> | 
+                            <Link to={`/health-centers/edit/${center.health_center_id}`}> Edit</Link>
+                        </li>
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };
