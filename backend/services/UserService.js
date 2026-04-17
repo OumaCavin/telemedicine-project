@@ -31,13 +31,12 @@ class UserService {
             });
 
             // Assign a default role to the user
-            if (role_id) {
-                await RoleAssignment.create({
-                    user_id: newUser.user_id,
-                    role_id: role_id || ROLES.PATIENT, // default to PATIENT role
-                    created_by: createdBy,
-                });
-            }
+            const assignedRoleId = role_id || ROLES.PATIENT;
+            await RoleAssignment.create({
+                user_id: newUser.user_id,
+                role_id: assignedRoleId,
+                created_by: createdBy,
+            });
 
             return newUser;
         } catch (error) {
