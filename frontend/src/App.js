@@ -130,9 +130,9 @@ function App() {
 
                 {/* User Routes */}
                 <Route path="/users" element={<Layout><UserList /></Layout>} />
-                <Route path="/user/create" element={<Layout><CreateUser /></Layout>} />
-                <Route path="/user/:id/edit" element={<Layout><EditUser /></Layout>} />
-                <Route path="/user/:id" element={<Layout><ViewUser /></Layout>} />
+                <Route path="/users/create" element={<Layout><CreateUser /></Layout>} />
+                <Route path="/users/:id/edit" element={<Layout><EditUser /></Layout>} />
+                <Route path="/users/:id" element={<Layout><ViewUser /></Layout>} />
 
                 {/* Admin Routes */}
                 <Route path="/admins" element={<Layout><AdminList /></Layout>} />

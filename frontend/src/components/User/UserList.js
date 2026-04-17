@@ -38,7 +38,7 @@ const UserList = () => {
                             <li key={user.user_id || user.id}>
                                 <Link to={`/users/${user.user_id || user.id}`}>{user.name}</Link>
                                 {' | '}
-                                <Link to={`/users/edit/${user.user_id || user.id}`}>Edit</Link>
+                                <Link to={`/users/${user.user_id || user.id}/edit`}>Edit</Link>
                             </li>
                         ))}
                     </ul>
