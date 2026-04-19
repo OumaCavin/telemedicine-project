@@ -89,6 +89,7 @@ import ViewEhrRecord from './components/EhrRecord/ViewEhrRecord';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import AdminLogin from './components/Auth/AdminLogin';
+import ProtectedRoute from './components/ProtectedRoute';
 
 // Layout wrapper component
 const Layout = ({ children }) => (
@@ -112,99 +113,99 @@ function App() {
                 <Route path="/admin-login" element={<AdminLogin />} />
 
                 {/* AuditLog Routes */}
-                <Route path="/audit-logs" element={<Layout><AuditLogList /></Layout>} />
-                <Route path="/audit-log/create" element={<Layout><CreateAuditLog /></Layout>} />
-                <Route path="/audit-log/:id/edit" element={<Layout><EditAuditLog /></Layout>} />
-                <Route path="/audit-log/:id" element={<Layout><ViewAuditLog /></Layout>} />
+                <Route path="/audit-logs" element={<ProtectedRoute><Layout><AuditLogList /></Layout></ProtectedRoute>} />
+                <Route path="/audit-log/create" element={<ProtectedRoute><Layout><CreateAuditLog /></Layout></ProtectedRoute>} />
+                <Route path="/audit-log/:id/edit" element={<ProtectedRoute><Layout><EditAuditLog /></Layout></ProtectedRoute>} />
+                <Route path="/audit-log/:id" element={<ProtectedRoute><Layout><ViewAuditLog /></Layout></ProtectedRoute>} />
 
                 {/* Payment Routes */}
-                <Route path="/payments" element={<Layout><PaymentList /></Layout>} />
-                <Route path="/payment/create" element={<Layout><CreatePayment /></Layout>} />
-                <Route path="/payment/:id/edit" element={<Layout><EditPayment /></Layout>} />
-                <Route path="/payment/:id" element={<Layout><ViewPayment /></Layout>} />
+                <Route path="/payments" element={<ProtectedRoute><Layout><PaymentList /></Layout></ProtectedRoute>} />
+                <Route path="/payment/create" element={<ProtectedRoute><Layout><CreatePayment /></Layout></ProtectedRoute>} />
+                <Route path="/payment/:id/edit" element={<ProtectedRoute><Layout><EditPayment /></Layout></ProtectedRoute>} />
+                <Route path="/payment/:id" element={<ProtectedRoute><Layout><ViewPayment /></Layout></ProtectedRoute>} />
 
                 {/* Status Routes */}
-                <Route path="/statuses" element={<Layout><StatusList /></Layout>} />
-                <Route path="/status/create" element={<Layout><CreateStatus /></Layout>} />
-                <Route path="/status/:id/edit" element={<Layout><EditStatus /></Layout>} />
-                <Route path="/status/:id" element={<Layout><ViewStatus /></Layout>} />
+                <Route path="/statuses" element={<ProtectedRoute><Layout><StatusList /></Layout></ProtectedRoute>} />
+                <Route path="/status/create" element={<ProtectedRoute><Layout><CreateStatus /></Layout></ProtectedRoute>} />
+                <Route path="/status/:id/edit" element={<ProtectedRoute><Layout><EditStatus /></Layout></ProtectedRoute>} />
+                <Route path="/status/:id" element={<ProtectedRoute><Layout><ViewStatus /></Layout></ProtectedRoute>} />
 
                 {/* User Routes */}
-                <Route path="/users" element={<Layout><UserList /></Layout>} />
-                <Route path="/users/:id/edit" element={<Layout><EditUser /></Layout>} />
-                <Route path="/users/:id" element={<Layout><ViewUser /></Layout>} />
+                <Route path="/users" element={<ProtectedRoute><Layout><UserList /></Layout></ProtectedRoute>} />
+                <Route path="/users/:id/edit" element={<ProtectedRoute><Layout><EditUser /></Layout></ProtectedRoute>} />
+                <Route path="/users/:id" element={<ProtectedRoute><Layout><ViewUser /></Layout></ProtectedRoute>} />
 
                 {/* Admin Routes */}
-                <Route path="/admins" element={<Layout><AdminList /></Layout>} />
-                <Route path="/admin/create" element={<Layout><CreateAdmin /></Layout>} />
-                <Route path="/admin/:id/edit" element={<Layout><EditAdmin /></Layout>} />
-                <Route path="/admin/:id" element={<Layout><ViewAdmin /></Layout>} />
+                <Route path="/admins" element={<ProtectedRoute><Layout><AdminList /></Layout></ProtectedRoute>} />
+                <Route path="/admin/create" element={<ProtectedRoute><Layout><CreateAdmin /></Layout></ProtectedRoute>} />
+                <Route path="/admin/:id/edit" element={<ProtectedRoute><Layout><EditAdmin /></Layout></ProtectedRoute>} />
+                <Route path="/admin/:id" element={<ProtectedRoute><Layout><ViewAdmin /></Layout></ProtectedRoute>} />
 
                 {/* Patient Routes */}
-                <Route path="/patients" element={<Layout><PatientList /></Layout>} />
-                <Route path="/patient/create" element={<Layout><CreatePatient /></Layout>} />
-                <Route path="/patient/:id/edit" element={<Layout><EditPatient /></Layout>} />
-                <Route path="/patient/:id" element={<Layout><ViewPatient /></Layout>} />
+                <Route path="/patients" element={<ProtectedRoute><Layout><PatientList /></Layout></ProtectedRoute>} />
+                <Route path="/patient/create" element={<ProtectedRoute><Layout><CreatePatient /></Layout></ProtectedRoute>} />
+                <Route path="/patient/:id/edit" element={<ProtectedRoute><Layout><EditPatient /></Layout></ProtectedRoute>} />
+                <Route path="/patient/:id" element={<ProtectedRoute><Layout><ViewPatient /></Layout></ProtectedRoute>} />
 
                 {/* Doctor Routes */}
-                <Route path="/doctors" element={<Layout><DoctorList /></Layout>} />
-                <Route path="/doctor/create" element={<Layout><CreateDoctor /></Layout>} />
-                <Route path="/doctor/:id/edit" element={<Layout><EditDoctor /></Layout>} />
-                <Route path="/doctor/:id" element={<Layout><ViewDoctor /></Layout>} />
+                <Route path="/doctors" element={<ProtectedRoute><Layout><DoctorList /></Layout></ProtectedRoute>} />
+                <Route path="/doctor/create" element={<ProtectedRoute><Layout><CreateDoctor /></Layout></ProtectedRoute>} />
+                <Route path="/doctor/:id/edit" element={<ProtectedRoute><Layout><EditDoctor /></Layout></ProtectedRoute>} />
+                <Route path="/doctor/:id" element={<ProtectedRoute><Layout><ViewDoctor /></Layout></ProtectedRoute>} />
 
                 {/* Appointment Routes */}
-                <Route path="/appointments" element={<Layout><AppointmentList /></Layout>} />
-                <Route path="/appointment/create" element={<Layout><CreateAppointment /></Layout>} />
-                <Route path="/appointment/:id/edit" element={<Layout><EditAppointment /></Layout>} />
-                <Route path="/appointment/:id" element={<Layout><ViewAppointment /></Layout>} />
+                <Route path="/appointments" element={<ProtectedRoute><Layout><AppointmentList /></Layout></ProtectedRoute>} />
+                <Route path="/appointment/create" element={<ProtectedRoute><Layout><CreateAppointment /></Layout></ProtectedRoute>} />
+                <Route path="/appointment/:id/edit" element={<ProtectedRoute><Layout><EditAppointment /></Layout></ProtectedRoute>} />
+                <Route path="/appointment/:id" element={<ProtectedRoute><Layout><ViewAppointment /></Layout></ProtectedRoute>} />
 
                 {/* Prescription Routes */}
-                <Route path="/prescriptions" element={<Layout><PrescriptionList /></Layout>} />
-                <Route path="/prescription/create" element={<Layout><CreatePrescription /></Layout>} />
-                <Route path="/prescription/:id/edit" element={<Layout><EditPrescription /></Layout>} />
-                <Route path="/prescription/:id" element={<Layout><ViewPrescription /></Layout>} />
+                <Route path="/prescriptions" element={<ProtectedRoute><Layout><PrescriptionList /></Layout></ProtectedRoute>} />
+                <Route path="/prescription/create" element={<ProtectedRoute><Layout><CreatePrescription /></Layout></ProtectedRoute>} />
+                <Route path="/prescription/:id/edit" element={<ProtectedRoute><Layout><EditPrescription /></Layout></ProtectedRoute>} />
+                <Route path="/prescription/:id" element={<ProtectedRoute><Layout><ViewPrescription /></Layout></ProtectedRoute>} />
 
                 {/* Message Routes */}
-                <Route path="/messages" element={<Layout><MessageList /></Layout>} />
-                <Route path="/message/create" element={<Layout><CreateMessage /></Layout>} />
-                <Route path="/message/:id/edit" element={<Layout><EditMessage /></Layout>} />
-                <Route path="/message/:id" element={<Layout><ViewMessage /></Layout>} />
+                <Route path="/messages" element={<ProtectedRoute><Layout><MessageList /></Layout></ProtectedRoute>} />
+                <Route path="/message/create" element={<ProtectedRoute><Layout><CreateMessage /></Layout></ProtectedRoute>} />
+                <Route path="/message/:id/edit" element={<ProtectedRoute><Layout><EditMessage /></Layout></ProtectedRoute>} />
+                <Route path="/message/:id" element={<ProtectedRoute><Layout><ViewMessage /></Layout></ProtectedRoute>} />
 
                 {/* HealthCenter Routes */}
-                <Route path="/health-centers" element={<Layout><HealthCenterList /></Layout>} />
-                <Route path="/health-center/create" element={<Layout><CreateHealthCenter /></Layout>} />
-                <Route path="/health-center/:id/edit" element={<Layout><EditHealthCenter /></Layout>} />
-                <Route path="/health-center/:id" element={<Layout><ViewHealthCenter /></Layout>} />
+                <Route path="/health-centers" element={<ProtectedRoute><Layout><HealthCenterList /></Layout></ProtectedRoute>} />
+                <Route path="/health-center/create" element={<ProtectedRoute><Layout><CreateHealthCenter /></Layout></ProtectedRoute>} />
+                <Route path="/health-center/:id/edit" element={<ProtectedRoute><Layout><EditHealthCenter /></Layout></ProtectedRoute>} />
+                <Route path="/health-center/:id" element={<ProtectedRoute><Layout><ViewHealthCenter /></Layout></ProtectedRoute>} />
 
                 {/* History Routes */}
-                <Route path="/histories" element={<Layout><HistoryList /></Layout>} />
-                <Route path="/history/create" element={<Layout><CreateHistory /></Layout>} />
-                <Route path="/history/:id/edit" element={<Layout><EditHistory /></Layout>} />
-                <Route path="/history/:id" element={<Layout><ViewHistory /></Layout>} />
+                <Route path="/histories" element={<ProtectedRoute><Layout><HistoryList /></Layout></ProtectedRoute>} />
+                <Route path="/history/create" element={<ProtectedRoute><Layout><CreateHistory /></Layout></ProtectedRoute>} />
+                <Route path="/history/:id/edit" element={<ProtectedRoute><Layout><EditHistory /></Layout></ProtectedRoute>} />
+                <Route path="/history/:id" element={<ProtectedRoute><Layout><ViewHistory /></Layout></ProtectedRoute>} />
 
                 {/* Role Routes */}
-                <Route path="/roles" element={<Layout><RoleList /></Layout>} />
-                <Route path="/role/create" element={<Layout><CreateRole /></Layout>} />
-                <Route path="/role/:id/edit" element={<Layout><EditRole /></Layout>} />
-                <Route path="/role/:id" element={<Layout><ViewRole /></Layout>} />
+                <Route path="/roles" element={<ProtectedRoute><Layout><RoleList /></Layout></ProtectedRoute>} />
+                <Route path="/role/create" element={<ProtectedRoute><Layout><CreateRole /></Layout></ProtectedRoute>} />
+                <Route path="/role/:id/edit" element={<ProtectedRoute><Layout><EditRole /></Layout></ProtectedRoute>} />
+                <Route path="/role/:id" element={<ProtectedRoute><Layout><ViewRole /></Layout></ProtectedRoute>} />
 
                 {/* Role Assignment Routes */}
-                <Route path="/role-assignments" element={<Layout><RoleAssignmentList /></Layout>} />
-                <Route path="/role-assignment/create" element={<Layout><CreateRoleAssignment /></Layout>} />
-                <Route path="/role-assignment/:id/edit" element={<Layout><EditRoleAssignment /></Layout>} />
-                <Route path="/role-assignment/:id" element={<Layout><ViewRoleAssignment /></Layout>} />
+                <Route path="/role-assignments" element={<ProtectedRoute><Layout><RoleAssignmentList /></Layout></ProtectedRoute>} />
+                <Route path="/role-assignment/create" element={<ProtectedRoute><Layout><CreateRoleAssignment /></Layout></ProtectedRoute>} />
+                <Route path="/role-assignment/:id/edit" element={<ProtectedRoute><Layout><EditRoleAssignment /></Layout></ProtectedRoute>} />
+                <Route path="/role-assignment/:id" element={<ProtectedRoute><Layout><ViewRoleAssignment /></Layout></ProtectedRoute>} />
 
                 {/* Role Item Routes */}
-                <Route path="/role-items" element={<Layout><RoleItemList /></Layout>} />
-                <Route path="/role-item/create" element={<Layout><CreateRoleItem /></Layout>} />
-                <Route path="/role-item/:id/edit" element={<Layout><EditRoleItem /></Layout>} />
-                <Route path="/role-item/:id" element={<Layout><ViewRoleItem /></Layout>} />
+                <Route path="/role-items" element={<ProtectedRoute><Layout><RoleItemList /></Layout></ProtectedRoute>} />
+                <Route path="/role-item/create" element={<ProtectedRoute><Layout><CreateRoleItem /></Layout></ProtectedRoute>} />
+                <Route path="/role-item/:id/edit" element={<ProtectedRoute><Layout><EditRoleItem /></Layout></ProtectedRoute>} />
+                <Route path="/role-item/:id" element={<ProtectedRoute><Layout><ViewRoleItem /></Layout></ProtectedRoute>} />
 
                 {/* EhrRecord Routes */}
-                <Route path="/ehr-records" element={<Layout><EhrRecordList /></Layout>} />
-                <Route path="/ehr-record/create" element={<Layout><CreateEhrRecord /></Layout>} />
-                <Route path="/ehr-record/:id/edit" element={<Layout><EditEhrRecord /></Layout>} />
-                <Route path="/ehr-record/:id" element={<Layout><ViewEhrRecord /></Layout>} />
+                <Route path="/ehr-records" element={<ProtectedRoute><Layout><EhrRecordList /></Layout></ProtectedRoute>} />
+                <Route path="/ehr-record/create" element={<ProtectedRoute><Layout><CreateEhrRecord /></Layout></ProtectedRoute>} />
+                <Route path="/ehr-record/:id/edit" element={<ProtectedRoute><Layout><EditEhrRecord /></Layout></ProtectedRoute>} />
+                <Route path="/ehr-record/:id" element={<ProtectedRoute><Layout><ViewEhrRecord /></Layout></ProtectedRoute>} />
             </Routes>
         </Router>
     );
