@@ -1,5 +1,6 @@
 // controllers/AuthController
 const UserService = require('../services/UserService');
+const RoleService = require('../services/RoleService');
 const logger = require('../utils/logger');
 const ROLES = require('../constants/roles');
 const jwt = require('jsonwebtoken');
@@ -46,6 +47,10 @@ class AuthController {
 
             logger.info('Login successful, generating token:', { userId: user.user_id });
 
+            // Get user's role
+            const role_id = await RoleService.getUserRole(user.user_id);
+            logger.info('User role fetched:', { userId: user.user_id, role_id });
+
             // Check if JWT_SECRET exists, use fallback for development
             const jwtSecret = process.env.JWT_SECRET || 'development-secret-key-do-not-use-in-production';
             logger.info('JWT_SECRET found, signing token');
@@ -67,7 +72,7 @@ class AuthController {
             res.status(200).json({
                 message: 'Login successful',
                 token,
-                user: { user_id: user.user_id, username: user.username, email: user.email },
+                user: { user_id: user.user_id, username: user.username, email: user.email, role_id },
             });
         } catch (error) {
             logger.error('Error logging in user:', error);

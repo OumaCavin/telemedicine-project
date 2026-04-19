@@ -1,4 +1,4 @@
-// frontend/src/components/Auth/Login.js
+// frontend/src/components/Auth/AdminLogin.js
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -8,7 +8,7 @@ import Loading from '../UI/Loading';
 import axios from '../../axios';
 import './Auth.css';
 
-const Login = () => {
+const AdminLogin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -20,11 +20,21 @@ const Login = () => {
         password: values.password
       });
       
+      const { role_id } = response.data.user;
+      
+      // Check if user is admin (role_id = 1)
+      if (role_id !== 1) {
+        toast.error('Access denied. Admin credentials required.');
+        setIsLoading(false);
+        setSubmitting(false);
+        return;
+      }
+      
       // Store token and user info
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
       
-      toast.success('Login successful!');
+      toast.success('Admin login successful!');
       navigate('/');
     } catch (error) {
       const errorMessage = error.response?.data?.error || 'Login failed! Please check your credentials.';
@@ -45,8 +55,10 @@ const Login = () => {
 
   return (
     <div className="auth-container">
-      <div className="auth-card">
-        <h1>Welcome Back</h1>
+      <div className="auth-card admin-auth-card">
+        <div className="admin-badge">ADMIN</div>
+        <h1>Admin Portal</h1>
+        <p className="auth-subtitle">Sign in to access the administration dashboard</p>
         <Formik
           initialValues={{ email: '', password: '' }}
           validationSchema={Yup.object({
@@ -57,11 +69,11 @@ const Login = () => {
         >
           <Form>
             <div className="form-group">
-              <label htmlFor="email">Email Address</label>
+              <label htmlFor="email">Admin Email</label>
               <Field 
                 name="email" 
                 type="email" 
-                placeholder="Enter your email"
+                placeholder="Enter admin email"
                 className="form-input"
               />
               <ErrorMessage name="email" component="div" className="error-message" />
@@ -71,23 +83,23 @@ const Login = () => {
               <Field 
                 name="password" 
                 type="password" 
-                placeholder="Enter your password"
+                placeholder="Enter password"
                 className="form-input"
               />
               <ErrorMessage name="password" component="div" className="error-message" />
             </div>
-            <button type="submit" className="auth-button">
-              Sign In
+            <button type="submit" className="auth-button admin-button">
+              Admin Login
             </button>
           </Form>
         </Formik>
         <div className="auth-link">
-          <p>Don't have an account? <Link to="/register">Create one</Link></p>
-          <p style={{marginTop: '15px', fontSize: '13px'}}>Admin? <Link to="/admin-login">Login here</Link></p>
+          <p><Link to="/login">Regular User Login</Link></p>
+          <p className="back-link"><Link to="/">← Back to Home</Link></p>
         </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default AdminLogin;

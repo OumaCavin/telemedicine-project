@@ -121,3 +121,43 @@
     min-height: 80vh;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
+/* Admin Login Styles */
+.admin-auth-card {
+    position: relative;
+    border-top: 4px solid #e74c3c;
+}
+
+.admin-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    box-shadow: 0 3px 10px rgba(231, 76, 60, 0.4);
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: #777;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.admin-button {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+}
+
+.admin-button:hover {
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+.back-link {
+    margin-top: 15px;
+    font-size: 13px;
+}

@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
 const Home = () => {
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+        // Get user data from localStorage
+        const userData = localStorage.getItem('user');
+        if (userData) {
+            const user = JSON.parse(userData);
+            // Check if user has admin role (role_id = 1)
+            setIsAdmin(user.role_id === 1);
+        }
+    }, []);
+
     return (
         <div className="home-container">
             <section className="hero">
                 <h1>Welcome to TeleMed</h1>
                 <p>Your comprehensive telemedicine platform for healthcare management</p>
+                {!localStorage.getItem('token') && (
+                    <div className="hero-buttons">
+                        <Link to="/register" className="btn btn-cta">Get Started</Link>
+                        <Link to="/admin-login" className="btn btn-admin">Admin Login</Link>
+                    </div>
+                )}
             </section>
 
             <section className="features">
@@ -56,6 +74,8 @@ const Home = () => {
                 </div>
             </section>
 
+            {/* Admin section - only visible to admins */}
+            {isAdmin && (
             <section className="admin-section">
                 <h2>Administration</h2>
                 <div className="admin-grid">
@@ -69,6 +89,7 @@ const Home = () => {
                     <Link to="/ehr-records" className="admin-link">EHR Records</Link>
                 </div>
             </section>
+            )}
         </div>
     );
 };

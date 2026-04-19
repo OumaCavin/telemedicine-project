@@ -23,7 +23,6 @@ import EditStatus from './components/Status/EditStatus';
 import ViewStatus from './components/Status/ViewStatus';
 
 import UserList from './components/User/UserList';
-import CreateUser from './components/User/CreateUser';
 import EditUser from './components/User/EditUser';
 import ViewUser from './components/User/ViewUser';
 
@@ -89,6 +88,7 @@ import ViewEhrRecord from './components/EhrRecord/ViewEhrRecord';
 
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
+import AdminLogin from './components/Auth/AdminLogin';
 
 // Layout wrapper component
 const Layout = ({ children }) => (
@@ -109,6 +109,7 @@ function App() {
                 {/* Auth Routes */}
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/admin-login" element={<AdminLogin />} />
 
                 {/* AuditLog Routes */}
                 <Route path="/audit-logs" element={<Layout><AuditLogList /></Layout>} />
@@ -130,7 +131,6 @@ function App() {
 
                 {/* User Routes */}
                 <Route path="/users" element={<Layout><UserList /></Layout>} />
-                <Route path="/users/create" element={<Layout><CreateUser /></Layout>} />
                 <Route path="/users/:id/edit" element={<Layout><EditUser /></Layout>} />
                 <Route path="/users/:id" element={<Layout><ViewUser /></Layout>} />
 
