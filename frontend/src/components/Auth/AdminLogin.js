@@ -22,8 +22,8 @@ const AdminLogin = () => {
       
       const { role_id } = response.data.user;
       
-      // Check if user is admin (role_id = 1)
-      if (role_id !== 1) {
+      // Check if user is admin (role_id = 2 in database)
+      if (role_id !== 2) {
         toast.error('Access denied. Admin credentials required.');
         setIsLoading(false);
         setSubmitting(false);

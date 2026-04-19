@@ -10,8 +10,8 @@ const Home = () => {
         const userData = localStorage.getItem('user');
         if (userData) {
             const user = JSON.parse(userData);
-            // Check if user has admin role (role_id = 1)
-            setIsAdmin(user.role_id === 1);
+            // Check if user has admin role (role_id = 2 in database)
+            setIsAdmin(user.role_id === 2);
         }
     }, []);
 

@@ -1,9 +1,9 @@
 // constants/roles.js
 const ROLES = {
-    ADMIN: 1,
-    DOCTOR: 2,
-    PATIENT: 3,
-    RECEPTIONIST: 4,
+    ADMIN: 2,
+    DOCTOR: 3,
+    PATIENT: 4,
+    RECEPTIONIST: 5,
 };
 
 module.exports = ROLES;
