@@ -4,8 +4,16 @@ import './Header.css';
 
 const Header = () => {
     const token = localStorage.getItem('token');
-    const userData = localStorage.getItem('user');
-    const isAdmin = userData && userData.includes('"role_id":2');
+    let isAdmin = false;
+    try {
+        const userData = localStorage.getItem('user');
+        if (userData) {
+            const parsed = JSON.parse(userData);
+            isAdmin = parsed && parsed.role_id === 2;
+        }
+    } catch (e) {
+        console.error('Error parsing user data:', e);
+    }
     
     const handleLogout = () => {
         localStorage.removeItem('token');
