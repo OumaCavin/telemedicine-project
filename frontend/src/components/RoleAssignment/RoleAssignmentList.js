@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../axios';
 import { Link } from 'react-router-dom';
 
 const RoleAssignmentList = () => {
@@ -29,6 +29,9 @@ const RoleAssignmentList = () => {
     return (
         <div className="roleassignment-list-container">
             <h2>Role Assignments</h2>
+            <Link to="/role-assignment/create">
+                <button type="button" className="create-btn">Add Role Assignment</button>
+            </Link>
             {assignments.length === 0 ? (
                 <p>No role assignments found.</p>
             ) : (

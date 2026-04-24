@@ -1,6 +1,6 @@
 // frontend/src/components/Patient/Dashboard.js
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../axios';
 import './Patient.css';
 
 const PatientDashboard = () => {

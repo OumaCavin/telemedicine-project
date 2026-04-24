@@ -1,6 +1,6 @@
 // frontend/src/components/Doctor/Dashboard.js
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../axios';
 import Loading from '../Loading';
 import ErrorBoundary from '../ErrorBoundary';
 

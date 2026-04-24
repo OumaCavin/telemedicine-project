@@ -1,6 +1,6 @@
 // frontend/src/components/Doctor/Schedule.js
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../../axios';
 import './Doctor.css';
 
 const Schedule = () => {

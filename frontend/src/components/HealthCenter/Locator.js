@@ -1,6 +1,6 @@
 // frontend/src/components/HealthCenter/Locator.js
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../axios';
 import Loading from '../Loading';
 import ErrorBoundary from '../ErrorBoundary';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
@@ -50,7 +50,7 @@ export default Locator;
 
 // // frontend/src/components/HealthCenter/Locator.js
 // import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
+// import axios from '../../axios';
 // import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 // import './Locator.css';
 
