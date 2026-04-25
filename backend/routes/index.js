@@ -34,13 +34,22 @@ const routeMappings = {
 
 // Load and register routes
 Object.keys(routeMappings).forEach(fileName => {
+    const fullPath = path.join(__dirname, fileName);
     try {
-        const route = require(path.join(__dirname, fileName));
+        if (!fs.existsSync(fullPath + '.js')) {
+            console.error(`File not found: ${fileName}`);
+            return;
+        }
+        const route = require(fullPath);
+        if (!route || typeof route.use !== 'function') {
+            console.error(`Invalid route module: ${fileName}, got:`, typeof route);
+            return;
+        }
         const routePath = routeMappings[fileName];
         router.use(routePath, route);
         console.log(`Registered route: ${routePath}`);
     } catch (err) {
-        console.error(`Error loading ${fileName}:`, err.message);
+        console.error(`Error loading ${fileName}:`, err.message, err.stack);
     }
 });
 
