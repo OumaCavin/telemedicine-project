@@ -2,6 +2,8 @@
 
 const RoleAssignment = require('../models/RoleAssignment');
 const RoleAssignmentSearch = require('../models/search/RoleAssignmentSearch');
+const User = require('../models/User');
+const Role = require('../models/Role');
 
 // Create a new role assignment
 const createRoleAssignment = async (req, res) => {
@@ -14,18 +16,57 @@ const createRoleAssignment = async (req, res) => {
             created_by,
         });
 
-        res.status(201).json(newRoleAssignment);
+        // Fetch the created assignment with relations
+        const created = await RoleAssignment.findByPk(newRoleAssignment.role_assignment_id, {
+            include: [
+                { model: User, as: 'user', attributes: ['user_id', 'username', 'email'] },
+                { model: Role, as: 'role', attributes: ['role_id', 'name'] }
+            ]
+        });
+
+        // Transform response
+        const transformed = {
+            role_assignment_id: created.role_assignment_id,
+            user_id: created.user_id,
+            role_id: created.role_id,
+            userName: created.user ? created.user.username : `User ${created.user_id}`,
+            roleName: created.role ? created.role.name : `Role ${created.role_id}`,
+            created_by: created.created_by,
+            created_at: created.created_at
+        };
+
+        res.status(201).json(transformed);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
-// Get all role assignments
+// Get all role assignments with user and role names
 const getAllRoleAssignments = async (req, res) => {
     try {
-        const roleAssignments = await RoleAssignment.findAll();
-        res.status(200).json(roleAssignments);
+        const roleAssignments = await RoleAssignment.findAll({
+            include: [
+                { model: User, as: 'user', attributes: ['user_id', 'username', 'email'] },
+                { model: Role, as: 'role', attributes: ['role_id', 'name'] }
+            ]
+        });
+        
+        // Transform data to include userName and roleName
+        const transformed = roleAssignments.map(ra => ({
+            role_assignment_id: ra.role_assignment_id,
+            user_id: ra.user_id,
+            role_id: ra.role_id,
+            userName: ra.user ? ra.user.username : `User ${ra.user_id}`,
+            roleName: ra.role ? ra.role.name : `Role ${ra.role_id}`,
+            created_by: ra.created_by,
+            updated_by: ra.updated_by,
+            created_at: ra.created_at,
+            updated_at: ra.updated_at
+        }));
+        
+        res.status(200).json(transformed);
     } catch (error) {
+        console.error('Error fetching role assignments:', error);
         res.status(500).json({ error: error.message });
     }
 };
