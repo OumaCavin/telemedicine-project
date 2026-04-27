@@ -1,6 +1,7 @@
 // controllers/DoctorController.js
 
 const Doctor = require('../models/Doctor');
+const User = require('../models/User');
 const DoctorSearch = require('../models/search/DoctorSearch');
 
 // Create a new doctor
@@ -32,8 +33,16 @@ const createDoctor = async (req, res) => {
 // Get all doctors
 const getAllDoctors = async (req, res) => {
     try {
-        const doctors = await Doctor.findAll();
-        res.status(200).json(doctors);
+        const doctors = await Doctor.findAll({
+            include: [{ model: User, as: 'user', attributes: ['first_name', 'last_name'] }]
+        });
+
+        const response = doctors.map(doctor => ({
+            ...doctor.toJSON(),
+            userName: doctor.user ? `${doctor.user.first_name} ${doctor.user.last_name}` : null
+        }));
+
+        res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

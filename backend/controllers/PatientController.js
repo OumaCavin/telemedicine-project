@@ -1,6 +1,7 @@
 // controllers/PatientController.js
 
 const Patient = require('../models/Patient');
+const User = require('../models/User');
 const PatientSearch = require('../models/search/PatientSearch');
 
 // Create a new patient
@@ -29,8 +30,17 @@ const createPatient = async (req, res) => {
 // Get all patients
 const getAllPatients = async (req, res) => {
     try {
-        const patients = await Patient.findAll();
-        res.status(200).json(patients);
+        const patients = await Patient.findAll({
+            include: [{ model: User, as: 'user' }]
+        });
+        const transformedPatients = patients.map(patient => {
+            const patientData = patient.toJSON();
+            return {
+                ...patientData,
+                userName: patientData.user ? `${patientData.user.first_name} ${patientData.user.last_name}` : null
+            };
+        });
+        res.status(200).json(transformedPatients);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

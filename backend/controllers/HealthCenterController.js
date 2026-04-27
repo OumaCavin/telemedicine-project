@@ -26,7 +26,14 @@ const createHealthCenter = async (req, res) => {
 const getAllHealthCenters = async (req, res) => {
     try {
         const healthCenters = await HealthCenter.findAll();
-        res.status(200).json(healthCenters);
+        const response = healthCenters.map(center => {
+            const centerData = center.toJSON();
+            if (centerData.location_id) {
+                centerData.locationName = `Location ${centerData.location_id}`;
+            }
+            return centerData;
+        });
+        res.status(200).json(response);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

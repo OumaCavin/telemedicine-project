@@ -15,6 +15,11 @@ HealthCenter.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        location_id: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            comment: 'Reference to Location table',
+        },
         location: {
             type: DataTypes.JSON, 
             allowNull: true,

@@ -27,8 +27,15 @@ const createPayment = async (req, res) => {
 // Get all payment records
 const getAllPayments = async (req, res) => {
     try {
-        const payments = await Payment.findAll();
-        res.status(200).json(payments);
+        const payments = await Payment.findAll({
+            include: [{ model: require('../models/Patient'), as: 'patient' }]
+        });
+        const paymentsWithPatientName = payments.map(payment => {
+            const paymentData = payment.toJSON();
+            paymentData.patientName = paymentData.patient ? paymentData.patient.name : null;
+            return paymentData;
+        });
+        res.status(200).json(paymentsWithPatientName);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

@@ -2,6 +2,8 @@
 
 const Prescription = require('../models/Prescription');
 const PrescriptionSearch = require('../models/search/PrescriptionSearch');
+const Patient = require('../models/Patient');
+const Doctor = require('../models/Doctor');
 
 // Create a new prescription
 const createPrescription = async (req, res) => {
@@ -31,8 +33,28 @@ const createPrescription = async (req, res) => {
 // Get all prescriptions
 const getAllPrescriptions = async (req, res) => {
     try {
-        const prescriptions = await Prescription.findAll();
-        res.status(200).json(prescriptions);
+        const prescriptions = await Prescription.findAll({
+            include: [
+                { model: Patient, as: 'patient', attributes: ['patient_id', 'first_name', 'last_name'] },
+                { model: Doctor, as: 'doctor', attributes: ['doctor_id', 'first_name', 'last_name'] },
+            ],
+        });
+
+        // Transform response to include patientName and doctorName
+        const transformedPrescriptions = prescriptions.map((prescription) => {
+            const prescriptionData = prescription.toJSON();
+            prescriptionData.patientName = prescriptionData.patient
+                ? `${prescriptionData.patient.first_name} ${prescriptionData.patient.last_name}`
+                : null;
+            prescriptionData.doctorName = prescriptionData.doctor
+                ? `Dr. ${prescriptionData.doctor.first_name} ${prescriptionData.doctor.last_name}`
+                : null;
+            delete prescriptionData.patient;
+            delete prescriptionData.doctor;
+            return prescriptionData;
+        });
+
+        res.status(200).json(transformedPrescriptions);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

@@ -24,8 +24,19 @@ const createHistory = async (req, res) => {
 // Get all history records
 const getAllHistory = async (req, res) => {
     try {
-        const historyRecords = await History.findAll();
-        res.status(200).json(historyRecords);
+        const historyRecords = await History.findAll({
+            include: [{ model: require('../models/User'), as: 'user', attributes: ['user_id', 'user_name'] }],
+        });
+
+        const transformedRecords = historyRecords.map(record => {
+            const data = record.toJSON();
+            return {
+                ...data,
+                userName: data.user ? data.user.user_name : null,
+            };
+        });
+
+        res.status(200).json(transformedRecords);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

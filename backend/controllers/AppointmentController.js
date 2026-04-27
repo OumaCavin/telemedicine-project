@@ -2,6 +2,8 @@
 
 const Appointment = require('../models/Appointment');
 const AppointmentSearch = require('../models/search/AppointmentSearch');
+const Patient = require('../models/Patient');
+const Doctor = require('../models/Doctor');
 
 // Create a new appointment
 const createAppointment = async (req, res) => {
@@ -26,8 +28,24 @@ const createAppointment = async (req, res) => {
 // Get all appointments
 const getAllAppointments = async (req, res) => {
     try {
-        const appointments = await Appointment.findAll();
-        res.status(200).json(appointments);
+        const appointments = await Appointment.findAll({
+            include: [
+                { model: Patient, as: 'patient', attributes: ['patient_id', 'first_name', 'last_name'] },
+                { model: Doctor, as: 'doctor', attributes: ['doctor_id', 'first_name', 'last_name'] }
+            ]
+        });
+
+        // Transform the response to include patientName and doctorName
+        const transformedAppointments = appointments.map(appointment => {
+            const apt = appointment.toJSON();
+            return {
+                ...apt,
+                patientName: apt.patient ? `${apt.patient.first_name} ${apt.patient.last_name}` : null,
+                doctorName: apt.doctor ? `${apt.doctor.first_name} ${apt.doctor.last_name}` : null
+            };
+        });
+
+        res.status(200).json(transformedAppointments);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

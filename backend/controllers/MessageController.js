@@ -26,8 +26,20 @@ const getAllMessages = async (req, res) => {
     try {
         const messages = await Message.findAll({
             where: { user_id: req.params.user_id },
+            include: [
+                { model: Message.sequelize.models.User, as: 'user', attributes: ['user_id', 'full_name'] },
+                { model: Message.sequelize.models.User, as: 'creator', attributes: ['user_id', 'full_name'] },
+            ],
         });
-        res.status(200).json(messages);
+
+        // Transform response to include senderName and receiverName
+        const transformedMessages = messages.map((msg) => ({
+            ...msg.toJSON(),
+            senderName: msg.creator ? msg.creator.full_name : null,
+            receiverName: msg.user ? msg.user.full_name : null,
+        }));
+
+        res.status(200).json(transformedMessages);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

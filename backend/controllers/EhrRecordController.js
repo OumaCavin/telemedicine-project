@@ -2,6 +2,7 @@
 
 const EhrRecord = require('../models/EhrRecord');
 const EhrRecordSearch = require('../models/search/EhrRecordSearch');
+const Patient = require('../models/Patient');
 
 // Create a new EHR record
 const createEhrRecord = async (req, res) => {
@@ -30,8 +31,26 @@ const createEhrRecord = async (req, res) => {
 // Get all EHR records
 const getAllEhrRecords = async (req, res) => {
     try {
-        const ehrRecords = await EhrRecord.findAll();
-        res.status(200).json(ehrRecords);
+        const ehrRecords = await EhrRecord.findAll({
+            include: [{
+                model: Patient,
+                as: 'patient',
+                attributes: ['patient_id', 'first_name', 'last_name']
+            }]
+        });
+
+        // Transform response to include patientName field
+        const transformedRecords = ehrRecords.map(record => {
+            const recordData = record.toJSON();
+            return {
+                ...recordData,
+                patientName: recordData.patient 
+                    ? `${recordData.patient.first_name} ${recordData.patient.last_name}`.trim()
+                    : null
+            };
+        });
+
+        res.status(200).json(transformedRecords);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
