@@ -30,13 +30,25 @@ class UserService {
                 passwordHashLength: verifyUser?.password_hash?.length
             });
 
-            // Assign a default role to the user
+            // Determine the role to assign (default to PATIENT if not specified)
             const assignedRoleId = role_id || ROLES.PATIENT;
+            logger.info('Role to assign:', { assignedRoleId, providedRoleId: role_id, defaultRole: ROLES.PATIENT });
+
+            // Verify role exists before assignment
+            const Role = require('../models/Role');
+            const roleExists = await Role.findByPk(assignedRoleId);
+            if (!roleExists) {
+                logger.error('Role does not exist:', { roleId: assignedRoleId });
+                throw new Error(`Invalid role_id: ${assignedRoleId}. Role does not exist.`);
+            }
+
+            // Assign a default role to the user
             await RoleAssignment.create({
                 user_id: newUser.user_id,
                 role_id: assignedRoleId,
                 created_by: createdBy,
             });
+            logger.info('Role assigned successfully:', { userId: newUser.user_id, roleId: assignedRoleId });
 
             return newUser;
         } catch (error) {

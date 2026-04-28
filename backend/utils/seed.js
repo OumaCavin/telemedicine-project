@@ -6,14 +6,15 @@ const seedDatabase = async () => {
     try {
         logger.info('Starting database seeding...');
 
-        // Seed Roles
+        // Seed Roles with explicit role_ids matching constants/roles.js
         await sequelize.query(`
-            INSERT INTO telemed_roles (role_name, description, created_at, updated_at) 
+            INSERT INTO telemed_roles (role_id, role_name, description, created_at, updated_at) 
             VALUES 
-                ('Admin', 'Administrator role with full access', NOW(), NOW()),
-                ('Doctor', 'Doctor role with access to patient records', NOW(), NOW()),
-                ('Patient', 'Patient role with access to their data', NOW(), NOW())
-            ON CONFLICT (role_name) DO NOTHING;
+                (2, 'Admin', 'Administrator role with full access', NOW(), NOW()),
+                (3, 'Doctor', 'Doctor role with access to patient records', NOW(), NOW()),
+                (4, 'Patient', 'Patient role with access to their data', NOW(), NOW()),
+                (5, 'Receptionist', 'Receptionist role with front desk access', NOW(), NOW())
+            ON CONFLICT (role_id) DO NOTHING;
         `);
         logger.info('Roles seeded successfully');
 
@@ -43,6 +44,20 @@ const seedDatabase = async () => {
             ON CONFLICT (email) DO NOTHING;
         `);
         logger.info('Test user seeded successfully');
+
+        // Seed role assignment for admin user
+        // First delete any existing assignment for admin, then insert new one
+        await sequelize.query(`
+            DELETE FROM telemed_role_assignments 
+            WHERE user_id = (SELECT user_id FROM telemed_users WHERE email = 'admin@test.com');
+        `);
+        await sequelize.query(`
+            INSERT INTO telemed_role_assignments (user_id, role_id, created_at, updated_at)
+            SELECT user_id, 2, NOW(), NOW()
+            FROM telemed_users 
+            WHERE email = 'admin@test.com';
+        `);
+        logger.info('Admin role assignment seeded successfully');
 
         logger.info('Database seeding completed');
     } catch (error) {
