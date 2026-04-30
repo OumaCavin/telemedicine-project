@@ -25,7 +25,7 @@ const CreateMessage = () => {
         setLoading(true);
 
         // Create a new message using POST request
-        axios.post('/api/messages', message)
+        axios.post('/messages', message)
             .then(() => {
                 setLoading(false);
                 navigate('/messages'); // Redirect to message list

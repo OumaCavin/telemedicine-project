@@ -9,7 +9,7 @@ const HistoryList = () => {
 
     useEffect(() => {
         // Fetch all health history entries from the backend
-        axios.get('/api/histories')
+        axios.get('/histories')
             .then(response => {
                 if (Array.isArray(response.data)) {
                     setHistories(response.data);

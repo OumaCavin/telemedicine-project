@@ -11,7 +11,7 @@ const BookAppointment = () => {
     useEffect(() => {
         const fetchDoctors = async () => {
             try {
-                const response = await axios.get('/api/doctors');
+                const response = await axios.get('/doctors');
                 setDoctors(response.data);
             } catch (error) {
                 console.error("Error fetching doctors", error);
@@ -23,7 +23,7 @@ const BookAppointment = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('/api/appointments', { doctorId: selectedDoctor, date: appointmentDate });
+            await axios.post('/appointments', { doctorId: selectedDoctor, date: appointmentDate });
             alert("Appointment booked successfully!");
         } catch (error) {
             console.error("Error booking appointment", error);

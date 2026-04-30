@@ -9,7 +9,7 @@ const UserList = () => {
 
     // Fetch users from the backend
     useEffect(() => {
-        axios.get('/api/users')
+        axios.get('/users')
             .then(response => {
                 if (Array.isArray(response.data)) {
                     setUsers(response.data);

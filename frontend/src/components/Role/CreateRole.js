@@ -21,7 +21,7 @@ const CreateRole = () => {
         setLoading(true);
 
         // Send a POST request to create a new role
-        axios.post('/api/roles', role)
+        axios.post('/roles', role)
             .then(() => {
                 setLoading(false);
                 navigate('/roles'); // Redirect to the list of roles
@@ -34,16 +34,17 @@ const CreateRole = () => {
 
     return (
         <div>
-            <h2>Create New Role</h2>
+            <h2>Create Role</h2>
             {error && <div>{error}</div>}
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Name</label>
+                    <label>Role Name</label>
                     <input
                         type="text"
                         name="name"
                         value={role.name}
                         onChange={handleChange}
+                        required
                     />
                 </div>
                 <div>
@@ -52,6 +53,7 @@ const CreateRole = () => {
                         name="description"
                         value={role.description}
                         onChange={handleChange}
+                        required
                     />
                 </div>
                 <button type="submit" disabled={loading}>Create Role</button>

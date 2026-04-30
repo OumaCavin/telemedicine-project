@@ -11,9 +11,9 @@ const AdminDashboard = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const userResponse = await axios.get('/api/admin/users');
-                const doctorResponse = await axios.get('/api/admin/doctors');
-                const centerResponse = await axios.get('/api/admin/healthcenters');
+                const userResponse = await axios.get('/admin/users');
+                const doctorResponse = await axios.get('/admin/doctors');
+                const centerResponse = await axios.get('/admin/healthcenters');
                 
                 setUsers(userResponse.data);
                 setDoctors(doctorResponse.data);

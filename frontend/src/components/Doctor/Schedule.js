@@ -9,7 +9,7 @@ const Schedule = () => {
     useEffect(() => {
         const fetchAvailability = async () => {
             try {
-                const response = await axios.get('/api/doctors/availability');
+                const response = await axios.get('/doctors/availability');
                 setAvailability(response.data);
             } catch (error) {
                 console.error("Error fetching availability", error);

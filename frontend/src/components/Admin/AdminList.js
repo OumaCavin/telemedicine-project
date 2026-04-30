@@ -9,7 +9,7 @@ const AdminList = () => {
 
     // Fetch admins from the backend
     useEffect(() => {
-        axios.get('/api/admins')
+        axios.get('/admins')
             .then(response => {
                 // Ensure we have an array
                 const data = Array.isArray(response.data) ? response.data : [];

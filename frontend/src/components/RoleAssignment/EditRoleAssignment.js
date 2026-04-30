@@ -13,11 +13,11 @@ const EditRoleAssignment = () => {
 
     useEffect(() => {
         // Fetch users and roles to populate the form options
-        axios.get('/api/users')
+        axios.get('/users')
             .then(response => setUsers(response.data))
             .catch(err => setError('Error fetching users'));
 
-        axios.get('/api/roles')
+        axios.get('/roles')
             .then(response => setRoles(response.data))
             .catch(err => setError('Error fetching roles'));
 

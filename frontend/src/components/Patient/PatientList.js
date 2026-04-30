@@ -9,7 +9,7 @@ const PatientList = () => {
 
     useEffect(() => {
         // Fetch all patients from the backend
-        axios.get('/api/patients')
+        axios.get('/patients')
             .then(response => {
                 // Ensure we have an array
                 const data = Array.isArray(response.data) ? response.data : [];

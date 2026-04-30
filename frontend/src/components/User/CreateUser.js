@@ -23,7 +23,7 @@ const CreateUser = () => {
         setLoading(true);
 
         // Send POST request to create a new user
-        axios.post('/api/users', user)
+        axios.post('/users', user)
             .then(() => {
                 setLoading(false);
                 navigate('/users'); // Redirect to user list after successful creation

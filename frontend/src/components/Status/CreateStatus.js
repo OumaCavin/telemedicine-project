@@ -22,7 +22,7 @@ const CreateStatus = () => {
         e.preventDefault();
         setLoading(true);
 
-        axios.post('/api/statuses', status)
+        axios.post('/statuses', status)
             .then(() => {
                 setLoading(false);
                 navigate('/statuses');  // Redirect to status list after creation

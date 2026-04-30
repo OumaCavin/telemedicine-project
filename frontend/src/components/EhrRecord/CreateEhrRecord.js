@@ -26,7 +26,7 @@ const CreateEhrRecord = () => {
         setLoading(true);
 
         // Send a POST request to create a new EHR record
-        axios.post('/api/ehr-records', ehrRecord)
+        axios.post('/ehr-records', ehrRecord)
             .then(() => {
                 setLoading(false);
                 navigate('/ehr-records'); // Redirect to the list of EHR records

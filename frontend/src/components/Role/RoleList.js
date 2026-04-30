@@ -9,7 +9,7 @@ const RoleList = () => {
 
     useEffect(() => {
         // Fetch all roles from the backend
-        axios.get('/api/roles')
+        axios.get('/roles')
             .then(response => {
                 if (Array.isArray(response.data)) {
                     setRoles(response.data);

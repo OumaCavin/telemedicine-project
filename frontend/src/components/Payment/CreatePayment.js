@@ -26,7 +26,7 @@ const CreatePayment = () => {
         e.preventDefault();
         setLoading(true);
 
-        axios.post('/api/payments', payment)
+        axios.post('/payments', payment)
             .then(() => {
                 setLoading(false);
                 navigate('/payments');  // Redirect to the payments list after creation

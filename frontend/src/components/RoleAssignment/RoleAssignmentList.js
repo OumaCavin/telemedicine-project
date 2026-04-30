@@ -9,7 +9,7 @@ const RoleAssignmentList = () => {
 
     useEffect(() => {
         // Fetch all role assignments from the backend
-        axios.get('/api/role-assignments')
+        axios.get('/role-assignments')
             .then(response => {
                 // Ensure we have an array
                 const data = Array.isArray(response.data) ? response.data : [];

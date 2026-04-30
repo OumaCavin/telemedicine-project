@@ -9,7 +9,7 @@ const StatusList = () => {
 
     // Fetch the list of statuses when the component mounts
     useEffect(() => {
-        axios.get('/api/statuses')
+        axios.get('/statuses')
             .then(response => {
                 if (Array.isArray(response.data)) {
                     setStatuses(response.data);

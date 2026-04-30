@@ -9,7 +9,7 @@ const HealthCenterList = () => {
 
     useEffect(() => {
         // Fetch all health centers from the backend
-        axios.get('/api/health-centers')
+        axios.get('/health-centers')
             .then(response => {
                 // Ensure we have an array
                 const data = Array.isArray(response.data) ? response.data : [];

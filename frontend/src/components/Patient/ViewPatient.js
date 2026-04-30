@@ -11,7 +11,7 @@ const ViewPatient = () => {
 
     useEffect(() => {
         // Fetch the patient's details from the backend
-        axios.get(`/api/patients/${id}`)
+        axios.get(`/patients/${id}`)
             .then(response => {
                 setPatient(response.data);
                 setLoading(false);

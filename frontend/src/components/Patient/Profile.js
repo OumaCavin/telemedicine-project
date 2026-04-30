@@ -9,7 +9,7 @@ const PatientProfile = () => {
     useEffect(() => {
         const fetchProfile = async () => {
             try {
-                const response = await axios.get('/api/patients/profile');
+                const response = await axios.get('/patients/profile');
                 setProfile(response.data);
             } catch (error) {
                 console.error("Error fetching profile", error);

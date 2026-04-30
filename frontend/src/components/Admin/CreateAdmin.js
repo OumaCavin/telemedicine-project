@@ -23,7 +23,7 @@ const CreateAdmin = () => {
         setLoading(true);
 
         // Send POST request to create a new admin
-        axios.post('/api/admins', admin)
+        axios.post('/admins', admin)
             .then(() => {
                 setLoading(false);
                 navigate('/admins'); // Redirect to admin list after successful creation

@@ -21,7 +21,7 @@ const CreateRoleItem = () => {
         setLoading(true);
 
         // Send a POST request to create a new role item
-        axios.post('/api/role-items', roleItem)
+        axios.post('/role-items', roleItem)
             .then(() => {
                 setLoading(false);
                 navigate('/role-items'); // Redirect to the list of role items

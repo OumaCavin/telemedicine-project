@@ -9,7 +9,7 @@ const AppointmentList = () => {
 
     useEffect(() => {
         // Fetch all appointments from the backend
-        axios.get('/api/appointments')
+        axios.get('/appointments')
             .then(response => {
                 // Ensure we have an array
                 const data = Array.isArray(response.data) ? response.data : [];

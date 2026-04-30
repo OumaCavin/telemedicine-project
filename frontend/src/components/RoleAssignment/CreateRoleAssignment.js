@@ -12,11 +12,11 @@ const CreateRoleAssignment = () => {
 
     useEffect(() => {
         // Fetch users and roles to populate the form options
-        axios.get('/api/users')
+        axios.get('/users')
             .then(response => setUsers(response.data))
             .catch(err => setError('Error fetching users'));
 
-        axios.get('/api/roles')
+        axios.get('/roles')
             .then(response => setRoles(response.data))
             .catch(err => setError('Error fetching roles'));
     }, []);
@@ -34,7 +34,7 @@ const CreateRoleAssignment = () => {
         setLoading(true);
 
         // Send a POST request to create a new role assignment
-        axios.post('/api/role-assignments', assignment)
+        axios.post('/role-assignments', assignment)
             .then(() => {
                 setLoading(false);
                 navigate('/role-assignments'); // Redirect to the list of role assignments

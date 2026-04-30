@@ -9,7 +9,7 @@ const PrescriptionList = () => {
 
     useEffect(() => {
         // Fetch all prescriptions from the backend
-        axios.get('/api/prescriptions')
+        axios.get('/prescriptions')
             .then(response => {
                 // Ensure we have an array
                 const data = Array.isArray(response.data) ? response.data : [];

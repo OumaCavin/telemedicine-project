@@ -9,7 +9,7 @@ const RoleItemList = () => {
 
     useEffect(() => {
         // Fetch all role items from the backend
-        axios.get('/api/role-items')
+        axios.get('/role-items')
             .then(response => {
                 // Ensure we have an array
                 const data = Array.isArray(response.data) ? response.data : [];

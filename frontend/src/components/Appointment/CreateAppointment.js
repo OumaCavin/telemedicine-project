@@ -26,7 +26,7 @@ const CreateAppointment = () => {
         setLoading(true);
 
         // Create new appointment using POST request
-        axios.post('/api/appointments', appointment)
+        axios.post('/appointments', appointment)
             .then(() => {
                 setLoading(false);
                 navigate('/appointments'); // Redirect to the list of appointments

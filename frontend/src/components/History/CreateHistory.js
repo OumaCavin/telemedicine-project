@@ -25,7 +25,7 @@ const CreateHistory = () => {
         setLoading(true);
 
         // Create a new health history record using POST request
-        axios.post('/api/histories', history)
+        axios.post('/histories', history)
             .then(() => {
                 setLoading(false);
                 navigate('/histories'); // Redirect to history list

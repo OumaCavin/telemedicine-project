@@ -26,7 +26,7 @@ const CreatePrescription = () => {
         setLoading(true);
 
         // Create a new prescription using POST request
-        axios.post('/api/prescriptions', prescription)
+        axios.post('/prescriptions', prescription)
             .then(() => {
                 setLoading(false);
                 navigate('/prescriptions'); // Redirect to prescription list

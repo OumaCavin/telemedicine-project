@@ -11,7 +11,7 @@ const EditPatient = () => {
 
     useEffect(() => {
         // Fetch the patient data to populate the form for editing
-        axios.get(`/api/patients/${id}`)
+        axios.get(`/patients/${id}`)
             .then(response => {
                 setPatient(response.data);
                 setLoading(false);
@@ -35,7 +35,7 @@ const EditPatient = () => {
         setLoading(true);
 
         // Send PUT request to update the patient's data
-        axios.put(`/api/patients/${id}`, patient)
+        axios.put(`/patients/${id}`, patient)
             .then(() => {
                 setLoading(false);
                 navigate(`/patients/${id}`); // Redirect to the patient’s view page

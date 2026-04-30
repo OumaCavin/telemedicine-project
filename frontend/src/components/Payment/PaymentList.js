@@ -9,7 +9,7 @@ const PaymentList = () => {
 
     // Fetch the list of payments when the component mounts
     useEffect(() => {
-        axios.get('/api/payments')
+        axios.get('/payments')
             .then(response => {
                 // Ensure we have an array
                 const data = Array.isArray(response.data) ? response.data : [];

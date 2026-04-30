@@ -9,7 +9,7 @@ const EhrRecordList = () => {
 
     useEffect(() => {
         // Fetch all EHR records from the backend
-        axios.get('/api/ehr-records')
+        axios.get('/ehr-records')
             .then(response => {
                 if (Array.isArray(response.data)) {
                     setEhrRecords(response.data);

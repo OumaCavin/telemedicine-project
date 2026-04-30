@@ -21,7 +21,7 @@ const CreatePatient = () => {
         setLoading(true);
 
         // Create new patient using POST request
-        axios.post('/api/patients', patient)
+        axios.post('/patients', patient)
             .then(() => {
                 setLoading(false);
                 navigate('/patients'); // Redirect to the list of patients

@@ -11,7 +11,7 @@ const DoctorDashboard = () => {
     useEffect(() => {
         const fetchAppointments = async () => {
             try {
-                const response = await axios.get('/api/doctors/appointments');
+                const response = await axios.get('/doctors/appointments');
                 setAppointments(response.data);
             } catch (error) {
                 console.error("Error fetching appointments", error);
@@ -55,7 +55,7 @@ export default DoctorDashboard;
 //     useEffect(() => {
 //         const fetchAppointments = async () => {
 //             try {
-//                 const response = await axios.get('/api/doctors/appointments');
+//                 const response = await axios.get('/doctors/appointments');
 //                 setAppointments(response.data);
 //             } catch (error) {
 //                 console.error("Error fetching appointments", error);

@@ -12,7 +12,7 @@ const Locator = () => {
     useEffect(() => {
         const fetchCenters = async () => {
             try {
-                const response = await axios.get('/api/healthcenters');
+                const response = await axios.get('/healthcenters');
                 setCenters(response.data);
             } catch (error) {
                 console.error("Error fetching health centers", error);
@@ -60,7 +60,7 @@ export default Locator;
 //     useEffect(() => {
 //         const fetchCenters = async () => {
 //             try {
-//                 const response = await axios.get('/api/healthcenters');
+//                 const response = await axios.get('/healthcenters');
 //                 setCenters(response.data);
 //             } catch (error) {
 //                 console.error("Error fetching health centers", error);

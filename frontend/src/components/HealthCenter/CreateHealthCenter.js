@@ -25,7 +25,7 @@ const CreateHealthCenter = () => {
         setLoading(true);
 
         // Create a new health center using POST request
-        axios.post('/api/health-centers', healthCenter)
+        axios.post('/health-centers', healthCenter)
             .then(() => {
                 setLoading(false);
                 navigate('/health-centers'); // Redirect to health center list
