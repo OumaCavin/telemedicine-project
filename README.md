@@ -1,10 +1,10 @@
-# Telemedicine Application
+# TeleMed - Telemedicine Application
 
 <p align="center">
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
   <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
   <img src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express.js" />
-  <img src="https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
   <img src="https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=sequelize&logoColor=white" alt="Sequelize" />
   <img src="https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white" alt="JWT" />
   <img src="https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap" />
@@ -16,33 +16,29 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Maintained%20by-Cavin%20Otieno-blue?style=for-the-badge" alt="Maintained by Cavin Otieno" />
   <img src="https://img.shields.io/github/license/OumaCavin/telemedicine-project?style=for-the-badge" alt="License" />
-  <img src="https://img.shields.io/badge/Version-1.0.0-green?style=for-the-badge" alt="Version" />
-  <a href="https://oumacavin.github.io/telemedicine-project/" target="_blank">
-    <img src="https://img.shields.io/badge/Live%20Demo-View%20Here-blue?style=for-the-badge" alt="Live Demo" />
-  </a>
+  <img src="https://img.shields.io/badge/Version-1.1.0-green?style=for-the-badge" alt="Version" />
 </p>
 
 ---
 
 ## Live Demo
 
-🚀 **Access the live application:** https://oumacavin.github.io/telemedicine-project/
+🚀 **Access the live application:** https://94b9eznnowyc.space.minimax.io
 
-The application is deployed using GitHub Pages with hash-based routing. Use the following URLs to navigate:
+The frontend is deployed with hash-based routing. Use the following credentials to test:
 
-| Page | URL |
-|------|-----|
-| Home | https://oumacavin.github.io/telemedicine-project/#/ |
-| Login | https://oumacavin.github.io/telemedicine-project/#/login |
-| Register | https://oumacavin.github.io/telemedicine-project/#/register |
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | admin@test.com | password123 |
+| Test User | test@example.com | password123 |
 
 ---
 
 ## Overview
 
-This is a full-stack **Telemedicine Application** designed for modern healthcare management. The application provides an intuitive interface for managing users, appointments, payments, roles, prescriptions, health centers, and more. It also includes a comprehensive backend that handles all interactions with the database securely and efficiently.
+**TeleMed** is a comprehensive full-stack telemedicine platform designed for modern healthcare management. The application provides an intuitive interface for managing patients, appointments, doctors, prescriptions, health centers, and more. It includes a robust backend API that handles all database interactions securely and efficiently.
 
-**TeleMed** is a sophisticated telemedicine platform created to bridge the gap between patients and healthcare providers through virtual means. It seeks to make healthcare accessible by offering features that allow patients to register, locate nearby health centers, schedule appointments with doctors, and consult healthcare professionals online.
+**TeleMed** bridges the gap between patients and healthcare providers through virtual means, making healthcare accessible by offering features that allow patients to register, locate nearby health centers, schedule appointments with doctors, and consult healthcare professionals online.
 
 ---
 
@@ -50,40 +46,40 @@ This is a full-stack **Telemedicine Application** designed for modern healthcare
 
 ### Core Features
 
-- **User Management**: Admins can manage users (Doctors, Patients, and Admins) with role-based access control.
-- **Appointments**: Schedule and manage appointments between doctors and patients with real-time availability.
-- **Payments**: Handle payments for appointments and manage payment statuses securely.
-- **Audit Logs**: Track all actions performed by users in the system for auditing purposes.
-- **Prescriptions**: Manage prescriptions for patients with digital record keeping.
-- **Health Centers**: Manage health centers in the system with location-based services.
-- **Roles & Permissions**: Granular user roles and assign specific permissions.
-- **Messages**: Send messages between users for seamless communication.
-- **Electronic Health Records (EHR)**: Comprehensive digital health records management.
+- **User Management**: Complete user management with role-based access control (Admin, Doctor, Patient, Receptionist)
+- **Appointments**: Schedule and manage appointments between doctors and patients with real-time availability tracking
+- **Prescriptions**: Digital prescription management for patients with comprehensive record keeping
+- **Health Centers**: Manage health centers with location-based services and Google Maps integration
+- **Roles & Permissions**: Granular role-based access control system with role assignments
+- **Messages**: Secure messaging between users for seamless communication
+- **Electronic Health Records (EHR)**: Comprehensive digital health records management
+- **Payment Tracking**: Payment status management for appointments
+- **Audit Logs**: Track all user actions for auditing and compliance
 
 ### Key Capabilities
 
 - **User Authentication and Role Management**:
-  - Registration and Login: Provides secure user registration and login systems, with role-based access control for patients and doctors.
-  - Profile Management: Allows users to manage profiles, update personal details, and access appointment histories.
-
-- **Location-Based Services**:
-  - Health Center Locator: Integrated with Google Maps API, this feature enables users to search for and view nearby health centers based on their current location or a specified area.
+  - Secure registration and login with JWT-based authentication
+  - Role-based access control for different user types
+  - Profile management with appointment history access
 
 - **Appointment Booking**:
-  - Doctor Availability: Patients can check doctors' availability and schedule appointments.
-  - Appointment Management: Users can book, reschedule, and cancel appointments, receiving timely notifications.
+  - Doctor availability checking and management
+  - Book, reschedule, and cancel appointments
+  - Patient-specific appointment views
 
 - **Doctor Management**:
-  - Specialization and Availability: Doctors can manage their schedules, specializations, and availability to provide up-to-date information for patients.
-  - Consultation Services: Virtual consultations are facilitated through a secure communication channel.
+  - Specialization and schedule management
+  - Availability status updates
+  - Patient appointment history access
 
-- **User-Friendly Interface**:
-  - Responsive Design: A clean, responsive layout ensures usability across various devices.
-  - Intuitive Navigation: Simple and clear navigation paths for users to book appointments or manage doctor profiles.
+- **Health Center Locator**:
+  - Integrated with Google Maps API
+  - Search nearby health centers by location
 
-- **Security and Compliance**:
-  - Data Security: HTTPS, JWT-based authentication, and encryption are used to protect user information.
-  - Compliance: Adherence to healthcare standards ensures user data confidentiality and compliance with regulations.
+- **Responsive Design**:
+  - Clean, responsive layout for all devices
+  - Intuitive navigation and user experience
 
 ---
 
@@ -98,24 +94,24 @@ This is a full-stack **Telemedicine Application** designed for modern healthcare
 | Bootstrap 5 | CSS framework |
 | Formik & Yup | Form handling and validation |
 | React Toastify | Notifications |
-| Styled Components | CSS-in-JS styling |
 
 ### Backend
 | Technology | Purpose |
 |------------|---------|
 | Node.js | Runtime environment |
 | Express.js | Web framework |
-| MySQL | Relational database |
+| PostgreSQL | Relational database (Render) |
 | Sequelize ORM | Database ORM |
 | JWT | Authentication |
-| bcryptjs | Password hashing |
+| bcrypt | Password hashing |
 | Winston | Logging |
 
-### Development Tools
-| Tool | Purpose |
-|------|---------|
-| Nodemon | Auto-restart during development |
-| Cross-env | Environment variables |
+### Deployment
+| Platform | Service |
+|----------|---------|
+| Frontend | MiniMax Deploy |
+| Backend | Render |
+| Database | PostgreSQL (Render) |
 
 ---
 
@@ -125,117 +121,38 @@ This is a full-stack **Telemedicine Application** designed for modern healthcare
 telemedicine-project/
 ├── backend/                    # Backend Node.js application
 │   ├── config/                 # Database configuration
+│   ├── constants/              # Application constants
 │   ├── controllers/            # Route controllers
 │   ├── middlewares/            # Express middlewares
-│   ├── models/                 # Sequelize models
-│   ├── routes/                 # API routes
-│   ├── services/               # Business logic
-│   ├── utils/                  # Utility functions
-│   ├── app.js                  # Main application entry
-│   └── package.json            # Backend dependencies
-├── frontend/                   # Frontend React application
-│   ├── public/                 # Static files
-│   ├── src/                    # Source code
-│   │   ├── components/         # React components
-│   │   ├── pages/              # Page components
-│   │   ├── services/           # API service functions
-│   │   └── App.js              # Main React component
-│   └── package.json            # Frontend dependencies
-├── resources/                  # Project resources
-└── README.md                   # Project documentation
+│   ├── models/                # Sequelize models
+│   ├── routes/                # API routes
+│   ├── services/              # Business logic
+│   ├── utils/                 # Utility functions
+│   ├── app.js                 # Main application entry
+│   └── package.json           # Backend dependencies
+├── frontend/                  # Frontend React application
+│   ├── public/                # Static files
+│   ├── src/                  # Source code
+│   │   ├── components/       # React components
+│   │   ├── pages/           # Page components
+│   │   ├── axios.js         # API configuration
+│   │   └── App.js           # Main React component
+│   └── package.json          # Frontend dependencies
+└── README.md                 # Project documentation
 ```
 
-For a detailed and updated **Project Structure** of the telemedicine application, refer to the [Backend README](./backend/README.md) file.
-
 ---
 
-## Installation
+## API Endpoints
 
-### Prerequisites
-
-- Node.js (v14 or higher)
-- MySQL (v5.7 or higher)
-- npm or yarn package manager
-
-### Backend Setup
-
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/OumaCavin/telemedicine-project.git
-    cd telemedicine-project/backend
-    ```
-
-2. **Install dependencies**:
-    ```bash
-    npm install
-    ```
-
-3. **Set up environment variables**:
-    Create a `.env` file in the root of the backend directory:
-    ```env
-    DB_HOST=localhost
-    DB_USER=root
-    DB_PASSWORD=your_password
-    DB_NAME=telemed_db
-    JWT_SECRET=your_jwt_secret_key_here
-    PORT=5000
-    ```
-
-4. **Set up the database**:
-    ```bash
-    # Create the database in MySQL
-    mysql -u root -p -e "CREATE DATABASE IF NOT EXISTS telemed_db;"
-    ```
-
-5. **Run the backend**:
-    ```bash
-    npm start
-    ```
-    The backend will now be running on `http://localhost:5000`.
-
-    For development with auto-restart:
-    ```bash
-    npm run dev
-    ```
-
-### Frontend Setup
-
-1. **Navigate to the frontend folder**:
-    ```bash
-    cd ../frontend
-    ```
-
-2. **Install dependencies**:
-    ```bash
-    npm install
-    ```
-
-3. **Set up environment variables** (optional):
-    Create a `.env` file in the frontend directory:
-    ```env
-    REACT_APP_API_URL=http://localhost:5000/api
-    ```
-
-4. **Start the frontend development server**:
-    ```bash
-    npm start
-    ```
-    The frontend will now be running on `http://localhost:3000`.
-
----
-
-## API Documentation
-
-### Authentication Endpoints
-
+### Authentication
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | POST | `/api/auth/login` | User login (returns JWT token) |
 | POST | `/api/auth/register` | User registration |
 | POST | `/api/auth/logout` | User logout |
 
-### User Management Endpoints
-
+### User Management
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/api/users` | Get all users |
@@ -244,8 +161,7 @@ For a detailed and updated **Project Structure** of the telemedicine application
 | PUT | `/api/users/:id` | Update user |
 | DELETE | `/api/users/:id` | Delete user |
 
-### Appointment Endpoints
-
+### Appointments
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/api/appointments` | Get all appointments |
@@ -254,83 +170,140 @@ For a detailed and updated **Project Structure** of the telemedicine application
 | PUT | `/api/appointments/:id` | Update appointment |
 | DELETE | `/api/appointments/:id` | Delete appointment |
 
-### Other Endpoints
+### Doctors
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/doctors` | Get all doctors |
+| GET | `/api/doctors/appointments` | Get doctor appointments |
 
-- `/api/payments` - Payment management
+### Patients
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/patients` | Get all patients |
+| GET | `/api/patients/profile` | Get patient profile |
+| GET | `/api/patients/appointments` | Get patient appointments |
+
+### Other Endpoints
 - `/api/prescriptions` - Prescription management
 - `/api/health-centers` - Health center management
 - `/api/messages` - Message management
 - `/api/roles` - Role management
-- `/api/audit-logs` - Audit log tracking
+- `/api/role-assignments` - Role assignment management
 - `/api/ehr-records` - Electronic health records
+- `/api/payments` - Payment management
+- `/api/statuses` - Status management
+- `/api/admins` - Admin management
 
 ### API Authentication
 
-1. **Login**: Use the `/api/auth/login` endpoint to get a JWT token after providing valid user credentials.
-
-2. **Header setup**: All subsequent requests to protected endpoints must include the JWT token in the Authorization header:
-    ```
-    Authorization: Bearer <your_jwt_token>
-    ```
-
----
-
-## Frontend Components
-
-### Main Components
-
-| Component | Description |
-|-----------|-------------|
-| **AuditLogList, CreateAuditLog, EditAuditLog, ViewAuditLog** | Manages audit logs |
-| **PaymentList, CreatePayment, EditPayment, ViewPayment** | Manages payments |
-| **StatusList, CreateStatus, EditStatus, ViewStatus** | Manages status records |
-| **UserList, CreateUser, EditUser, ViewUser** | Manages user records |
-| **AdminList, CreateAdmin, EditAdmin, ViewAdmin** | Manages admin records |
-| **PatientList, CreatePatient, EditPatient, ViewPatient** | Manages patient records |
-| **DoctorList, CreateDoctor, EditDoctor, ViewDoctor** | Manages doctor records |
-| **AppointmentList, CreateAppointment, EditAppointment, ViewAppointment** | Manages appointments |
-| **PrescriptionList, CreatePrescription, EditPrescription, ViewPrescription** | Manages prescriptions |
-| **MessageList, CreateMessage, EditMessage, ViewMessage** | Manages messages |
-| **HealthCenterList, CreateHealthCenter, EditHealthCenter, ViewHealthCenter** | Manages health centers |
-| **HistoryList, CreateHistory, EditHistory, ViewHistory** | Manages medical histories |
-| **RoleList, CreateRole, EditRole, ViewRole** | Manages roles |
-| **RoleAssignmentList, CreateRoleAssignment, EditRoleAssignment, ViewRoleAssignment** | Manages role assignments |
-| **RoleItemList, CreateRoleItem, EditRoleItem, ViewRoleItem** | Manages role items |
-| **EhrRecordList, CreateEhrRecord, EditEhrRecord, ViewEhrRecord** | Manages Electronic Health Records |
+1. **Login**: Use `/api/auth/login` to get a JWT token
+2. **Header**: Include the token in subsequent requests:
+   ```
+   Authorization: Bearer <your_jwt_token>
+   ```
 
 ---
 
 ## Database Schema
 
-The application uses the following main database tables:
+The application uses PostgreSQL with the following main tables:
 
-- **Users**: Stores user information (patients, doctors, admins)
-- **Appointments**: Stores appointment details
-- **Payments**: Stores payment transactions
-- **Prescriptions**: Stores medical prescriptions
-- **HealthCenters**: Stores health center information
-- **Messages**: Stores user communications
-- **Roles**: Stores role definitions
-- **RoleAssignments**: Stores user-role mappings
-- **AuditLogs**: Stores system audit trails
-- **EhrRecords**: Stores electronic health records
+- **telemed_users**: User information (patients, doctors, admins)
+- **telemed_roles**: Role definitions (Admin, Doctor, Patient, Receptionist)
+- **telemed_role_assignments**: User-role mappings
+- **telemed_appointments**: Appointment details
+- **telemed_prescriptions**: Medical prescriptions
+- **telemed_health_centers**: Health center information
+- **telemed_messages**: User communications
+- **telemed_ehr_records**: Electronic health records
+- **telemed_payments**: Payment transactions
+- **telemed_status**: Status records
+
+---
+
+## Installation
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- PostgreSQL (v12 or higher)
+- npm package manager
+
+### Backend Setup
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/OumaCavin/telemedicine-project.git
+   cd telemedicine-project/backend
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**:
+   Create a `.env` file:
+   ```env
+   DB_HOST=your_db_host
+   DB_USER=your_db_user
+   DB_PASSWORD=your_db_password
+   DB_NAME=telemed_db
+   JWT_SECRET=your_jwt_secret_key
+   PORT=5000
+   ```
+
+4. **Run the backend**:
+   ```bash
+   npm start
+   # or for development
+   npm run dev
+   ```
+
+### Frontend Setup
+
+1. **Navigate to frontend**:
+   ```bash
+   cd ../frontend
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**:
+   ```bash
+   npm start
+   ```
 
 ---
 
 ## Security Features
 
 - **JWT Authentication**: Secure token-based authentication
-- **Password Hashing**: bcryptjs for secure password storage
+- **Password Hashing**: bcrypt for secure password storage
 - **Role-Based Access Control**: Granular permissions system
 - **Input Validation**: Express-validator for request validation
 - **CORS Protection**: Configured for secure cross-origin requests
-- **Audit Logging**: Comprehensive action tracking
+- **Audit Logging**: Comprehensive action tracking with Winston
+
+---
+
+## Recent Updates
+
+### Version 1.1.0
+- Migrated from MySQL to PostgreSQL database
+- Updated seed data with correct role IDs (2, 3, 4, 5)
+- Added automatic role assignment on user registration
+- Fixed API endpoint path handling (removed duplicate `/api/` prefix)
+- Enhanced error logging for better debugging
 
 ---
 
 ## Contributing
 
-We welcome contributions! If you'd like to contribute to the project:
+We welcome contributions! To contribute:
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -339,14 +312,11 @@ We welcome contributions! If you'd like to contribute to the project:
 5. Open a Pull Request
 
 ### Commit Message Convention
-
-We follow conventional commits:
 - `feat:` - New features
 - `fix:` - Bug fixes
 - `docs:` - Documentation changes
 - `style:` - Code style changes
 - `refactor:` - Code refactoring
-- `test:` - Test changes
 - `chore:` - Build/dependency changes
 
 ---
@@ -359,23 +329,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgements
 
-- This project uses React, Node.js, Express, and MySQL for building the full-stack application.
-- Special thanks to the open-source community for the libraries and tools used in this project.
-- Developed and maintained by [Cavin Otieno](https://github.com/OumaCavin).
-
----
-
-## Pitch Deck
-
-To learn more about the Telemedicine Application, check out our **[Project Pitch Deck](resources/HealthTrack-Revolutionizing-Healthcare-Through-Technology.pptx)**.
-
-This deck provides a detailed overview of the problem, solution, key features, technology stack, business model, and roadmap of the Telemedicine Application.
+- React, Node.js, Express for the full-stack framework
+- PostgreSQL for reliable data persistence
+- Open-source community for libraries and tools
+- Developed and maintained by [Cavin Otieno](https://github.com/OumaCavin)
 
 ---
 
 ## Contact
 
-For questions, suggestions, or support, please contact:
+For questions, suggestions, or support:
 
 - **Developer**: Cavin Otieno
 - **GitHub**: [@OumaCavin](https://github.com/OumaCavin)
