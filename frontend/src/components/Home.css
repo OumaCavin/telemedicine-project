@@ -80,6 +80,15 @@
     border: 4px solid white;
 }
 
+.feature-icon span {
+    font-size: 50px;
+    line-height: 120px;
+}
+
+.hero-image span {
+    font-size: 200px;
+}
+
 .hero-buttons {
     display: flex;
     gap: 20px;
@@ -224,7 +233,8 @@
 }
 
 .feature-icon img,
-.feature-icon svg {
+.feature-icon svg,
+.feature-icon span {
     width: 100%;
     height: 100%;
     object-fit: cover;

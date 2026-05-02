@@ -37,16 +37,7 @@ const Home = () => {
                         )}
                     </div>
                     <div className="hero-image">
-                        <svg viewBox="0 0 400 300" width="400" height="300" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="400" height="300" fill="#E8F5E9"/>
-                            <circle cx="200" cy="120" r="60" fill="#4CAF50" opacity="0.3"/>
-                            <circle cx="200" cy="120" r="40" fill="#4CAF50" opacity="0.5"/>
-                            <circle cx="200" cy="120" r="20" fill="#2E7D32"/>
-                            <rect x="120" y="200" width="160" height="60" rx="10" fill="#fff"/>
-                            <rect x="140" y="210" width="40" height="40" rx="5" fill="#4CAF50"/>
-                            <rect x="220" y="215" width="50" height="10" rx="2" fill="#81C784"/>
-                            <rect x="220" y="235" width="40" height="10" rx="2" fill="#81C784"/>
-                        </svg>
+                        <span className="emoji-hero">💊</span>
                     </div>
                 </div>
             </section>
@@ -86,32 +77,21 @@ const Home = () => {
                 <div className="features-container">
                     <div className="feature-item">
                         <div className="feature-icon">
-                            <svg viewBox="0 0 100 100" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100" height="100" rx="10" fill="#4CAF50"/>
-                                <path d="M30 45h40v10H30zM35 35h30v10H35zM40 55h20v5H40z" fill="white"/>
-                            </svg>
+                            <span className="emoji-icon">🏥</span>
                         </div>
                         <h3>Trusted by Leading Hospitals</h3>
                         <p>Partnered with top healthcare institutions across Kenya</p>
                     </div>
                     <div className="feature-item">
                         <div className="feature-icon">
-                            <svg viewBox="0 0 100 100" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100" height="100" rx="10" fill="#2196F3"/>
-                                <circle cx="50" cy="35" r="15" fill="white"/>
-                                <path d="M25 75c0-15 10-25 25-25s25 10 25 25" fill="white"/>
-                            </svg>
+                            <span className="emoji-icon">👨‍⚕️</span>
                         </div>
                         <h3>Qualified Healthcare Professionals</h3>
                         <p>Verified doctors and specialists at your service</p>
                     </div>
                     <div className="feature-item">
                         <div className="feature-icon">
-                            <svg viewBox="0 0 100 100" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <rect width="100" height="100" rx="10" fill="#FF9800"/>
-                                <rect x="20" y="20" width="60" height="50" rx="5" fill="white"/>
-                                <rect x="30" y="30" width="40" height="30" rx="2" fill="#FF9800"/>
-                            </svg>
+                            <span className="emoji-icon">📱</span>
                         </div>
                         <h3>Easy-to-Use Mobile App</h3>
                         <p>Access healthcare services from your smartphone</p>
