@@ -1,6 +1,8 @@
 // middlewares/authMiddleware.js
 const jwt = require('jsonwebtoken');
 const User = require('../models/User'); 
+const RoleService = require('../services/RoleService');
+const ROLES = require('../constants/roles');
 
 
 exports.protect = async (req, res, next) => {
@@ -20,7 +22,14 @@ exports.protect = async (req, res, next) => {
         // Verify token and get user data - use fallback secret if needed
         const jwtSecret = process.env.JWT_SECRET || 'development-secret-key-do-not-use-in-production';
         const decoded = jwt.verify(token, jwtSecret);
-        req.user = decoded; 
+        
+        // Get user's role from database
+        const role_id = await RoleService.getUserRole(decoded.user_id);
+        
+        req.user = { 
+            user_id: decoded.user_id,
+            role_id: role_id 
+        }; 
         next();
     } catch (error) {
         // Handle different errors (e.g., token expiration)
@@ -32,11 +41,15 @@ exports.protect = async (req, res, next) => {
 };
 
 // Admin middleware - checks if user has admin role
-exports.admin = (req, res, next) => {
-    if (req.user && req.user.role === 'admin') {
-        next();
-    } else {
-        res.status(403).json({ message: 'Not authorized as an admin' });
+exports.admin = async (req, res, next) => {
+    try {
+        if (req.user && req.user.role_id === ROLES.ADMIN) {
+            next();
+        } else {
+            res.status(403).json({ message: 'Not authorized as an admin' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: 'Error checking admin status' });
     }
 };
 
